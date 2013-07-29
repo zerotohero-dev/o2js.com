@@ -1,0 +1,49 @@
+{
+  "name": "scotch-blog",
+  "version": "0.1.7",
+  "description": "A really classy, dead simple, markdown based, blogging framework for node.js",
+  "main": "./bin/cli.js",
+  "bin": {
+    "scotch": "./bin/cli.js"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "highlight": "~0.2.x",
+    "underscore": "~1.4.x",
+    "marked": "~0.2.x",
+    "mongodb-wrapper": "~0.4.x",
+    "slugs": "~0.1.x",
+    "geddy": "~0.9.x",
+    "commander": "~1.2.0",
+    "utilities": "0.0.26",
+    "request": "~2.21.0",
+    "envoy": "0.0.x"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jake test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Techwraith/scotch.git"
+  },
+  "keywords": [
+    "markdown",
+    "blog",
+    "geddy",
+    "framework",
+    "mongo",
+    "riak",
+    "postgres"
+  ],
+  "author": {
+    "name": "Techwraith"
+  },
+  "license": "MIT",
+  "readme": "#Scotch\n###A really classy, dead simple, markdown based, blogging framework for node.js\n\nTo try Scotch for yourself, make sure that you have node, npm, and mongodb installed (and running), then do this:\n\n    $> npm install -g scotch-blog\n    $> scotch create blog\n    $> cd blog\n    $> sudo scotch serve\n\nGo to `http://0.0.0.0/dashboard/install` to install Scotch.\n\nYour blog should be up and running on `http://localhost`\n\n### Static Site Generation\n\n    $> cd blog\n    $> scotch generate\n    \nYour you should now have a 'static' directory in your blog's root directory.\n\nRead the [deployment docs](#deployment) on how to configure static site deployment.\n\n#### Dashboard\n\n![Scotch's dashboard](https://dl.dropbox.com/u/7982297/scotch_screens/newdash.png)\n\n\n#### Writing\n \n![writing in Scotch](https://dl.dropbox.com/u/7982297/scotch_screens/newwrite.png)\n\n#### Reading\n\n![writing in Scotch](https://dl.dropbox.com/u/7982297/scotch_screens/newread.png)\n\n#### Deployment\n\nCreate `config/deployment.js` and fill it with your deployment settings then run `scotch deploy` from your terminal. At the moment we support S3 and FTP deployment, with gh-pages on its way.\n\n##### Sample S3 Settings\n```js\nmodule.exports = {\n  \"destination\": \"s3\"\n, \"opts\": {\n    \"bucket\": \"<BUCKET NAME>\"\n  , \"key\": \"<AWS ACCESS KEY>\"\n  , \"secret\": \"<AWS SECRET KEY>\"\n  , \"region\": \"<AWS REGION>\"      //us-west-1\n  }\n};\n```\n\n##### Sample FTP Settings\n```js\nmodule.exports = {\n  \"destination\": \"ftp\"\n, \"opts\": {\n    \"host\": \"<FTP HOST>\"          //ftp.myserver.com\n  , \"port\": <FTP PORT>            //Default: 21\n  , \"username\": \"<FTP USERNAME>\"\n  , \"password\": \"<FTP PASSWORD>\"\n  }\n};\n```\n\n#### Plugins\n\nPlugins are installed via npm and enabled via in `app/config/environment.js`.\n\n```\n/*\n* Sample app/config/environment.js\n* `npm install readmore`\n*/\nvar config = {\n  port: 80,\n  model: {\n    defaultAdapter: 'mongo'\n  },\n  db: {\n    mongo: {\n      dbname: 'blog'\n    }\n  },\n  plugins: {\n    formatters: [\n      'readmore'\n    ]\n  }\n};\n\nmodule.exports = config;\n```\n\n##### Formatters\n\nFormatter plugins enhance the markdown language.\n\n```js\n/*\n* An example formatter plugin that replaces the string \"charcount\" with the number\n* of characters in the markdown source when viewing a post in the blog index\n*/\nvar replacer = function (buffer) {\n  //`this` in the context of a formatter plugin refers to the post model\n  return buffer.replace(/charcount/, this.markdown.length);\n};\n\n/*\n* You can modify either the `index` or `show` actions.\n* By not exporting to exports.show, our plugin will only\n* run on posts during the index action\n*/\nexports.index = replacer;\n\n```\n\n### Things to Do\n\nIf you'd like to help out, check out the [issue list](https://github.com/Techwraith/scotch/issues?state=open).\n",
+  "readmeFilename": "readme.md",
+  "_id": "scotch-blog@0.1.7",
+  "_from": "scotch-blog@"
+}

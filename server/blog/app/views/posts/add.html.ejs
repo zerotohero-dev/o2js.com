@@ -1,0 +1,23 @@
+<form id="post-form" class="form-horizontal" action="/dashboard/post" method="POST">
+    <% if(params.errors) { %>
+      <ul>
+      <% for(var err in params.errors) { %>
+        <li><%= params.errors[err]; %></li>
+      <% } %>
+      </ul>
+    <% } %>
+
+    <%- partial('form', {post: {}}) %>
+  <div class="menu-holder">
+    <div class="menu">
+      <a href="/" class="btn">go home</a>
+      <a href="/dashboard" class="btn">back to dashboard</a>
+      <%- contentTag('input', 'save this post', {type: 'submit', class: 'btn'}) %>
+    </div>
+
+    <div class="menu right">
+      <a href="javascript://" class="btn btn-grey btn-selected state">draft</a>
+      <a href="javascript://" class="btn btn-grey state">published</a>
+    </div>
+  </div>
+</form>
