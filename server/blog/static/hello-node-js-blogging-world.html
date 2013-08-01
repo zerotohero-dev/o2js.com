@@ -51,8 +51,64 @@
       
 <h2 class="title span8"><a href="/hello-node-js-blogging-world.html">Hello Node.JS Blogging World</a></h2>
 <div class="span8">
-  <p>Hello Stars</p>
-<p>Hello Universe!</p>
+  <h3>What?</h3>
+<p>This the initial step of my <em>very-long-term</em> plan of converting/porting all of my sites and projects to a <strong>MongoDB/Markdown/NGINX/Node.JS</strong> stack.</p>
+<h3>Why?</h3>
+<ul>
+<li>Because, <strong><a href="http://www.mongodb.org/">MongoDB</a></strong> is one of the best <strong>NoSQL</strong> document stores;</li>
+<li>Because <strong><a href="http://wiki.nginx.org/Main">NGINX</a></strong> the fastest server on earth;</li>
+<li>Because <strong><a href="http://nodejs.org/">Node.JS</a></strong> is cool (<em>and it&#39;s damn fast, too</em>)</li>
+<li>Because, <strong><a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a></strong> enables you to write stuff without thinking about formatting; it&#39;s crisp, clean, and readable.</li>
+</ul>
+<p>Doesn&#39;t <strong>Markdown</strong> look simply beautiful?:</p>
+<p><img src="http://blog.o2js.com/assets/markdownsm.png" alt="Markdown screenshot"></p>
+<p>It&#39;s really fun to edit a <strong>Markdown</strong> document: It&#39;s way better than fighting with your &quot;<em>what you see is what you don&#39;t always get</em>&quot; rich text editor, because it&#39;s decided to &quot;<em>cleverly</em>&quot; format &quot;<em>your</em>&quot; text behind your back.</p>
+<blockquote>
+<p>This site has been created with <strong><a href="http://nodejs.org/">Node.JS</a></strong>, exported to a static site using <strong>Node.JS</strong> and is currently reverse-proxied to an <strong><a href="http://wiki.nginx.org/Main">NGINX</a></strong> server through <strong><a href="http://www.iis.net/">IIS 7</a></strong>.</p>
+</blockquote>
+<p>I will write about the specifics of <em>how I did that</em>, in a follow-up post.</p>
+<blockquote>
+<p>Oh, btw. This blog is really minimaslistic, and it does not have a <em>comment</em> feature <strong>yet</strong>. So <strong><a href="http://twitter.com/linkibol/">feel free to tweet me</a></strong>, if you have comments, or questions.</p>
+</blockquote>
+<h3>And Why IIS7?</h3>
+<p>I need <strong><a href="http://www.iis.net/">IIS 7</a></strong> for a transitional period. Otherwise I would have to rent another server, maintain two servers simultaneously, setup DNS for the new server. It&#39;s not worth the hassle.</p>
+<p>I have a dedicated Windows Server anyways, and I have <strong>8 CPU cores</strong> and <strong>plenty of idle memory</strong>. So creating a virtual server and proxying/port-forwarding requests to this server is one plausible option.</p>
+<blockquote>
+<p>I could have done the other way around: i.e. I could have rented a dedicated linux server; run a virtual windows box in it; setup IIS; setup SMTP; setup PHP; import all the sites; imported databases; reconfigured mySQL (<em>my.ini</em>); setup other tools that I use occasionally (<em>like a jabber server</em>)... and I could have have done many other things that I don&#39;t remember right now. -- And it would have been <strong>a lot of redundant work</strong> for a server that I would be dumping in the long run, anyway. </p>
+</blockquote>
+<p>Yes a virtual box has a <strong>minor</strong> performance overhead; and it has its benefits, too:</p>
+<blockquote>
+<p>Since I&#39;m setting up a brand new environment, it&#39;s possible that I may mess things up. With a virtual server, I can take a snapshot of the entire system before I feel like &quot;<em>experimental</em>&quot;, do my changes, and restore back to my snapshot if thing do not go as expected.</p>
+</blockquote>
+<h3>What to Do Next</h3>
+<p>As I said, this is a very long-term project. And there is a long list of things to do. Some are easy, and some will consume a lot of time. </p>
+<p>Here are a few:</p>
+<ul>
+<li><strong>Moving My Technical Blog</strong> <a href="http://o2js.com/">o2js.com</a> -- I already have set up a minimalistic blog that uses Node.JS (<em>more on that on a follow up post</em>). I will transfer posts from o2js.blog to the new blog, starting with the most popular ones first; I will be <strong>editing</strong> and <strong>ehnancing</strong> content along the way, too. -- This will result in a better blog.</li>
+<li><strong>Moving Other Blogs that I Have</strong> -- There are quality content on some other blogs that I have not been maintaining for a while (like <a href="http://blog.linkibol.com/">blog.linkibol.com</a>). -- I will move those content to this new blog too.</li>
+<li><strong>Moving Other People&#39;s Sites</strong> -- Sites that I don&#39;t directly have control over (<em>the sites that belong to friends, and family, which are hosted on my server, and are mostly in </em>php<em> </em>) -- well, guess what? linux can run <em>PHP</em> too <strong>;)</strong>. So I will transfer them directly to vm, and start serving them there.</li>
+<li><strong>Moving My Portfolio Site</strong> <a href="http://volkan.io/">volkan.io</a> -- since it&#39;s a static single page. I will be rewriting it anyway, so moving it to the linux vm is not a big deal.</li>
+<li><strong>Importing Data</strong> -- This will be an issue I&#39;d have to deal when the time comes.</li>
+<li><strong>Maintenance / Scheduling Backup</strong> -- Since the server will be a production server eventually, I have to make sure that I don&#39;t lose valuable data.</li>
+<li>... there are probably several other things that I&#39;m not thinking about right now; and I will be sorting them out as they come.</li>
+</ul>
+<h3>What about <a href="http://linkibol.com/">linkibol.com</a>?</h3>
+<p>Back in 2003, I created a social bookmarking site <a href="http://linkibol.com/">linkibol.com</a>, which is still getting a lot of traffic. This will be the hardest project to transfer to the linux box, since it has a lot of moving parts and dependencies.</p>
+<p><a href="http://linkibol.com/">linkibol.com</a> is <em>the elephant in the room</em>. And honestly, it&#39;s the only reason I&#39;m still using a dedicated windows box. It&#39;s a giant that devours most of my server&#39;s resources. And it&#39;s an <strong>ASP.net/C#</strong> project. That&#39;s why I need <strong>IIS</strong> and a <strong>windows server</strong> to run it.</p>
+<blockquote>
+<p>While developing <a href="http://linkibol.com/">linkibol.com</a> I&#39;ve learned a hell lot of things about <strong>social bookmarking</strong>, <strong>social networks</strong>, <strong>caching</strong>, <strong>degrees of separation</strong>, <strong>scalability</strong>, <strong>graph theory</strong>, <strong>popularity algorithms</strong>, <strong>bayesian statistics</strong>, and more… </p>
+</blockquote>
+<p>If the site had not received massive attention from the Turkish internet community, I would not have been forced to optimize every single bit of it.</p>
+<blockquote>
+<p>Thus, I believe it&#39;s time to pay back to community by sharing what I&#39;ve learned.</p>
+</blockquote>
+<p><a href="https://github.com/v0lkan/linkibol">I&#39;ve already started an open source project on github</a>. I will be  rewriting <strong>linkibol.com</strong> from scratch using <strong>Node.JS</strong> and <strong>MongoDB</strong>. And it will take a <strong>loooooong</strong> time to complete. </p>
+<p>So if any of you guys are interested, <a href="https://github.com/v0lkan/linkibol/issues">I&#39;d love to have your help</a>.</p>
+<h3>The Setup</h3>
+<p>So how did I set everything up? What is my current configuration?</p>
+<p>This will be to topic of my next blog post. </p>
+<p>Wait for it <strong>;)</strong></p>
+<p><strong>Volkan</strong>.</p>
 
   <div class="byline">
     by Volkan Özçelik on 07.29.13
