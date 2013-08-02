@@ -5,14 +5,14 @@
 
 body {
   margin: 108px 72px 200px 72px;
-  background: #FDF6E3;
+  background: #FDF6E3;/*#FDF6E3;*/
   color: #657B83;
   font-size: 16px;
-  font-family: asap, serif;
+  font-family: Georgia, Times New Roman, Times, serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: inika, serif;
+  font-family: Georgia, Times New Roman, Times, serif;
   font-weight: normal;
   color: #859900;
 }
@@ -80,7 +80,7 @@ pre, blockquote {
 }
 
 pre, code {
-  font-family: m-1m, monospace;
+  font-family: Menlo, "Courier New", Courier, monospace;
   font-size: 16px;
   line-height: 28px;
   color: #839496;
@@ -120,7 +120,7 @@ li {
   font-size: 36px;
   line-height: 52px;
   color: #859900;
-  font-family: inika, serif;
+  font-family: Georgia, Times New Roman, Times, serif;
 }
 
 .posts textarea {

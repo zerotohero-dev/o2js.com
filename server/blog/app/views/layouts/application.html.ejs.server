@@ -18,7 +18,22 @@
     <meta name="author" content="<%= geddy.site.firstName + ' ' + geddy.site.lastName; %>">
     <meta name="viewport" content="width=device-width" />
 
+    <!-- The HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <%- scriptLink('http://html5shim.googlecode.com/svn/trunk/html5.js', {type:'text/javascript'}) %>
+    <![endif]-->
+
+    <script src="http://use.edgefonts.net/asap.js"></script>
+    <script src="http://use.edgefonts.net/m-1m.js"></script>
+    <script src="http://use.edgefonts.net/inika.js"></script>
+
+    <%- scriptLink('/js/jquery.min.js', {type:'text/javascript'}) %>
+    <%- scriptLink('/js/jquery.autosize-min.js', {type: 'text/javascript'}) %>
+    <%- scriptLink('/js/keymaster.min.js', {type: 'text/javascript'}) %>
+    <%- scriptLink('/js/keymaster.sequence.min.js', {type: 'text/javascript'}) %>
+
     <%- styleLink('/css/style.css', {rel:'stylesheet'}) %>
+    <%- styleLink('/css/highlight.css', {rel:'stylesheet'}) %>
 
     <!-- The fav and touch icons -->
     <link rel="shortcut icon" href="/images/favicon.ico">
