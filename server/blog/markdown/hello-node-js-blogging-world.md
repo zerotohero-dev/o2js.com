@@ -11,7 +11,7 @@ This is the initial step of my *very-long-term* plan of *converting*/*porting* a
 
 See it for yourself. Doesn't the following **Markdown** image of this blog post simply look beautiful?:
 
-![Markdown screenshot][mdscreen]
+[![Markdown screenshot][mdscreen]][mdlarge]
 
 Editing a **Markdown** document is way better than fighting your way through your "*what you see is what you don't always get*" rich text editor. 
 
@@ -23,6 +23,7 @@ Editing a **Markdown** document is way better than fighting your way through you
 [nodejs]:   http://nodejs.org/
 [markdown]: http://daringfireball.net/projects/markdown/syntax
 [mdscreen]: http://blog.o2js.com/assets/markdownsm.png
+[mdlarge]:  http://blog.o2js.com/assets/markdown.png
 
 ### The Setup
 
