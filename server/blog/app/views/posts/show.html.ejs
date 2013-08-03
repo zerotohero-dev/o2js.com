@@ -4,9 +4,9 @@
   <%- post.html %>
   <p class="note">Do you have something to say? Have I missed anything?
   Send your comments and suggestions
-  to <a href="mailto:volkan@o2js.com">volkan@o2js.com</a></p>
+  to <a href="mailto:volkan@o2js.com">volkan@o2js.com</a>.</p>
   <div class="byline">
-    by <%= geddy.site.firstName + ' ' + geddy.site.lastName %> on <%= geddy.date.strftime(post.createdAt, '%m.%d.%y') %>
+    by <a href="http://volkan.io/"><%= geddy.site.firstName + ' ' + geddy.site.lastName %></a> on <%= geddy.date.strftime(post.createdAt, '%m.%d.%y') %>
   </div>
 </div>
 <% } else { %>
@@ -31,5 +31,3 @@
   <a href="<%= next ? '/' + formatSlug(next.slug) : 'javascript://'; %>" class="btn btn-grey <%= !next ? 'btn-disabled' : '' %>">newer post &raquo;</a>
 </div>
 <% } %>
-
-<p class="copy">© <a href="http://volkan.io/">Volkan Özçelik</a></p>
