@@ -2,6 +2,9 @@
 <h2 class="title span8"><a href="/<%= formatSlug(post.slug) %>"><%= post.title %></a></h2>
 <div class="span8">
   <%- post.html %>
+  <p class="note">Do you have something to say? Have I missed anything?
+  Send your comments and suggestions
+  to <a href="mailto:volkan@o2js.com">volkan@o2js.com</a></p>
   <div class="byline">
     by <%= geddy.site.firstName + ' ' + geddy.site.lastName %> on <%= geddy.date.strftime(post.createdAt, '%m.%d.%y') %>
   </div>
