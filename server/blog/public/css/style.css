@@ -138,6 +138,7 @@ input[type=submit] {
 
 .byline {
   font-size: 80%;
+  text-align: right;
 }
 
 .pull-right {
@@ -516,4 +517,5 @@ p.note {
   background: #fdfea3;
   padding: 1em;
   border: 1px #a8a8a8 solid;
+  text-align: center;
 }
