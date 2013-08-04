@@ -201,9 +201,16 @@ The end result of all this effort is this very blog that you're reading right no
 > Whenever I write a new blog article, I also create a markdown file for it.<br>
 > I synchronize these markdown files and other static content with the [blog's github repository][o2jscomgit].
 
+Which also means that when I do a change, I'm updating the master branch, and publishing my updates on the master branch immediately.
+&ndash; There's no dev branch; there's no staging&hellip;
+
+![Testing on Production Meme][prod]
+
+I like living dangerously **;)**.
+
+One other thing before I forget: [there are a bunch of issues that I've opened already][issues], to enhance this blog's functionality further. [As I've said earlier][earlier], this is a very long transition project. And if you have any ideas, I'd love to learn about them.
+
 [o2jscomgit]: https://github.com/v0lkan/o2js.com
-
-[There are a bunch of issues that I've opened already][issues], to enhance this blog's functionality further. [As I've said earlier][earlier], this is a very long transition project. And if you have any ideas, I'd love to learn about them.
-
-[earlier]: http://blog.o2js.com/hello-node-js-blogging-world
-[issues]:  https://github.com/v0lkan/o2js.com/issues
+[prod]:       http://blog.o2js.com/assets/prod.png
+[earlier]:    http://blog.o2js.com/hello-node-js-blogging-world
+[issues]:     https://github.com/v0lkan/o2js.com/issues
