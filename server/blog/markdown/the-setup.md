@@ -1,4 +1,4 @@
-As I've promised [in the last post][newblog], I'll go into the details of the overall architecture of this site.
+As I promised [in the last post][newblog], I'll go into the details of the overall architecture of this site.
 
 > Although the steps defined in this article is specific to my needs, it can be helpful in general too. We will cover concepts like **how to create a reverse proxy using IIS7**, **how to install and configure NGINX**, **how to configure virtualbox**, **how to do port forwarding to a local virtual machine**… and the like.
 
