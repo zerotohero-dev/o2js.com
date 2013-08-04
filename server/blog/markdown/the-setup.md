@@ -37,7 +37,7 @@ And here's the **web.config** file in the site's root directory:
 
 This site will simply act as a proxy, forwarding any request that comes to it to **localhost:8001**.
 
-> I have also **blocked external access to port 8001** from **windows firewall**. Since the forwarding is done to a local address only, the outside world does not need to access port 8001.
+> I have also **blocked external access to port 8001** using **windows firewall**. Since the forwarding is done to a local address only, the outside world does not need to access port 8001.
 
 That's all for the **IIS** part. The next thing is to set up the *virtual machine*:
 
