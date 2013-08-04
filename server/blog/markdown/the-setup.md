@@ -56,9 +56,9 @@ After installing the OS (*which is **ubuntu** in my case*), I defined the follow
 
 [![NAT rules][nat]][nat-large]
 
-Here's what I do:
+Here's what I do with these ports:
 
-* I occasionally run **[scotch][scotch]** to create static files of this blog (*more on that later*).
+* I occasionally run **[scotch][scotch]** on **port 8000** to create static files of this blog (*more on that later*).
 * I am forwarding **port 22** to **SSH** to this virtual machine from outside.
 * I am forwarding **port 8001** so that any request to *port 8001* of the *host machine* directly goes to this virtual server (i.e. the *guest machine*) – This sets the receiving endpoint of the redirect rule that we've set up in the **web.config** above.
 
