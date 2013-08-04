@@ -74,9 +74,9 @@
 <p><a href="http://www.wikihow.com/Install-Ubuntu-on-VirtualBox">Installing an operating system into virtualbox</a> is pretty straightforward.</p>
 <p>After installing the OS (<em>which is <strong>ubuntu</strong> in my case</em>), I defined the following <strong><a href="https://en.wikipedia.org/wiki/Network_address_translation">NAT</a></strong> rules:</p>
 <p><a href="http://blog.o2js.com/assets/nat_large.png"><img src="http://blog.o2js.com/assets/nat.png" alt="NAT rules"></a></p>
-<p>Here&#39;s what I do:</p>
+<p>Here&#39;s what I do with these ports:</p>
 <ul>
-<li>I occasionally run <strong><a href="https://github.com/techwraith/scotch">scotch</a></strong> to create static files of this blog (<em>more on that later</em>).</li>
+<li>I occasionally run <strong><a href="https://github.com/techwraith/scotch">scotch</a></strong> on <strong>port 8000</strong> to create static files of this blog (<em>more on that later</em>).</li>
 <li>I am forwarding <strong>port 22</strong> to <strong>SSH</strong> to this virtual machine from outside.</li>
 <li>I am forwarding <strong>port 8001</strong> so that any request to <em>port 8001</em> of the <em>host machine</em> directly goes to this virtual server (i.e. the <em>guest machine</em>) – This sets the receiving endpoint of the redirect rule that we&#39;ve set up in the <strong>web.config</strong> above.</li>
 </ul>
