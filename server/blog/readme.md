@@ -1,6 +1,6 @@
 #Scotch
 ###A really classy, dead simple, markdown based, blogging framework for node.js
- ...
+ .......
 To try Scotch for yourself, make sure that you have node, npm, and mongodb installed (and running), then do this:
 
     $> npm install -g scotch-blog

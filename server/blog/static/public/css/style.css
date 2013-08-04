@@ -138,6 +138,7 @@ input[type=submit] {
 
 .byline {
   font-size: 80%;
+  text-align: right;
 }
 
 .pull-right {
@@ -509,4 +510,12 @@ pre .deletion {
 
 pre .tex .formula {
   background: #eee8d5;
+}
+
+p.note {
+  font-size: 0.8em;
+  background: #fdfea3;
+  padding: 1em;
+  border: 1px #a8a8a8 solid;
+  text-align: center;
 }
