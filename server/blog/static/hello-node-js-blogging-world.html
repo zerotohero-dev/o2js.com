@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <title>
-      o2js.com
+      o2.js - A Coherent Solution to You JavaScript Dilemma
       
       |  Hello Node.JS Blogging World
       
@@ -23,16 +23,27 @@
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   </head>
   <body class="posts">
-    <header class="meta">
+    <header class="meta" style="text-align:center">
       
-        <a href="/" class="btn btn-grey">Volkan Özçelik</a>
+        <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
       
       
-        <a href="http://twitter.com/linkibol" class="btn btn-grey">@linkibol</a>
+        <span style="font-size:1em">፨</span>
+        <a href="https://twitter.com/linkibol" class="btn btn-grey">@<strong>twitter</strong></a>
+        <a href="https://linkedin.com/in/volkanozcelik" class="btn btn-grey">@<strong>LinkedIn</strong></a>
+        <a href="https://github.com/v0lkan" class="btn btn-grey">@<strong>GitHub</strong></a>
       
+        <span style="font-size:1em">፨</span>
+        <a href="https://github.com/v0lkan/o2.js/blob/dev/README.md" class="btn btn-grey">about <strong>o2.js</strong></a>
+        <a href="https://github.com/v0lkan/o2.js/releases" class="btn btn-grey"><strong>o2.js</strong> source code</a>
+
       
     </header>
+    
+    <p style="text-align:center;padding:1em;background:#fdf5d2;border: 1px #eee8d5 solid;"><a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
+    
     <div class="container">
+      
       
 <h2 class="title span8"><a href="/hello-node-js-blogging-world">Hello Node.JS Blogging World</a></h2>
 <div class="span8">
@@ -47,7 +58,7 @@
 </ul>
 <p>See it for yourself. Doesn&#39;t the following <strong>Markdown</strong> image of this blog post simply look beautiful?:</p>
 <p><a href="http://blog.o2js.com/assets/markdown.png"><img src="http://blog.o2js.com/assets/markdownsm.png" alt="Markdown screenshot"></a></p>
-<p>Editing a <strong>Markdown</strong> document is way better than fighting your way through your &quot;<em>what you see is what you don&#39;t always get</em>&quot; rich text editor. </p>
+<p>Editing a <strong>Markdown</strong> document is way better than fighting your way through your &quot;<em>what you see is what you don&#39;t always get</em>&quot; rich text editor.</p>
 <blockquote>
 <p>It sucks to realize that your beloved editor has decided to &quot;<em>cleverly</em>&quot; format &quot;<em>your</em>&quot; text behind your back.</p>
 </blockquote>
@@ -61,14 +72,14 @@
 <p>I need <strong><a href="http://www.iis.net/">IIS 7</a></strong> for a transitional period. Otherwise I will have to rent another server, maintain two servers simultaneously, setup DNS for the new server. It&#39;s not worth the hassle.</p>
 <p>I have a dedicated Windows Server anyways, and I have <strong>8 CPU cores</strong> and <strong>plenty of idle memory</strong>. So creating a virtual server and proxying/port-forwarding requests to this server is a plausible option.</p>
 <blockquote>
-<p>I could have done the other way around: i.e. I could have rented a dedicated linux server; run a virtual windows box in it; configured <strong>IIS</strong>; created an <strong>SMTP</strong> server; setup <strong>PHP</strong>; imported all the sites; imported databases; reconfigured <strong>mySQL</strong> (<em>my.ini</em>); configured other tools that I use occasionally (<em>like a jabber server</em>)… and the like – And it would have been <strong>a lot of redundant work</strong> for a server that I would be dumping in the long run, anyway. </p>
+<p>I could have done the other way around: i.e. I could have rented a dedicated linux server; run a virtual windows box in it; configured <strong>IIS</strong>; created an <strong>SMTP</strong> server; setup <strong>PHP</strong>; imported all the sites; imported databases; reconfigured <strong>mySQL</strong> (<em>my.ini</em>); configured other tools that I use occasionally (<em>like a jabber server</em>)… and the like – And it would have been <strong>a lot of redundant work</strong> for a server that I would be dumping in the long run, anyway.</p>
 </blockquote>
 <p>Yes a virtual box has a <strong>minor</strong> performance overhead; and it has its benefits, too:</p>
 <blockquote>
 <p>Since I&#39;m playing with a brand new environment, it&#39;s possible that I may mess things up. With a virtual server, I can take a snapshot of the entire system before I feel  &quot;<em>experimental</em>&quot;, hack around, and restore back to my stable snapshot if things do not go well.</p>
 </blockquote>
 <h3>My Action Plan</h3>
-<p>As I said, <strong>this is a very long-term project</strong>. And there is a long list of things to do. Some are easy, and some will consume a lot of time. </p>
+<p>As I said, <strong>this is a very long-term project</strong>. And there is a long list of things to do. Some are easy, and some will consume a lot of time.</p>
 <p>Here are a few:</p>
 <ul>
 <li><strong>Moving My Technical Blog <a href="http://o2js.com/">o2js.com</a></strong> – I will transfer posts from <em>o2js.com</em> blog to this new blog. I will start with the most popular ones first. I will also be <strong>editing</strong> and <strong>ehnancing</strong> the copied posts along the way. – This will result in a better blog, with up-to-date content to reflect contemporary patterns and practices in <strong>Front End Web Application Architecture</strong>.</li>
@@ -83,13 +94,13 @@
 <p>Back in 2003, I created a social bookmarking site <a href="http://linkibol.com/">linkibol.com</a>, which is still getting a lot of traffic. This will be the hardest project to transfer to this <strong>Linux</strong> box, since it has a lot of moving parts and dependencies.</p>
 <p><a href="http://linkibol.com/">linkibol.com</a> is <em>the elephant in the room</em>. And honestly, it&#39;s the only reason I&#39;m still using a dedicated windows box. It&#39;s a giant that devours most of my server&#39;s resources. And it&#39;s an <strong>ASP.net/C#</strong> project. That&#39;s why I need <strong>IIS</strong> and a <strong>windows server</strong> to run it.</p>
 <blockquote>
-<p>While developing <a href="http://linkibol.com/">linkibol.com</a> I&#39;ve learned a hell lot of things about <strong>social bookmarking</strong>, <strong>social networks</strong>, <strong>caching</strong>, <strong>degrees of separation</strong>, <strong>scalability</strong>, <strong>graph theory</strong>, <strong>popularity algorithms</strong>, <strong>bayesian statistics</strong>, and more… </p>
+<p>While developing <a href="http://linkibol.com/">linkibol.com</a> I&#39;ve learned a hell lot of things about <strong>social bookmarking</strong>, <strong>social networks</strong>, <strong>caching</strong>, <strong>degrees of separation</strong>, <strong>scalability</strong>, <strong>graph theory</strong>, <strong>popularity algorithms</strong>, <strong>bayesian statistics</strong>, and more…</p>
 </blockquote>
 <p>If the site had not received massive attention from the Turkish internet community, I would not have been forced to optimize every single bit of it.</p>
 <blockquote>
 <p>Thus, I believe it&#39;s time to pay back to community by sharing what I&#39;ve learned.</p>
 </blockquote>
-<p><a href="https://github.com/v0lkan/linkibol">I&#39;ve already started an open source project on github</a>. I will be  rewriting <strong>linkibol.com</strong> from scratch using <strong>Node.JS</strong> and <strong>MongoDB</strong>. And it will take a <strong>loooooong</strong> time to complete. </p>
+<p><a href="https://github.com/v0lkan/linkibol">I&#39;ve already started an open source project on github</a>. I will be  rewriting <strong>linkibol.com</strong> from scratch using <strong>Node.JS</strong> and <strong>MongoDB</strong>. And it will take a <strong>loooooong</strong> time to complete.</p>
 <p>So if any of you guys are interested, <a href="https://github.com/v0lkan/linkibol/issues">I&#39;d love to have your help</a>.</p>
 <h3>Next Up?</h3>
 <p>So how did I set everything up? What is my current configuration?</p>
@@ -100,7 +111,7 @@
     Send your comments and suggestions to <a href="mailto:volkan@o2js.com">volkan@o2js.com</a>.
   </blockquote>
   <div class="byline">
-    by <a href="http://volkan.io/">Volkan Özçelik</a> on 07.29.13
+    by <a href="http://volkan.io/">Volkan Özçelik</a> on 08.25.13
   </div>
 </div>
 
@@ -114,22 +125,20 @@
 </div>
 
 
+    
+    <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          var disqus_shortname = 'o2js';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
-    <div style="width: 650px;margin-top:2em;">
-        <div id="disqus_thread"></div>
-            <script type="text/javascript">
-                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                var disqus_shortname = 'o2js'; // required: replace example with your forum shortname
 
-                        /* * * DON'T EDIT BELOW THIS LINE * * */
-                                    (function() {
-                                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                            })();
-                                                </script>
-                                                            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-                                                        
+    
     </div>
-  </body>
+      </body>
 </html>

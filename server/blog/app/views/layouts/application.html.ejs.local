@@ -27,26 +27,36 @@
     <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
   </head>
   <body class="<%= params.controller.toLowerCase() %>">
-    <header class="meta">
+    <header class="meta" style="text-align:center">
       <% if (geddy.site.firstName && geddy.site.lastName) { %>
-        <a href="/" class="btn btn-grey"><%= geddy.site.firstName + ' ' + geddy.site.lastName %></a>
+        <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
       <% } %>
       <% if (geddy.site.twitter) { %>
-        <a href="http://twitter.com/<%= geddy.site.twitter %>" class="btn btn-grey">@<%= geddy.site.twitter %></a>
+        <span style="font-size:1em">፨</span>
+        <a href="https://twitter.com/<%= geddy.site.twitter %>" class="btn btn-grey">@<strong>twitter</strong></a>
+        <a href="https://linkedin.com/in/volkanozcelik" class="btn btn-grey">@<strong>LinkedIn</strong></a>
+        <a href="https://github.com/v0lkan" class="btn btn-grey">@<strong>GitHub</strong></a>
       <% } %>
+        <span style="font-size:1em">፨</span>
+        <a href="https://github.com/v0lkan/o2.js/blob/dev/README.md" class="btn btn-grey">about <strong>o2.js</strong></a>
+        <a href="https://github.com/v0lkan/o2.js/releases" class="btn btn-grey"><strong>o2.js</strong> source code</a>
+
       <% if (session.get('site')) { %>
         <a href="/dashboard/logout" class="btn btn-grey pull-right hidden-phone">log out<a>
         <a href="/dashboard/settings" class="btn btn-grey pull-right hidden-phone">settings</a>
         <a href="/dashboard" class="btn btn-grey pull-right hidden-phone">dashboard</a>
       <% } %>
     </header>
+    
+    <p style="text-align:center;padding:1em;background:#fdf5d2;border: 1px #eee8d5 solid;"><a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
+    
     <div class="container">
+      
       <%- yield(); %>
-    </div>
-    <div>
+    
     <div id="disqus_thread"></div>
       <script type="text/javascript">
-          var disqus_shortname = 'Volkan Ozcelik';
+          var disqus_shortname = 'o2js';
           (function() {
               var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
               dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
@@ -55,5 +65,8 @@
       </script>
       <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
-  </body>
+
+    
+    </div>
+      </body>
 </html>

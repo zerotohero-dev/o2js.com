@@ -1,24 +1,4 @@
 (function () {
-var Site = function () {
-
-  this.defineProperties({
-    title: {type: 'string'},
-    twitter: {type: 'string'},
-    firstName: {type: 'string'},
-    lastName: {type: 'string'},
-    email: {type: 'string'},
-    password: {type: 'string'},
-  });
-
-  this.hasMany('Posts')
-
-};
-
-User = geddy.model.register('Site', Site);
-
-}());
-
-(function () {
 geddy.string.sluggerize = require('slugs');
 geddy.string.md = require('marked');
 geddy.string.highlight = require('highlight').Highlight;
@@ -115,50 +95,22 @@ Post = geddy.model.register('Post', Post);
 }());
 
 (function () {
-var Visitor = function () {
+var Site = function () {
 
   this.defineProperties({
-    latestIP: {type: 'string'},
-    sessionID: {type: 'string'},
+    title: {type: 'string'},
+    twitter: {type: 'string'},
+    firstName: {type: 'string'},
+    lastName: {type: 'string'},
+    email: {type: 'string'},
+    password: {type: 'string'},
   });
 
-  /*
-  this.property('login', 'string', {required: true});
-  this.property('password', 'string', {required: true});
-  this.property('lastName', 'string');
-  this.property('firstName', 'string');
-
-  this.validatesPresent('login');
-  this.validatesFormat('login', /[a-z]+/, {message: 'Subdivisions!'});
-  this.validatesLength('login', {min: 3});
-  // Use with the name of the other parameter to compare with
-  this.validatesConfirmed('password', 'confirmPassword');
-  // Use with any function that returns a Boolean
-  this.validatesWithFunction('password', function (s) {
-      return s.length > 0;
-  });
-
-  // Can define methods for instances like this
-  this.someMethod = function () {
-    // Do some stuff
-  };
-  */
+  this.hasMany('Posts')
 
 };
 
-/*
-// Can also define them on the prototype
-Visitor.prototype.someOtherMethod = function () {
-  // Do some other stuff
-};
-// Can also define static methods and properties
-Visitor.someStaticMethod = function () {
-  // Do some other stuff
-};
-Visitor.someStaticProperty = 'YYZ';
-*/
-
-Visitor = geddy.model.register('Visitor', Visitor);
+User = geddy.model.register('Site', Site);
 
 }());
 
@@ -205,5 +157,53 @@ Visit.someStaticProperty = 'YYZ';
 */
 
 Visit = geddy.model.register('Visit', Visit);
+
+}());
+
+(function () {
+var Visitor = function () {
+
+  this.defineProperties({
+    latestIP: {type: 'string'},
+    sessionID: {type: 'string'},
+  });
+
+  /*
+  this.property('login', 'string', {required: true});
+  this.property('password', 'string', {required: true});
+  this.property('lastName', 'string');
+  this.property('firstName', 'string');
+
+  this.validatesPresent('login');
+  this.validatesFormat('login', /[a-z]+/, {message: 'Subdivisions!'});
+  this.validatesLength('login', {min: 3});
+  // Use with the name of the other parameter to compare with
+  this.validatesConfirmed('password', 'confirmPassword');
+  // Use with any function that returns a Boolean
+  this.validatesWithFunction('password', function (s) {
+      return s.length > 0;
+  });
+
+  // Can define methods for instances like this
+  this.someMethod = function () {
+    // Do some stuff
+  };
+  */
+
+};
+
+/*
+// Can also define them on the prototype
+Visitor.prototype.someOtherMethod = function () {
+  // Do some other stuff
+};
+// Can also define static methods and properties
+Visitor.someStaticMethod = function () {
+  // Do some other stuff
+};
+Visitor.someStaticProperty = 'YYZ';
+*/
+
+Visitor = geddy.model.register('Visitor', Visitor);
 
 }());

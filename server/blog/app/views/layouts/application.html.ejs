@@ -18,7 +18,22 @@
     <meta name="author" content="<%= geddy.site.firstName + ' ' + geddy.site.lastName; %>">
     <meta name="viewport" content="width=device-width" />
 
+    <!-- The HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <%- scriptLink('http://html5shim.googlecode.com/svn/trunk/html5.js', {type:'text/javascript'}) %>
+    <![endif]-->
+
+    <script src="http://use.edgefonts.net/asap.js"></script>
+    <script src="http://use.edgefonts.net/m-1m.js"></script>
+    <script src="http://use.edgefonts.net/inika.js"></script>
+
+    <%- scriptLink('/js/jquery.min.js', {type:'text/javascript'}) %>
+    <%- scriptLink('/js/jquery.autosize-min.js', {type: 'text/javascript'}) %>
+    <%- scriptLink('/js/keymaster.min.js', {type: 'text/javascript'}) %>
+    <%- scriptLink('/js/keymaster.sequence.min.js', {type: 'text/javascript'}) %>
+
     <%- styleLink('/css/style.css', {rel:'stylesheet'}) %>
+    <%- styleLink('/css/highlight.css', {rel:'stylesheet'}) %>
 
     <!-- The fav and touch icons -->
     <link rel="shortcut icon" href="/images/favicon.ico">
@@ -43,21 +58,16 @@
     <div class="container">
       <%- yield(); %>
     </div>
-    <div style="width: 650px;margin-top:2em;">
-        <div id="disqus_thread"></div>
-            <script type="text/javascript">
-                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                var disqus_shortname = 'o2js'; // required: replace example with your forum shortname
-
-                        /* * * DON'T EDIT BELOW THIS LINE * * */
-                                    (function() {
-                                                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                                                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                                                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                                            })();
-                                                </script>
-                                                            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-                                                        
+    <div id="disqus_thread"></div>
+      <script type="text/javascript">
+          var disqus_shortname = 'Volkan Ozcelik';
+          (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+      </script>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </body>
 </html>

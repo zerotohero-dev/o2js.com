@@ -251,6 +251,11 @@ body {
 
 .container {
   width: 620px;
+  margin: 0 auto;
+}
+
+#disqus_thread {
+  margin-top: 2em;
 }
 
 .dashboards .container {
