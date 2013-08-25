@@ -58,22 +58,22 @@
 <p><a href="http://blog.o2js.com/assets/bindings_large.png"><img src="http://blog.o2js.com/assets/bindings.png" alt="IIS7 bindings"></a></p>
 <p>And here&#39;s the <strong>web.config</strong> file in the site&#39;s root directory:</p>
 <pre>
-&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;configuration>
-    &lt;system.web>
-        &lt;sessionState mode="Off" />
-    &lt;/system.web>
-    &lt;system.webServer>
-        &lt;rewrite>
-            &lt;rules>
-                &lt;rule name="ReverseProxyInboundRule1" stopProcessing="true">
-                    &lt;match url="(.*)" />
-                    &lt;action type="Rewrite" url="http://localhost:8001/{R:1}" />
-                &lt;/rule>
-            &lt;/rules>
-        &lt;/rewrite>
-    &lt;/system.webServer>
-&lt;/configuration>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <system.web>
+        <sessionState mode="Off" />
+    </system.web>
+    <system.webServer>
+        <rewrite>
+            <rules>
+                <rule name="ReverseProxyInboundRule1" stopProcessing="true">
+                    <match url="(.*)" />
+                    <action type="Rewrite" url="http://localhost:8001/{R:1}" />
+                </rule>
+            </rules>
+        </rewrite>
+    </system.webServer>
+</configuration>
 </pre>
 
 <p>This site will simply act as a proxy, forwarding any request that comes to it to <strong>localhost:8001</strong>.</p>
@@ -150,7 +150,7 @@ rewrite ^/$           /index.html;
 rewrite ^([^.]+)$     $1.html;
 </pre>
 
-<p>Are there to map <strong>blog.o2js.com/article_goes_here.html</strong> links to <strong>blog.o2js.com/article_goes_here</strong> (<em>without the </em>.html* extension), which is cleaner.</p>
+<p>are there to map <strong>blog.o2js.com/article_goes_here.html</strong> links to <strong>blog.o2js.com/article_goes_here</strong> (<em>without the </em>.html* extension), which is cleaner.</p>
 <p>And we haven&#39;t created <em>/home/volkan/PROJECTS/o2js.com/server/blog/static</em> folder yet. That&#39;s the next thing we&#39;ll do:</p>
 <h3>Creating the Project Folder</h3>
 <p>The source code of this blog (<em>along with markdown versions of all of the articles in it</em>) <a href="https://github.com/v0lkan/o2js.com">can be cloned at github</a>.</p>
@@ -177,7 +177,7 @@ $: sudo scotch serve 8080
 <p>This is also as easy as calling <code>scotch generate</code> in the blog folder.</p>
 <p>This will create a static copy of the site under a folder named <em>*static</em>.</p>
 <h3>That&#39;s It</h3>
-<p>In this post, I tried to share&hellip;</p>
+<p>In this post, I tried to share…</p>
 <ul>
 <li>How I set up a minimalist <strong>node.js</strong> blog;</li>
 <li>How I created a <strong>static</strong> version of that blog;</li>
@@ -190,7 +190,7 @@ $: sudo scotch serve 8080
 I synchronize these markdown files and other static content with the <a href="https://github.com/v0lkan/o2js.com">blog&#39;s github repository</a>.</p>
 </blockquote>
 <p>Which also means that when I do a change, I&#39;m updating the master branch, and publishing my updates on the master branch immediately.
-&ndash; There&#39;s no dev branch; there&#39;s no staging&hellip;</p>
+– There&#39;s no dev branch; there&#39;s no staging…</p>
 <p><img src="http://blog.o2js.com/assets/prod.png" alt="Testing on Production Meme"></p>
 <p>I like living dangerously <strong>;)</strong>.</p>
 <p>One other thing before I forget: <a href="https://github.com/v0lkan/o2js.com/issues">there are a bunch of issues that I&#39;ve opened already</a>, to enhance this blog&#39;s functionality further. <a href="http://blog.o2js.com/hello-node-js-blogging-world">As I&#39;ve said earlier</a>, this is a very long transition project. And if you have any ideas, I&#39;d love to learn about them.</p>

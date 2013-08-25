@@ -142,7 +142,7 @@ rewrite ^/$           /index.html;
 rewrite ^([^.]+)$     $1.html;
 </pre>
 
-Are there to map **blog.o2js.com/article_goes_here.html** links to **blog.o2js.com/article_goes_here** (*without the *.html* extension), which is cleaner.
+are there to map **blog.o2js.com/article_goes_here.html** links to **blog.o2js.com/article_goes_here** (*without the *.html* extension), which is cleaner.
 
 And we haven't created */home/volkan/PROJECTS/o2js.com/server/blog/static* folder yet. That's the next thing we'll do:
 
