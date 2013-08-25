@@ -16,24 +16,23 @@ So, the first thing is to open **IIS Manager**, and create a website with the fo
 
 And here's the **web.config** file in the site's root directory:
 
-<pre>
-&lt;?xml version="1.0" encoding="UTF-8"?>
-&lt;configuration>
-    &lt;system.web>
-        &lt;sessionState mode="Off" />
-    &lt;/system.web>
-    &lt;system.webServer>
-        &lt;rewrite>
-            &lt;rules>
-                &lt;rule name="ReverseProxyInboundRule1" stopProcessing="true">
-                    &lt;match url="(.*)" />
-                    &lt;action type="Rewrite" url="http://localhost:8001/{R:1}" />
-                &lt;/rule>
-            &lt;/rules>
-        &lt;/rewrite>
-    &lt;/system.webServer>
-&lt;/configuration>
-</pre>
+    <?xml version="1.0" encoding="UTF-8"?>
+    <configuration>
+        <system.web>
+            <sessionState mode="Off" />
+        </system.web>
+        <system.webServer>
+            <rewrite>
+                <rules>
+                    <rule name="ReverseProxyInboundRule1" stopProcessing="true">
+                        <match url="(.*)" />
+                        <action type="Rewrite" url="http://localhost:8001/{R:1}" />
+                    </rule>
+                </rules>
+            </rewrite>
+        </system.webServer>
+    </configuration>
+
 
 This site will simply act as a proxy, forwarding any request that comes to it to **localhost:8001**.
 
@@ -92,55 +91,51 @@ Installing **[NGINX][nginx]** is as easy as running `sudo apt-get install nginx`
 
 After installing **NGINX**, I've created this **nginx.conf**:
 
-<pre>
-user www-data;
-worker_processes 4;
-pid /run/nginx.pid;
-
-events {
-  worker_connections 768;
-}
-
-http {
-  sendfile on;
-  tcp_nopush on;
-  tcp_nodelay on;
-  keepalive_timeout 65;
-  types_hash_max_size 2048;
-
-  include /etc/nginx/mime.types;
-  default_type application/octet-stream;
-
-  access_log /var/log/nginx/access.log;
-  error_log /var/log/nginx/error.log;
-
-  gzip on;
-  gzip_disable "msie6";
-
-  include /etc/nginx/conf.d/*.conf;
-  include /etc/nginx/sites-enabled/*;
-
-    server {
-        listen          8001;
-        server_name     blog.o2js.com;
-        access_log      logs/blog.o2js.com.access.log;
-        root            /home/volkan/PROJECTS/o2js.com/server/blog/static;
-
-        # rewrite_log on;
-        rewrite ^/$           /index.html;
-        rewrite ^([^.]+)$     $1.html;
+    user www-data;
+    worker_processes 4;
+    pid /run/nginx.pid;
+    
+    events {
+      worker_connections 768;
     }
-}
-</pre>
+    
+    http {
+      sendfile on;
+      tcp_nopush on;
+      tcp_nodelay on;
+      keepalive_timeout 65;
+      types_hash_max_size 2048;
+    
+      include /etc/nginx/mime.types;
+      default_type application/octet-stream;
+
+      access_log /var/log/nginx/access.log;
+      error_log /var/log/nginx/error.log;
+
+      gzip on;
+      gzip_disable "msie6";
+    
+      include /etc/nginx/conf.d/*.conf;
+      include /etc/nginx/sites-enabled/*;
+    
+        server {
+            listen          8001;
+            server_name     blog.o2js.com;
+            access_log      logs/blog.o2js.com.access.log;
+            root            /home/volkan/PROJECTS/o2js.com/server/blog/static;
+    
+            # rewrite_log on;
+            rewrite ^/$           /index.html;
+            rewrite ^([^.]+)$     $1.html;
+        }
+    }
 
 This is the most basic configuration file that you can start with.
 
 The rewrite rules
 
-<pre>
-rewrite ^/$           /index.html;
-rewrite ^([^.]+)$     $1.html;
-</pre>
+    rewrite ^/$           /index.html;
+    rewrite ^([^.]+)$     $1.html;
 
 are there to map **blog.o2js.com/article_goes_here.html** links to **blog.o2js.com/article_goes_here** (*without the *.html* extension), which is cleaner.
 
@@ -154,10 +149,8 @@ And we haven't created */home/volkan/PROJECTS/o2js.com/server/blog/static* folde
 
 The source code of this blog (*along with markdown versions of all of the articles in it*) [can be cloned at github][o2bloggit].
 
-<pre>
-$: cd /home/volkan/PROJECTS/
-$: git clone https://github.com/v0lkan/o2js.com.git
-</pre>
+    $: cd /home/volkan/PROJECTS/
+    $: git clone https://github.com/v0lkan/o2js.com.git
 
 ### Installing Scotch
 
@@ -165,12 +158,10 @@ $: git clone https://github.com/v0lkan/o2js.com.git
 
 Installing **scotch** is really easy:
 
-<pre>
-$: cd /home/volkan/PROJECTS/o2js.com/
-$: npm install -g scotch-blog
-$: cd blog
-$: sudo scotch serve 8080
-</pre>
+    $: cd /home/volkan/PROJECTS/o2js.com/
+    $: npm install -g scotch-blog
+    $: cd blog
+    $: sudo scotch serve 8080
 
 Then going to *http://localhost:8080/dashboard/install* will install **scotch** for you.
 
@@ -189,7 +180,7 @@ This will create a static copy of the site under a folder named **static*.
 
 ### That's It
 
-In this post, I tried to share&hellip;
+In this post, I tried to share…
 
 * How I set up a minimalist **node.js** blog;
 * How I created a **static** version of that blog;
@@ -202,7 +193,7 @@ The end result of all this effort is this very blog that you're reading right no
 > I synchronize these markdown files and other static content with the [blog's github repository][o2jscomgit].
 
 Which also means that when I do a change, I'm updating the master branch, and publishing my updates on the master branch immediately.
-&ndash; There's no dev branch; there's no staging&hellip;
+– There's no dev branch; there's no staging…
 
 ![Testing on Production Meme][prod]
 
