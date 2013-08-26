@@ -15,7 +15,9 @@ As a hacker, and a [geek][geek] I spend most of my time fiddling with the termin
 
 And as any geek, I'm picky when it comes to the way track my stuff to do.
 
-I've tried a lot of online to do lists, and project management tools before some of the good ones are:
+I've tried a lot of online to do lists, and project management tools before. 
+
+Some of the good ones are:
 
 * **[Remember the Milk][rtm]**;
 * **[Producteev][producteev]**;
