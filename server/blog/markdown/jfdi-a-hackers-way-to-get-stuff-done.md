@@ -30,7 +30,7 @@ Some of the good ones are:
 [todoist]: http://todoist.com/	
 [evernote]: http://evernote.com/
 
-> These are only a **minor subset** of literally\* hundreds of web, desktop, and mobile GTD applications.
+> These are only a **minor subset** of literally\* hundreds of web, desktop, and mobile GTD applications that I've tried before.
 > <br><br>
 > \* and I use *literally* in the **literal** sense here.
 
