@@ -28,19 +28,22 @@
         <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
       
       
-        <span style="font-size:1em">፨</span>
+        <span style="font-size:1em;color:#b58900">|</span>
         <a href="https://twitter.com/linkibol" class="btn btn-grey">@<strong>twitter</strong></a>
         <a href="https://linkedin.com/in/volkanozcelik" class="btn btn-grey">@<strong>LinkedIn</strong></a>
         <a href="https://github.com/v0lkan" class="btn btn-grey">@<strong>GitHub</strong></a>
       
-        <span style="font-size:1em">፨</span>
+        <span style="font-size:1em;color:#b58900">|</span>
         <a href="https://github.com/v0lkan/o2.js/blob/dev/README.md" class="btn btn-grey">about <strong>o2.js</strong></a>
         <a href="https://github.com/v0lkan/o2.js/releases" class="btn btn-grey"><strong>o2.js</strong> source code</a>
-
+        <span style="font-size:1em;color:#b58900">|</span>
+        <a href="http://o2js.com/interview-questions" class="btn btn-grey">#JSIQ</a>
       
     </header>
     
-    <p style="text-align:center;padding:1em;background:#fdf5d2;border: 1px #eee8d5 solid;"><a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
+    <p style="text-align:center;padding:1em;background:#fdf5d2;border: 1px #eee8d5 solid;">
+    Psttt... I'm writing a book. Click the link below to pre-order and save <strong>;)</strong>
+    <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
     
     <div class="container">
       
@@ -57,25 +60,22 @@
 <p>So, the first thing is to open <strong>IIS Manager</strong>, and create a website with the following bindings:</p>
 <p><a href="http://blog.o2js.com/assets/bindings_large.png"><img src="http://blog.o2js.com/assets/bindings.png" alt="IIS7 bindings"></a></p>
 <p>And here&#39;s the <strong>web.config</strong> file in the site&#39;s root directory:</p>
-<pre>
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <system.web>
-        <sessionState mode="Off" />
-    </system.web>
-    <system.webServer>
-        <rewrite>
-            <rules>
-                <rule name="ReverseProxyInboundRule1" stopProcessing="true">
-                    <match url="(.*)" />
-                    <action type="Rewrite" url="http://localhost:8001/{R:1}" />
-                </rule>
-            </rules>
-        </rewrite>
-    </system.webServer>
-</configuration>
-</pre>
-
+<pre><code>&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="preprocessor">?></span>
+&lt;configuration>
+    &lt;system.web>
+        &lt;sessionState mode=<span class="string">"Off"</span> />
+    &lt;/system.web>
+    &lt;system.webServer>
+        &lt;rewrite>
+            &lt;rules>
+                &lt;rule name=<span class="string">"ReverseProxyInboundRule1"</span> stopProcessing=<span class="string">"true"</span>>
+                    &lt;match url=<span class="string">"(.*)"</span> />
+                    &lt;action type=<span class="string">"Rewrite"</span> url=<span class="string">"http://localhost:8001/{R:1}"</span> />
+                &lt;/rule>
+            &lt;/rules>
+        &lt;/rewrite>
+    &lt;/system.webServer>
+&lt;/configuration></code></pre>
 <p>This site will simply act as a proxy, forwarding any request that comes to it to <strong>localhost:8001</strong>.</p>
 <blockquote>
 <p>I have also <strong>blocked external access to port 8001</strong> using <strong>windows firewall</strong>. Since the forwarding is done to a local address only, the outside world does not need to access port 8001.</p>
@@ -102,8 +102,7 @@
 <h3>Configuring NGINX</h3>
 <p>Installing <strong><a href="http://nginx.org">NGINX</a></strong> is as easy as running <code>sudo apt-get install nginx</code>.</p>
 <p>After installing <strong>NGINX</strong>, I&#39;ve created this <strong>nginx.conf</strong>:</p>
-<pre>
-user www-data;
+<pre><code>user www-data;
 worker_processes 4;
 pid /run/nginx.pid;
 
@@ -125,7 +124,7 @@ http {
   error_log /var/log/nginx/error.log;
 
   gzip on;
-  gzip_disable "msie6";
+  gzip_disable &quot;msie6&quot;;
 
   include /etc/nginx/conf.d/*.conf;
   include /etc/nginx/sites-enabled/*;
@@ -140,35 +139,24 @@ http {
         rewrite ^/$           /index.html;
         rewrite ^([^.]+)$     $1.html;
     }
-}
-</pre>
-
+}</code></pre>
 <p>This is the most basic configuration file that you can start with.</p>
 <p>The rewrite rules</p>
-<pre>
-rewrite ^/$           /index.html;
-rewrite ^([^.]+)$     $1.html;
-</pre>
-
+<pre><code>rewrite ^/$           /index.html;
+rewrite ^([^.]+)$     $1.html;</code></pre>
 <p>are there to map <strong>blog.o2js.com/article_goes_here.html</strong> links to <strong>blog.o2js.com/article_goes_here</strong> (<em>without the </em>.html* extension), which is cleaner.</p>
 <p>And we haven&#39;t created <em>/home/volkan/PROJECTS/o2js.com/server/blog/static</em> folder yet. That&#39;s the next thing we&#39;ll do:</p>
 <h3>Creating the Project Folder</h3>
 <p>The source code of this blog (<em>along with markdown versions of all of the articles in it</em>) <a href="https://github.com/v0lkan/o2js.com">can be cloned at github</a>.</p>
-<pre>
-$: cd /home/volkan/PROJECTS/
-$: git clone https://github.com/v0lkan/o2js.com.git
-</pre>
-
+<pre><code>$: cd /home/volkan/PROJECTS/
+$: git <span class="keyword">clone</span> https:<span class="comment">//github.com/v0lkan/o2js.com.git</span></code></pre>
 <h3>Installing Scotch</h3>
 <p><a href="https://github.com/techwraith/scotch">Scotch</a> is a dead-simple, <a href="http://daringfireball.net/projects/markdown/">markdown</a>-based blogging framework for <a href="http://nodejs.org/">node.js</a>.</p>
 <p>Installing <strong>scotch</strong> is really easy:</p>
-<pre>
-$: cd /home/volkan/PROJECTS/o2js.com/
+<pre><code>$: cd /home/volkan/PROJECTS/o2js.com/
 $: npm install -g scotch-blog
 $: cd blog
-$: sudo scotch serve 8080
-</pre>
-
+$: sudo scotch serve 8080</code></pre>
 <p>Then going to <em><a href="http://localhost:8080/dashboard/install">http://localhost:8080/dashboard/install</a></em> will install <strong>scotch</strong> for you.</p>
 <blockquote>
 <p>Make sure that you have <strong><a href="http://www.mongodb.org/">MongoDB</a></strong> installed, before installing <strong>scotch</strong>.</p>

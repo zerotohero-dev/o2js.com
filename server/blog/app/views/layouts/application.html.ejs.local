@@ -32,15 +32,16 @@
         <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
       <% } %>
       <% if (geddy.site.twitter) { %>
-        <span style="font-size:1em">፨</span>
+        <span style="font-size:1em;color:#b58900">|</span>
         <a href="https://twitter.com/<%= geddy.site.twitter %>" class="btn btn-grey">@<strong>twitter</strong></a>
         <a href="https://linkedin.com/in/volkanozcelik" class="btn btn-grey">@<strong>LinkedIn</strong></a>
         <a href="https://github.com/v0lkan" class="btn btn-grey">@<strong>GitHub</strong></a>
       <% } %>
-        <span style="font-size:1em">፨</span>
+        <span style="font-size:1em;color:#b58900">|</span>
         <a href="https://github.com/v0lkan/o2.js/blob/dev/README.md" class="btn btn-grey">about <strong>o2.js</strong></a>
         <a href="https://github.com/v0lkan/o2.js/releases" class="btn btn-grey"><strong>o2.js</strong> source code</a>
-
+        <span style="font-size:1em;color:#b58900">|</span>
+        <a href="http://o2js.com/interview-questions" class="btn btn-grey">#JSIQ</a>
       <% if (session.get('site')) { %>
         <a href="/dashboard/logout" class="btn btn-grey pull-right hidden-phone">log out<a>
         <a href="/dashboard/settings" class="btn btn-grey pull-right hidden-phone">settings</a>
@@ -48,7 +49,9 @@
       <% } %>
     </header>
     
-    <p style="text-align:center;padding:1em;background:#fdf5d2;border: 1px #eee8d5 solid;"><a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
+    <p style="text-align:center;padding:1em;background:#fdf5d2;border: 1px #eee8d5 solid;">
+    Psttt... I'm writing a book. Click the link below to pre-order and save <strong>;)</strong>
+    <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
     
     <div class="container">
       

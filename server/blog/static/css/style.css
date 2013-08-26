@@ -81,6 +81,7 @@ pre, blockquote {
 
 pre {
     border: 1px solid #EEE8D5;
+    background: #FEFCEA;
     border-radius: 0.6em;
 }
 
@@ -89,7 +90,7 @@ pre, code {
   font-size: 12px;
   line-height: 1.5em;
   color: #343a72;
-  background: #fefcea;
+  background: #FEFCEA;
 }
 
 blockquote {
@@ -442,7 +443,7 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 
 pre code {
   display: block; padding: 0.5em;
-  background: #fdf6e3; color: #657b83;
+  background: #FEFCEA; color: #657b83;
 }
 
 pre .comment,
