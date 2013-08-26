@@ -146,7 +146,7 @@ Will display the following synopsis:
   Commands:
 
     today                  ... truncated ...
-    tomorrow               ... truncated
+    tomorrow               ... truncated ...
     all                    Lists today's and tomorrow's goals.
 
   Options:
