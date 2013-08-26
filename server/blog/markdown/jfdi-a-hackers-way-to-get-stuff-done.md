@@ -122,12 +122,9 @@ Will display a message similar to this:
        *Zero Inbox* for today! Hooray!
 
        Sample Usage:
-           Add a Goal       : 
-jfdi [-a] "Save the world; one goal at a time."
-           List Goals       : 
-jfdi -l
-           List All Commands: 
-jfdi -h
+           Add a Goal       : jfdi [-a] "Save the world; one goal at a time."
+           List Goals       : jfdi -l
+           List All Commands: jfdi -h
 ```
 
 You can use `jfdi -a "something to do"` or just `jfdi "something to do"`
