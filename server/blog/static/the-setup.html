@@ -50,15 +50,15 @@
       
 <h2 class="title span8"><a href="/the-setup">The Setup</a></h2>
 <div class="span8">
-  <p>As I promised <a href="http://blog.o2js.com/hello-node-js-blogging-world">in the last post</a>, I&#39;ll go into the details of the overall architecture of this site.</p>
+  <p>As I promised <a href="http://o2js.com/hello-node-js-blogging-world">in the last post</a>, I&#39;ll go into the details of the overall architecture of this site.</p>
 <blockquote>
 <p>Although the steps defined in this article is specific to my needs, it can be helpful in general too. We will cover concepts like <strong>how to create a reverse proxy using IIS7</strong>, <strong>how to install and configure NGINX</strong>, <strong>how to configure virtualbox</strong>, <strong>how to do port forwarding to a local virtual machine</strong>… and the like.</p>
 </blockquote>
 <p>Let&#39;s begin by setting up <strong>IIS</strong>:</p>
 <h3>Configuring IIS7</h3>
-<p>Our goal will be to forward all the requests that come to <strong>blog.o2js.com</strong> to a local port, hoping that there&#39;s somebody at that port listening to the requests.</p>
+<p>Our goal will be to forward all the requests that come to <strong>o2js.com</strong> to a local port, hoping that there&#39;s somebody at that port listening to the requests.</p>
 <p>So, the first thing is to open <strong>IIS Manager</strong>, and create a website with the following bindings:</p>
-<p><a href="http://blog.o2js.com/assets/bindings_large.png"><img src="http://blog.o2js.com/assets/bindings.png" alt="IIS7 bindings"></a></p>
+<p><a href="http://o2js.com/assets/bindings_large.png"><img src="http://o2js.com/assets/bindings.png" alt="IIS7 bindings"></a></p>
 <p>And here&#39;s the <strong>web.config</strong> file in the site&#39;s root directory:</p>
 <pre><code>&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="preprocessor">?></span>
 &lt;configuration>
@@ -83,10 +83,10 @@
 <p>That&#39;s all for the <strong>IIS</strong> part. The next thing is to set up the <em>virtual machine</em>:</p>
 <h3>Configuring VirtualBox</h3>
 <p><a href="https://www.virtualbox.org/">VirtualBox</a> is a powerful <strong>x86</strong> and <strong>AMD64/Intel64</strong> <a href="http://en.wikipedia.org/wiki/Virtualization">virtualization</a> product. I am running an <a href="http://www.ubuntu.com/desktop">64 bit ubuntu virtual machine</a> inside the virtualbox that I&#39;ve installed to my windows server.</p>
-<p><a href="http://blog.o2js.com/assets/virtualbox_large.png"><img src="http://blog.o2js.com/assets/virtualbox.png" alt="virtualbox"></a></p>
+<p><a href="http://o2js.com/assets/virtualbox_large.png"><img src="http://o2js.com/assets/virtualbox.png" alt="virtualbox"></a></p>
 <p><a href="http://www.wikihow.com/Install-Ubuntu-on-VirtualBox">Installing an operating system into virtualbox</a> is pretty straightforward.</p>
 <p>After installing the OS (<em>which is <strong>ubuntu</strong> in my case</em>), I defined the following <strong><a href="https://en.wikipedia.org/wiki/Network_address_translation">NAT</a></strong> rules:</p>
-<p><a href="http://blog.o2js.com/assets/nat_large.png"><img src="http://blog.o2js.com/assets/nat.png" alt="NAT rules"></a></p>
+<p><a href="http://o2js.com/assets/nat_large.png"><img src="http://o2js.com/assets/nat.png" alt="NAT rules"></a></p>
 <p>Here&#39;s what I do with these ports:</p>
 <ul>
 <li>I occasionally run <strong><a href="https://github.com/techwraith/scotch">scotch</a></strong> on <strong>port 8000</strong> to create static files of this blog (<em>more on that later</em>).</li>
@@ -97,7 +97,7 @@
 <h3>SSH</h3>
 <p>After forwarding ports, we can <strong>SSH</strong> to the virtual server via <code>ssh -l {username} -p 22 {serverip}</code> command.</p>
 <p>Here&#39;s how the server looks like right now:</p>
-<p><a href="http://blog.o2js.com/assets/server_large.png"><img src="http://blog.o2js.com/assets/server.png" alt="htop"></a></p>
+<p><a href="http://o2js.com/assets/server_large.png"><img src="http://o2js.com/assets/server.png" alt="htop"></a></p>
 <p>Not bad for a virtual server, huh <strong>;)</strong>?</p>
 <h3>Configuring NGINX</h3>
 <p>Installing <strong><a href="http://nginx.org">NGINX</a></strong> is as easy as running <code>sudo apt-get install nginx</code>.</p>
@@ -131,8 +131,8 @@ http {
 
     server {
         listen          8001;
-        server_name     blog.o2js.com;
-        access_log      logs/blog.o2js.com.access.log;
+        server_name     o2js.com;
+        access_log      logs/o2js.com.access.log;
         root            /home/volkan/PROJECTS/o2js.com/server/blog/static;
 
         # rewrite_log on;
@@ -144,7 +144,7 @@ http {
 <p>The rewrite rules</p>
 <pre><code>rewrite ^/$           /index.html;
 rewrite ^([^.]+)$     $1.html;</code></pre>
-<p>are there to map <strong>blog.o2js.com/article_goes_here.html</strong> links to <strong>blog.o2js.com/article_goes_here</strong> (<em>without the </em>.html* extension), which is cleaner.</p>
+<p>are there to map <strong>o2js.com/article_goes_here.html</strong> links to <strong>o2js.com/article_goes_here</strong> (<em>without the </em>.html* extension), which is cleaner.</p>
 <p>And we haven&#39;t created <em>/home/volkan/PROJECTS/o2js.com/server/blog/static</em> folder yet. That&#39;s the next thing we&#39;ll do:</p>
 <h3>Creating the Project Folder</h3>
 <p>The source code of this blog (<em>along with markdown versions of all of the articles in it</em>) <a href="https://github.com/v0lkan/o2js.com">can be cloned at github</a>.</p>
@@ -179,9 +179,9 @@ I synchronize these markdown files and other static content with the <a href="ht
 </blockquote>
 <p>Which also means that when I do a change, I&#39;m updating the master branch, and publishing my updates on the master branch immediately.
 – There&#39;s no dev branch; there&#39;s no staging…</p>
-<p><img src="http://blog.o2js.com/assets/prod.png" alt="Testing on Production Meme"></p>
+<p><img src="http://o2js.com/assets/prod.png" alt="Testing on Production Meme"></p>
 <p>I like living dangerously <strong>;)</strong>.</p>
-<p>One other thing before I forget: <a href="https://github.com/v0lkan/o2js.com/issues">there are a bunch of issues that I&#39;ve opened already</a>, to enhance this blog&#39;s functionality further. <a href="http://blog.o2js.com/hello-node-js-blogging-world">As I&#39;ve said earlier</a>, this is a very long transition project. And if you have any ideas, I&#39;d love to learn about them.</p>
+<p>One other thing before I forget: <a href="https://github.com/v0lkan/o2js.com/issues">there are a bunch of issues that I&#39;ve opened already</a>, to enhance this blog&#39;s functionality further. <a href="http://o2js.com/hello-node-js-blogging-world">As I&#39;ve said earlier</a>, this is a very long transition project. And if you have any ideas, I&#39;d love to learn about them.</p>
 
   <blockquote>
     Do you have something to say? Have I missed anything?<br>

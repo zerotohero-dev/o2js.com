@@ -1,3 +1,7 @@
+Hello Node.JS Blogging World
+
+
+
 ### What?
 
 This is the initial step of my *very-long-term* plan of *converting*/*porting* all of my sites and projects to a **MongoDB/Markdown/NGINX/Node.JS** stack.
@@ -22,8 +26,8 @@ Editing a **Markdown** document is way better than fighting your way through you
 [nginx]:    http://wiki.nginx.org/Main
 [nodejs]:   http://nodejs.org/
 [markdown]: http://daringfireball.net/projects/markdown/syntax
-[mdscreen]: http://blog.o2js.com/assets/markdownsm.png
-[mdlarge]:  http://blog.o2js.com/assets/markdown.png
+[mdscreen]: http://o2js.com/assets/markdownsm.png
+[mdlarge]:  http://o2js.com/assets/markdown.png
 
 ### The Setup
 
@@ -91,4 +95,4 @@ So how did I set everything up? What is my current configuration?
 
 This is the topic of the [next blog post][thesetup].
 
-[thesetup]: http://blog.o2js.com/the-setup
+[thesetup]: http://o2js.com/the-setup

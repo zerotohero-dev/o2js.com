@@ -1,14 +1,18 @@
+The Setup
+
+
+
 As I promised [in the last post][newblog], I'll go into the details of the overall architecture of this site.
 
 > Although the steps defined in this article is specific to my needs, it can be helpful in general too. We will cover concepts like **how to create a reverse proxy using IIS7**, **how to install and configure NGINX**, **how to configure virtualbox**, **how to do port forwarding to a local virtual machine**… and the like.
 
 Let's begin by setting up **IIS**:
 
-[newblog]: http://blog.o2js.com/hello-node-js-blogging-world
+[newblog]: http://o2js.com/hello-node-js-blogging-world
 
 ### Configuring IIS7
 
-Our goal will be to forward all the requests that come to **blog.o2js.com** to a local port, hoping that there's somebody at that port listening to the requests.
+Our goal will be to forward all the requests that come to **o2js.com** to a local port, hoping that there's somebody at that port listening to the requests.
 
 So, the first thing is to open **IIS Manager**, and create a website with the following bindings:
 
@@ -40,8 +44,8 @@ This site will simply act as a proxy, forwarding any request that comes to it to
 
 That's all for the **IIS** part. The next thing is to set up the *virtual machine*:
 
-[bindings]:       http://blog.o2js.com/assets/bindings.png
-[bindingslarge]:  http://blog.o2js.com/assets/bindings_large.png
+[bindings]:       http://o2js.com/assets/bindings.png
+[bindingslarge]:  http://o2js.com/assets/bindings_large.png
 
 ### Configuring VirtualBox
 
@@ -67,11 +71,11 @@ The next thing is setting up **NGINX**:
 [virtualbox]:        https://www.virtualbox.org/
 [virt]:              http://en.wikipedia.org/wiki/Virtualization
 [ubuntu]:            http://www.ubuntu.com/desktop
-[virtualbox-screen]: http://blog.o2js.com/assets/virtualbox.png
-[virtualbox-large]:  http://blog.o2js.com/assets/virtualbox_large.png
+[virtualbox-screen]: http://o2js.com/assets/virtualbox.png
+[virtualbox-large]:  http://o2js.com/assets/virtualbox_large.png
 [howtoinstall]:      http://www.wikihow.com/Install-Ubuntu-on-VirtualBox
-[nat]:               http://blog.o2js.com/assets/nat.png
-[nat-large]:         http://blog.o2js.com/assets/nat_large.png
+[nat]:               http://o2js.com/assets/nat.png
+[nat-large]:         http://o2js.com/assets/nat_large.png
 [nat-define]:        https://en.wikipedia.org/wiki/Network_address_translation
 [scotch]:            https://github.com/techwraith/scotch
 
@@ -120,8 +124,8 @@ After installing **NGINX**, I've created this **nginx.conf**:
     
         server {
             listen          8001;
-            server_name     blog.o2js.com;
-            access_log      logs/blog.o2js.com.access.log;
+            server_name     o2js.com;
+            access_log      logs/o2js.com.access.log;
             root            /home/volkan/PROJECTS/o2js.com/server/blog/static;
     
             # rewrite_log on;
@@ -137,12 +141,12 @@ The rewrite rules
     rewrite ^/$           /index.html;
     rewrite ^([^.]+)$     $1.html;
 
-are there to map **blog.o2js.com/article_goes_here.html** links to **blog.o2js.com/article_goes_here** (*without the *.html* extension), which is cleaner.
+are there to map **o2js.com/article_goes_here.html** links to **o2js.com/article_goes_here** (*without the *.html* extension), which is cleaner.
 
 And we haven't created */home/volkan/PROJECTS/o2js.com/server/blog/static* folder yet. That's the next thing we'll do:
 
-[server]:       http://blog.o2js.com/assets/server.png
-[server-large]: http://blog.o2js.com/assets/server_large.png
+[server]:       http://o2js.com/assets/server.png
+[server-large]: http://o2js.com/assets/server_large.png
 [nginx]:        http://nginx.org
 
 ### Creating the Project Folder
@@ -202,6 +206,6 @@ I like living dangerously **;)**.
 One other thing before I forget: [there are a bunch of issues that I've opened already][issues], to enhance this blog's functionality further. [As I've said earlier][earlier], this is a very long transition project. And if you have any ideas, I'd love to learn about them.
 
 [o2jscomgit]: https://github.com/v0lkan/o2js.com
-[prod]:       http://blog.o2js.com/assets/prod.png
-[earlier]:    http://blog.o2js.com/hello-node-js-blogging-world
+[prod]:       http://o2js.com/assets/prod.png
+[earlier]:    http://o2js.com/hello-node-js-blogging-world
 [issues]:     https://github.com/v0lkan/o2js.com/issues

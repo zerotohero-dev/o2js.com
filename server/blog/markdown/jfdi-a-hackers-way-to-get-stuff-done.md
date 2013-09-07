@@ -1,3 +1,7 @@
+#JFDI: A Hacker's Way to GTD!
+
+
+
 ```
             ___         ___           ___
            /\  \       /\  \         /\  \          ___
@@ -13,7 +17,7 @@
 
 As a hacker, and a [geek][geek] I spend most of my time fiddling with the terminal.
 
-And as any geek, I'm picky when it comes to the way track my stuff to do.
+And as any geek, I'm picky when it comes to the way I track my stuff to do.
 
 I've tried a lot of online to do lists, and project management tools before. 
 
@@ -70,8 +74,8 @@ You don't need any special editor to modify a text file. You can edit them in yo
 
 ### Meet **JFDI**
 
-> A while ago I scribbled [this gist][jfdi-gist] and summarizing what **JFDI** philosophy was; and then I wrote [the JFDI Manifesto][jfdi-manifesto].<br><br>
-> You don't have to be a wizard to get a gist of what "JFDI" is, but those links might give you a different insight anyway..
+> A while ago I scribbled [this gist summarizing what **JFDI** philosophy was][jfdi-gist]; and then I wrote [the JFDI Manifesto][jfdi-manifesto].<br><br>
+> You don't have to be a wizard to get a gist of what "JFDI" is, but those links might give you a different insight anyway.
 
 The ""JFDI" that I'll be mentioning here is a **[Node.JS][nodejs]** command line interface, that [I created as a **weekend hack**][jfdi-npm].
 
@@ -122,9 +126,9 @@ Will display a message similar to this:
        *Zero Inbox* for today! Hooray!
 
        Sample Usage:
-           Add a Goal       : jfdi [-a] "Save the world; one goal at a time."
-           List Goals       : jfdi -l
-           List All Commands: jfdi -h
+           Add a Goal       :  jfdi [-a] "Save the world; one goal at a time."
+           List Goals       :  jfdi -l
+           List All Commands:  jfdi -h
 ```
 
 You can use `jfdi -a "something to do"` or just `jfdi "something to do"`
@@ -309,4 +313,3 @@ So if you feel like helping [fork **JFDI** at github »»][jfdi-github].
 
 [jfdi-issues]: https://github.com/v0lkan/JFDI/issues
 [jfdi-github]: https://github.com/v0lkan/JFDI
-

@@ -11,6 +11,8 @@ pids
 logs
 results
 
+ref.txt
+
 node_modules
 
 npm-debug.log

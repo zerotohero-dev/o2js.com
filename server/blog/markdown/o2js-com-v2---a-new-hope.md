@@ -1,3 +1,7 @@
+o2js.com v2 - A New Hope
+
+
+
 <img src="/assets/new-beginning.jpg" style="float:left;margin:1em" title="A New Beginning" />
 
 > By the end of this month (*Aug 30, 2013*) I will be shutting down the old o2.js blog, and **rewriting** 
