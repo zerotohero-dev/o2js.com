@@ -8,11 +8,11 @@ body {
   background: #FDF6E3;/*#FDF6E3;*/
   color: #657B83;
   font-size: 16px;
-  font-family: Georgia, Times New Roman, Times, serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, Times New Roman, Times, serif;
+  font-family: Bitter, serif;
   font-weight: normal;
   color: #859900;
 }
@@ -44,9 +44,17 @@ h5, h6 {
 
 p {
   font-size: 18px;
-  line-height: 28px;
-  margin: 28px 0;
+  line-height: 27px;
+  margin: 12px 0;
 }
+
+
+
+
+
+
+
+
 
 hr {
   background: #EEE8D5;
@@ -104,7 +112,7 @@ blockquote p {
 }
 
 li {
-  font-size: 16px;
+  font-size: 18px;
   line-height: 28px;
 }
 
