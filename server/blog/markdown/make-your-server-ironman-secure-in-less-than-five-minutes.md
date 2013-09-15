@@ -4,7 +4,7 @@ Make Your Server Ironman-Secure in Less Than Five Minutes
 
 <blockquote><a href="http://o2js.com/assets/hacker.jpg"><img src="http://o2js.com/assets/hack.png" style="float:left;margin:1em"></a>
 
-After [setting up your server][the-setup], the next thing would be
+After [setting up your server][the-setup], the next thing would be to
 **decrease its attack surface**, and make it harder for unauthorized people
 to access it.
 
