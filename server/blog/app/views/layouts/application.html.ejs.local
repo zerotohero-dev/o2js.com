@@ -44,7 +44,7 @@
     <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
 
     <div class="container">
-        <%- yield(); %>
+        <%-     yield();     %>
 
         <% if (request.url !== '/') { %>
             <div id="disqus_thread"></div>
@@ -61,7 +61,7 @@
             <a style="display:block;font-size:1.2em;line-height:2.4em;text-align:center;font-family:Bitter,serif;margin:2em;padding:2em;"
             href="/<%- post.slug %>?#disqus_thread">Have something to say about<br>
             &quot;<%- post.title %>&quot;?<br>
-            <strong>share your comments and suggestions here</strong> &raquo;&raquo;</a>
+            <strong>Share your comments and suggestions here</strong> &raquo;&raquo;</a>
         <% } %>
     </div>
 </body>
