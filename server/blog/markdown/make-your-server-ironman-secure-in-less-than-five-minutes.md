@@ -25,7 +25,7 @@ want to use a shell emulator, such as [cygwin][cygwin].
 
 > **Danger Zone**:
 >
-> If you mess things up when following this tutorial, you might lose the ability to remotely connect your server.  So make sure your hosting
+> If you mess things up when following this tutorial, you might lose the ability to remotely connect to your server.  So make sure your hosting
 > provider gives you alternative ways to access to your server for emergencies.
 > This can be a virtual console such as [lish][lish]; or you might need to open
 > a support ticket to your hosting provider.
@@ -151,7 +151,7 @@ However, we are not done yet. Let us fortify our network too:
 [crypto]:     http://en.wikipedia.org/wiki/Public-key_cryptography
 [asymetric]:  http://arstechnica.com/security/2013/02/lock-robster-keeping-the-bad-guys-out-with-asymmetric-encryption/
 
-### Configuring Firewall
+### Configuring the Firewall
 
 Although there are **GUI** tools like [firestarter][firestarter] to configure your firewall, sooner or later you will find yourself in need to use the command line to set up your firewall. 
 
