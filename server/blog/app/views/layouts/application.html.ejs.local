@@ -1,55 +1,42 @@
 <%
-  geddy.site = geddy.site || {};
+    geddy.site = geddy.site || {};
 %>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>
-      <%= geddy.site.title; %>
-      <% if (typeof post != 'undefined' && params.action == 'show') { %>
-      |  <%= post.title %>
-      <% } %>
-      <% if (params.controller == 'dashboard') { %>
-      |  Dashboard
-      <% } %>
-    </title>
-    <meta name="description" content="">
+
+    <title><%=
+        geddy.site.title;
+    %><%
+        if (typeof post != 'undefined' && params.action == 'show') {
+            %> | <%= post.title %> <%
+        }
+    %></title>
+
+    <meta name="description" content="o2js.com; a coherent solution to your JavaScript dilemma.">
     <meta name="author" content="<%= geddy.site.firstName + ' ' + geddy.site.lastName; %>">
     <meta name="viewport" content="width=device-width" />
 
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,600italic|Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
     <%- styleLink('/css/style.css', {rel:'stylesheet'}) %>
 
-    <!-- The fav and touch icons -->
     <link rel="shortcut icon" href="/images/favicon.ico">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
-  </head>
-  <body class="<%= params.controller.toLowerCase() %>">
+</head>
+<body class="<%= params.controller.toLowerCase() %>">
     <header class="meta" style="text-align:center">
-      <% if (geddy.site.firstName && geddy.site.lastName) { %>
         <a href="http://o2js.com/" class="btn btn-grey">Home</a>
         <span style="font-size:1em;color:#b58900">|</span>
         <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
-      <% } %>
-      <% if (geddy.site.twitter) { %>
         <span style="font-size:1em;color:#b58900">|</span>
         <a href="https://twitter.com/<%= geddy.site.twitter %>" class="btn btn-grey">@<strong>twitter</strong></a>
         <a href="https://linkedin.com/in/volkanozcelik" class="btn btn-grey">@<strong>LinkedIn</strong></a>
         <a href="https://github.com/v0lkan" class="btn btn-grey">@<strong>GitHub</strong></a>
-      <% } %>
         <span style="font-size:1em;color:#b58900">|</span>
         <a href="https://github.com/v0lkan/o2.js/blob/dev/README.md" class="btn btn-grey">about <strong>o2.js</strong></a>
         <a href="https://github.com/v0lkan/o2.js/releases" class="btn btn-grey"><strong>o2.js</strong> source code</a>
         <span style="font-size:1em;color:#b58900">|</span>
         <a href="http://o2js.com/interview-questions" class="btn btn-grey">#JSIQ</a>
-      <% if (session.get('site')) { %>
-        <a href="/dashboard/logout" class="btn btn-grey pull-right hidden-phone">log out<a>
-        <a href="/dashboard/settings" class="btn btn-grey pull-right hidden-phone">settings</a>
-        <a href="/dashboard" class="btn btn-grey pull-right hidden-phone">dashboard</a>
-      <% } %>
     </header>
 
     <p style="text-align:center;padding:1em;background:#fdf5d2;border: 1px #eee8d5 solid;margin:27px 0">
@@ -57,33 +44,25 @@
     <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
 
     <div class="container">
+        <%- yield(); %>
 
-      <%- yield(); %>
-
-<% if (request.url !== '/') { %>
-
-    <div id="disqus_thread"></div>
-    <script type="text/javascript">
-    var disqus_shortname = 'o2js';
-    (function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-    </script>
-    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-
-<% } else { %>
-
-    <a style="display:block;font-size:1.2em;line-height:2.4em;text-align:center;font-family:Bitter,serif;margin:2em;padding:2em;" href="/<%- post.slug %>?#disqus_thread">Have something to say about<br>&quot;<%- post.title %>&quot;?<br><strong>share your comments and suggestions here</strong> &raquo;&raquo;</a>
-
-
-<% } %>
-
-
+        <% if (request.url !== '/') { %>
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                var disqus_shortname = 'o2js';
+                (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        <% } else { %>
+            <a style="display:block;font-size:1.2em;line-height:2.4em;text-align:center;font-family:Bitter,serif;margin:2em;padding:2em;"
+            href="/<%- post.slug %>?#disqus_thread">Have something to say about<br>
+            &quot;<%- post.title %>&quot;?<br>
+            <strong>share your comments and suggestions here</strong> &raquo;&raquo;</a>
+        <% } %>
     </div>
-
-
-    </div>
-      </body>
+</body>
 </html>
