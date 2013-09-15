@@ -194,11 +194,11 @@ enter:</p>
 <h3>Restoring Firewall State At Reboot</h3>
 <p>We&#39;ve setup our firewall, and we are not done yet; because when we reboot our
 server, all of those rules will be erased. To solve this problem, first create
-a backup of the rules.</p>
+a backup of the rules:</p>
 <pre><code>[root@myserver:~]<span class="comment"># iptables-save > /root/rules.backup</span></code></pre>
 <p>Then backup your <strong>/etc/rc.local</strong> file:</p>
 <pre><code>[root@myserver:~]<span class="comment"># cp /etc/rc.local /etc/rc.local.backup</span></code></pre>
-<p>Then edit your <strong>/etc/rc.local</strong></p>
+<p>Then edit your <strong>/etc/rc.local</strong>:</p>
 <pre><code>[root@myserver:~]<span class="comment"># vim /etc/rc.local</span></code></pre>
 <p>and add this line:</p>
 <pre><code>iptables-restore &lt; /root/rules.backup</code></pre>

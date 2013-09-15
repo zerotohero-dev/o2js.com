@@ -221,7 +221,7 @@ And then revoke access from everything else:
 
 We've setup our firewall, and we are not done yet; because when we reboot our
 server, all of those rules will be erased. To solve this problem, first create
-a backup of the rules.
+a backup of the rules:
 
     [root@myserver:~]# iptables-save > /root/rules.backup
 
@@ -229,7 +229,7 @@ Then backup your **/etc/rc.local** file:
 
     [root@myserver:~]# cp /etc/rc.local /etc/rc.local.backup
 
-Then edit your **/etc/rc.local**
+Then edit your **/etc/rc.local**:
 
     [root@myserver:~]# vim /etc/rc.local
 
