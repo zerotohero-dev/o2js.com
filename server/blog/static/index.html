@@ -43,17 +43,22 @@
 
 After <a href="http://o2js.com/the-setup">setting up your server</a>, the next thing would be
 <strong>decrease its attack surface</strong>, and make it harder for unauthorized people
-to access it.</blockquote>
+to access it.
 
 <div style="clear:both"></div>
 
-<p>We will do this two-fold:</p>
-<ul>
-<li>First, we will <strong>disable password authentication</strong> to protect the server
+We will do this two-fold:
+
+<ul><li>First, we will <strong>disable password authentication</strong> to protect the server
 against  <a href="https://securityledger.com/2012/12/new-25-gpu-monster-devours-passwords-in-seconds/">brute-force password cracking attacks</a>;</li>
-<li>Then we will <strong>configure our firewall</strong> to only enable access to ports that are
-in use.</li>
-</ul>
+<li>Then we will <strong>configure our firewall</strong> to only enable access to ports that are in use.</li>
+<ul>
+</blockquote>
+
+<p>In this tutorial, I will be using an <a href="http://ubuntu.com">Ubuntu 13.04</a> for the server and
+a <strong>Mac OSX</strong> for the client. The steps you would follow will more or less be
+identical in any linux flavor. If you are using a windows client, you might
+want to use a shell emulator, such as <a href="http://www.cygwin.com/">cygwin</a>.</p>
 <blockquote>
 <p><strong>Danger Zone</strong>:</p>
 <p>If you mess things up when following this tutorial, you might lose the ability to remotely connect your server.  So make sure your hosting
@@ -62,10 +67,6 @@ This can be a virtual console such as <a href="https://www.linode.com/linodes/">
 a support ticket to your hosting provider.</p>
 <p>And always <strong>backup everything</strong> before touching them.</p>
 </blockquote>
-<p>In this tutorial, I will be using an <a href="http://ubuntu.com">Ubuntu 13.04</a> for the server and
-a <strong>Mac OSX</strong> for the client. The steps you would follow will more or less be
-identical in any linux flavor. If you are using a windows client, you might
-want to use a shell emulator, such as <a href="http://www.cygwin.com/">cygwin</a>.</p>
 <p>So let&#39;s begin by securing our authentication mechanism first:</p>
 <h3>Disabling Password Authentication</h3>
 <p>Go to your <strong>.ssh</strong> directory under your home folder. If there is no <strong>.ssh</strong>

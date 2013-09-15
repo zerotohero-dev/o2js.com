@@ -6,16 +6,22 @@ Make Your Server Ironman-Secure in Less Than Five Minutes
 
 After [setting up your server][the-setup], the next thing would be
 **decrease its attack surface**, and make it harder for unauthorized people
-to access it.</blockquote>
+to access it.
 
 <div style="clear:both"></div>
 
 We will do this two-fold:
 
-* First, we will **disable password authentication** to protect the server
-against  [brute-force password cracking attacks][brute-force];
-* Then we will **configure our firewall** to only enable access to ports that are
-in use.
+<ul><li>First, we will **disable password authentication** to protect the server
+against  [brute-force password cracking attacks][brute-force];</li>
+<li>Then we will **configure our firewall** to only enable access to ports that are in use.</li>
+<ul>
+</blockquote>
+
+In this tutorial, I will be using an [Ubuntu 13.04][ubuntu] for the server and
+a **Mac OSX** for the client. The steps you would follow will more or less be
+identical in any linux flavor. If you are using a windows client, you might
+want to use a shell emulator, such as [cygwin][cygwin].
 
 > **Danger Zone**:
 >
@@ -25,11 +31,6 @@ in use.
 > a support ticket to your hosting provider.
 >
 > And always **backup everything** before touching them.
-
-In this tutorial, I will be using an [Ubuntu 13.04][ubuntu] for the server and
-a **Mac OSX** for the client. The steps you would follow will more or less be
-identical in any linux flavor. If you are using a windows client, you might
-want to use a shell emulator, such as [cygwin][cygwin].
 
 So let's begin by securing our authentication mechanism first:
 
