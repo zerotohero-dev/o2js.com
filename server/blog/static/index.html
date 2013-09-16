@@ -39,7 +39,7 @@
         
 <h2 class="title span8"><a href="/make-your-server-ironman-secure-in-less-than-five-minutes">Make Your Server Ironman-Secure in Less Than Five Minutes</a></h2>
 <div class="span8">
-  <blockquote><a href="http://o2js.com/assets/hacker.jpg"><img src="http://o2js.com/assets/hack.png" style="float:left;margin:1em"></a>
+  <blockquote><a href="http://o2js.com/assets/hacker.jpg"><img src="http://o2js.com/assets/hack.png" style="float:left;margin:0.5em"></a>
 
 After <a href="http://o2js.com/the-setup">setting up your server</a>, the next thing would be to
 <strong>decrease its attack surface</strong>, and make it harder for unauthorized people
@@ -133,9 +133,10 @@ So…</p>
 <blockquote>
 <p><strong>Danger Zone</strong>:</p>
 <p>Make sure that you can <code>ssh root@myserver</code> without entering your password
-before proceeding further; or you will lose access to your server.
-You can use <code>ssh root@myserver -v</code> to peek at what&#39;s going on and
-make sure that your public key is being used by the server.</p>
+before proceeding further; or you will lose access to your server.</p>
+<p>You can use </p>
+<p><code>ssh root@myserver -v</code> </p>
+<p>to peek at what&#39;s going on and make sure that your public key is being used by the server.</p>
 </blockquote>
 <p>Now that our <strong>SSH</strong> is set up; let&#39;s make our server even more secure:</p>
 <pre><code>[user@macbook:~]<span class="comment"># ssh root@myserver</span>

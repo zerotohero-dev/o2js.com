@@ -1,4 +1,4 @@
-#JFDI: A Hacker's Way to GTD!
+#JFDI: Get $#!% Done, Hacker Style
 
 
 
@@ -14,6 +14,16 @@
                          \/__/     \:\/:/  /    \:\__\
                                     \::/__/      \/__/
 ```
+
+### Don't Forget to Check Out the New **JFDI**
+
+> After I initially wrote this article, **JFDI** improved a lot.
+> <br><br>
+> [See it's recent **README** for a complete summary](https://github.com/v0lkan/JFDI/blob/master/README.md).
+> <br><br>
+> I will be regularly updating [that **REAME** file](https://github.com/v0lkan/JFDI/blob/master/README.md) when I add new features to **JFDI**.
+
+### Introduction
 
 As a hacker, and a [geek][geek] I spend most of my time fiddling with the terminal.
 
@@ -77,7 +87,7 @@ You don't need any special editor to modify a text file. You can edit them in yo
 > A while ago I scribbled [this gist summarizing what **JFDI** philosophy was][jfdi-gist]; and then I wrote [the JFDI Manifesto][jfdi-manifesto].<br><br>
 > You don't have to be a wizard to get a gist of what "JFDI" is, but those links might give you a different insight anyway.
 
-The ""JFDI" that I'll be mentioning here is a **[Node.JS][nodejs]** command line interface, that [I created as a **weekend hack**][jfdi-npm].
+The "JFDI" that I'll be mentioning here is a **[Node.JS][nodejs]** command line interface, that [I created as a **weekend hack**][jfdi-npm].
 
 [jfdi-gist]: https://gist.github.com/v0lkan/2694911
 [jfdi-manifesto]: https://gist.github.com/v0lkan/2731233

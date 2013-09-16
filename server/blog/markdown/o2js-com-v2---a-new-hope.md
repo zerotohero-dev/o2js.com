@@ -35,6 +35,7 @@ I also will be writing new articles too, so it will take a while to copy, transf
 * **End to End** (*security, firewalls, configurations, backups, etc.*)
 	* [Hello Node.JS Blogging World](http://o2js.com/hello-node-js-blogging-world)
 	* [The Setup](http://o2js.com/the-setup)
+	* [Make Your Server Ironman-Secure in Less Than Five Minutes](http://o2js.com/make-your-server-ironman-secure-in-less-than-five-minutes)
 
 * **Discussion** (*somewhat controversial and opinionated topics*)
 	* Think You Know JavaScript? ... You Don't. 

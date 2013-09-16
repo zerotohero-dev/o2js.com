@@ -2,7 +2,7 @@ Make Your Server Ironman-Secure in Less Than Five Minutes
 
 
 
-<blockquote><a href="http://o2js.com/assets/hacker.jpg"><img src="http://o2js.com/assets/hack.png" style="float:left;margin:1em"></a>
+<blockquote><a href="http://o2js.com/assets/hacker.jpg"><img src="http://o2js.com/assets/hack.png" style="float:left;margin:0.5em"></a>
 
 After [setting up your server][the-setup], the next thing would be to
 **decrease its attack surface**, and make it harder for unauthorized people
@@ -121,8 +121,12 @@ The next step is to **disable password authentication**.
 >
 > Make sure that you can `ssh root@myserver` without entering your password
 > before proceeding further; or you will lose access to your server.
-> You can use `ssh root@myserver -v` to peek at what's going on and
-> make sure that your public key is being used by the server.
+>
+> You can use 
+>
+>`ssh root@myserver -v` 
+>
+> to peek at what's going on and make sure that your public key is being used by the server.
 
 Now that our **SSH** is set up; let's make our server even more secure:
 
