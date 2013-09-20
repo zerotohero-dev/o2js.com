@@ -102,9 +102,7 @@ pre, code {
 }
 
 blockquote {
-  font-style: normal;
-  line-height: 1.5em;
-  font-family: "Source Sans Pro", sans-serif;
+  font-style: italic;
 }
 
 blockquote p {
