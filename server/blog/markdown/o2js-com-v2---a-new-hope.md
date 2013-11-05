@@ -25,7 +25,7 @@ Since I have backups of the former blog's database, I haven't lost anything.
 [jsiq]: http://o2js.com/interview-questions/
 [markdown]: http://o2js.com/hello-node-js-blogging-world
 
-### Topic List
+<h3 id="topic-list">Topic List</h3>
 
 Here are the topics and article that will be carried over in time. 
 I also will be writing new articles too, so it will take a while to copy, transfer, and refine everything.
@@ -42,7 +42,8 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* Resistance is Futile
 	
 * **Productivity** (*on getting stuff done*)
-	* \#JFDI : Jedis Feel Doin' It!
+	* [\#JFDI : Getting $\#!% Done, Hacker Style](http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done)
+	* [Procrastiworking](http://o2js.com/procrastiworking)
 
 * **Sublime Text** (*I love it! You should love it too*)
 	* An Editor You Will Regret You Haven't Used Before (and Tips on Getting the Most out of it)

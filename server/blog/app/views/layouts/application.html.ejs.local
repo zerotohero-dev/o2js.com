@@ -33,6 +33,8 @@
 </head>
 <body class="<%= params.controller.toLowerCase() %>">
     <header class="meta" style="text-align:center">
+        <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="btn btn-grey"><b>Start Here</b></a>
+        <span style="font-size:1em;color:#b58900">&nbsp;|</span>
         <a href="http://o2js.com/" class="btn btn-grey">Home</a>
         <span style="font-size:1em;color:#b58900">&nbsp;|</span>
         <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
