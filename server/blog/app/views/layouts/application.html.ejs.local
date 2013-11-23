@@ -55,7 +55,16 @@
 
     <div class="container">
         <%-     yield();     %>
-
+<%
+// Commenting on blogs is kind of outdated. The discussion is carried over
+// other platforms like hackernews, facebook, twitter etc.
+// Therefore it's getting increasingly harder to foster a live audience
+// on any blog's website.
+// Will open this block when the blog starts getting adequate traffic (a couple of thousands of uniques per day, maybe)
+//
+// TODO: make this configurable.
+if (false) {
+%>
         <% if (request.url !== '/') { %>
             <div id="disqus_thread"></div>
             <script type="text/javascript">
@@ -73,6 +82,9 @@
             &quot;<%- post.title %>&quot;?<br>
             <strong>Share your comments and suggestions here</strong> &raquo;&raquo;</a>
         <% } %>
+<%
+}
+%>
     </div>
 </body>
 </html>

@@ -8,15 +8,15 @@ What is the most important asset that will help you achieve your ultimate goal i
 
 It is not money, neither is it time; it is **focus**.
 
-> When what you do is aligned with your highest priorities, you will have less stress, and you will be able to claim inner peace.
-
 <div style="clear:both;"></div>
+
+> When what you do is aligned with your highest priorities, you will have less stress, and you will be able to claim inner peace.
 
 ### Paralysis By Analysis
 
 More often than not, your top priorities, your values, your aspirations, and your objectives are **obscured** by competing demands on **your** *time* and *attention*. 
 
-> How do you feel, when you have so much to do, and you don't know which one to start with? &ndash; Let me give you a hint: "**instant stress**". 
+> How do you feel, when you have so much to do, and you don't know which one to start with? – Let me give you a hint: "**instant stress**". 
 
 A moderate level of stress can be motivating, when not managed well, however, it can **paralyze** you instead. To overcome this **paralysis by analysis**, you will need to **selectively eliminate** things.
 
@@ -41,9 +41,9 @@ Here are just a select few of my mid-to-long-term projects:
 * I will have to prepare to present at a couple of tech-talks, within the following few months;
 * Last, but not the least, I have to finalize [my book][mybook], in less than a month.
 
-> I'm sure if you are a reader of this article, your situation is similar (*if not worse*) to mine. &ndash; What I will be sharing here is not rocket science; it's common sense; and it helped me **regain** my **inner peace**, so can it help you too.
+> I'm sure if you are a reader of this article, your situation is similar (*if not worse*) to mine. – What I will be sharing here is not rocket science; it's common sense; and it helped me **regain** my **inner peace**, so can it help you too.
 
-And this is just tip of the iceberg, I can add more items to the above this list&hellip; like&hellip; forever. These are a fraction of my personal development **liabilities**. And my assets (*i.e. my available free time*) are **scarce**, to say the least. 
+And this is just tip of the iceberg, I can add more items to the above this list… like… forever. These are a fraction of my personal development **liabilities**. And my assets (*i.e. my available free time*) are **scarce**, to say the least. 
 
 [gtd-project]: http://www.gtdtimes.com/2010/02/15/managing-projects-tips-from-david-allen/
 [linkibol]:    https://github.com/v0lkan/linkibol
@@ -102,7 +102,7 @@ Contrary to popular belief, **time management** is **not** getting lots of stuff
 
 > Given **time management is an illusion** to make you feel that you are in control; the only way to get important stuff done is to **procrastiwork**.
 
-Procrasti&hellip; what?!
+Procrasti… what?!
 
 [gtd]:         http://www.davidco.com/
 [pomodoro]:    http://pomodorotechnique.com/
@@ -124,7 +124,7 @@ One way to do this is to pick the most important things that will give the great
 
 And it's not only me who thinks like that. Here's what [Jeff Attwood has to say][todont] on the subject matter:
 
->  If you can't wake up every day and, using your 100% original equipment God-given organic brain, come up with the three most important things you need to do that day &ndash; then you should seriously work on fixing that. I don't mean install another app, or read more productivity blogs and books. You have to figure out what's important to you and what motivates you; ask yourself why that stuff isn't gnawing at you enough to make you get it done. Fix that. 
+>  If you can't wake up every day and, using your 100% original equipment God-given organic brain, come up with the three most important things you need to do that day – then you should seriously work on fixing that. I don't mean install another app, or read more productivity blogs and books. You have to figure out what's important to you and what motivates you; ask yourself why that stuff isn't gnawing at you enough to make you get it done. Fix that. 
 
 [todont]: http://www.codinghorror.com/blog/2012/10/todont.html
 
@@ -159,7 +159,7 @@ It all depends on how you use the system:
 
 > **JFDI** program uses two lists (the **today** queue, and the **tomorrow** queue) to manage your goals. And you can easily defer a goal in your **today** queue, to **tomorrow**. [You can read the project' README file][jfdi-readme], for more information on how this works.
 
-During the course of the day, you will have a lot of small errands (like "make sure you talk to Sarah", "read this article tonight", "send an e-mail to the book's editors before noon", "remember the milk"&hellip; &ndash; none of these goals would be "*rocket surgery*" per se). 
+During the course of the day, you will have a lot of small errands (like "make sure you talk to Sarah", "read this article tonight", "send an e-mail to the book's editors before noon", "remember the milk"… – none of these goals would be "*rocket surgery*" per se). 
 
 And that's where **JFDI** comes into play: Keeping a queue for **today**'s goals, and deferring stuff that do not need to be done today, to **tomorrow** is a really simple, yet elegant idea:
 
