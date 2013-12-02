@@ -81,6 +81,7 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* A Little Known Encapsulation Technique in JavaScript: Isolated Objects
 
 * **Practical JavaScript** (*time to bring the theory into practice*)
+	* [Let's Make a **JavaScript** Framework Boilerplate](http://o2js.com/lets-make-a-javascript-framework-boilerplate)
 	* A Library Maker's Guide to JavaScript
 	* How to Document a JavaScript Framework
 	* Creating A Mobile JavaScript Chat

@@ -10,7 +10,6 @@
     <meta name="author" content="Volkan Özçelik">
     <meta name="viewport" content="width=device-width" />
 
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,600italic|Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
     <link href="/css/style.css" rel="stylesheet" />
 
     <link rel="shortcut icon" href="/images/favicon.ico">
@@ -26,24 +25,24 @@
 <body class="posts">
     <header class="meta" style="text-align:center">
         <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="btn btn-grey"><b>Start Here</b></a>
-        <span style="font-size:1em;color:#b58900">&nbsp;|</span>
+        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
         <a href="http://o2js.com/" class="btn btn-grey">Home</a>
-        <span style="font-size:1em;color:#b58900">&nbsp;|</span>
+        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
         <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
-        <span style="font-size:1em;color:#b58900">&nbsp;|</span>
+        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
         <a href="https://twitter.com/linkibol" class="btn btn-grey">@<strong>twitter</strong></a>
         <a href="https://linkedin.com/in/volkanozcelik" class="btn btn-grey">@<strong>LinkedIn</strong></a>
         <a href="https://github.com/v0lkan" class="btn btn-grey">@<strong>GitHub</strong></a>
-        <span style="font-size:1em;color:#b58900">&nbsp;|</span>
+        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
         <a href="https://github.com/v0lkan/o2.js/blob/dev/README.md" class="btn btn-grey">about <strong>o2.js</strong></a>
         <a href="https://github.com/v0lkan/o2.js/releases" class="btn btn-grey"><strong>o2.js</strong> source code</a>
-        <span style="font-size:1em;color:#b58900">&nbsp;|</span>
+        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
         <a href="http://o2js.com/interview-questions" class="btn btn-grey">#JSIQ</a>
     </header>
 
-    <p style="text-align:center;padding:1em;background:#fdf5d2;border: 1px #eee8d5 solid;margin:27px 0">
-    Psttt... I'm writing a book. Click the link below to pre-order and save <strong>;)</strong>
-    <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Willl <em>Ever</em> Need, Now! ««</a></p>
+    <p class="banner" style="text-align:center;padding:1em;margin:27px 0">
+    Psttt&hellip; Wanna check out my book?
+    <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Will <em>Ever</em> Need, Now! ««</a></p>
 
     <div class="container">
         
@@ -81,14 +80,14 @@ a support ticket to your hosting provider.</p>
 <h3>Disabling Password Authentication</h3>
 <p>Go to your <strong>.ssh</strong> directory under your home folder. If there is no <strong>.ssh</strong>
 directory, just create one.</p>
-<pre><code>[user@macbook:~]<span class="comment"># cd ~/.ssh</span></code></pre>
+<pre><code>[user@macbook:~]$ cd ~/.ssh</code></pre>
 <p>If there are files in the folder back them up, just in case:</p>
-<pre><code>[user@macbook:~]<span class="comment"># mkdir backup</span>
-[user@macbook:~]<span class="comment"># cp id_rsa backup/id_rsa</span>
-[user@macbook:~]<span class="comment"># cp id_rsa.pub backup/id_rsa.pub</span>
-[user@macbook:~]<span class="comment"># cp known_hosts backup/known_hosts</span></code></pre>
+<pre><code>[user@macbook:~]$ mkdir backup
+[user@macbook:~]$ cp id_rsa backup/id_rsa
+[user@macbook:~]$ cp id_rsa.pub backup/id_rsa.pub
+[user@macbook:~]$ cp known_hosts backup/known_hosts</code></pre>
 <p>After having backed up the <strong>.ssh</strong> folder contents, let&#39;s create a key pair:</p>
-<pre><code>[user@macbook:~]<span class="comment"># ssh_keygen</span></code></pre>
+<pre><code>[user@macbook:~]$ ssh_keygen</code></pre>
 <p>Answer all the questions prompted. Generally accepting the defaults by
 pressing enter is okay.</p>
 <blockquote>
@@ -112,7 +111,7 @@ so that if your hard drive crashes you could be able to get your keys back.
 I store my backup keys in a <a href="http://www.truecrypt.org/">truecrypt</a> volume in my <a href="http://dropbox.com">Dropbox</a>.</p>
 </blockquote>
 <p>Now, let&#39;s copy our public key over the wire.</p>
-<pre><code>[user@macbook:~]<span class="comment"># scp id_rsa.pub root@myserver:/root/id_rsa.pub</span></code></pre>
+<pre><code>[user@macbook:~]$ scp id_rsa.pub root@myserver:/root/id_rsa.pub</code></pre>
 <blockquote>
 <p>In this example, I&#39; using the root account, which is <a href="http://askubuntu.com/questions/16178/why-is-it-bad-to-run-as-root">bad</a>.</p>
 <p>You might think that logging in as root should be safe, as long as you know
@@ -129,15 +128,15 @@ if you had your armor jacket, vest, and helmet on when you crash the bike.</p>
 <p>I will be using <strong>root</strong> account for the sake of simplicity; just keep in mind that
 it is a <strong>bad practice</strong> to do so.</p>
 <p>Back to our server:</p>
-<pre><code>[user@macbook:~]<span class="comment"># ssh root@myserver</span>
-[root@myserver:~]<span class="comment"># touch .ssh/authorized_keys</span>
-[root@myserver:~]<span class="comment"># cd /root/</span>
-[root@myserver:~]<span class="comment"># cat id_rsa.pub >> .ssh/authorized_keys</span>
-[root@myserver:~]<span class="comment"># service ssh restart</span>
-[root@myserver:~]<span class="comment"># exit</span></code></pre>
+<pre><code>[user@macbook:~]$ ssh root@myserver
+[root@myserver:~]$ touch .ssh/authorized_keys
+[root@myserver:~]$ cd /root/
+[root@myserver:~]$ cat id_rsa.pub >> .ssh/authorized_keys
+[root@myserver:~]$ service ssh restart
+[root@myserver:~]$ <span class="keyword">exit</span></code></pre>
 <p>This will enable us to login with our private key, without using a password.
 So…</p>
-<pre><code>[user@macbook:~]<span class="comment"># ssh root@myserver</span></code></pre>
+<pre><code>[user@macbook:~]$ ssh root@myserver</code></pre>
 <p>will log you in without asking for any password if you&#39;ve set things up correctly.</p>
 <p>The next step is to <strong>disable password authentication</strong>.</p>
 <blockquote>
@@ -149,21 +148,21 @@ before proceeding further; or you will lose access to your server.</p>
 <p>to peek at what&#39;s going on and make sure that your public key is being used by the server.</p>
 </blockquote>
 <p>Now that our <strong>SSH</strong> is set up; let&#39;s make our server even more secure:</p>
-<pre><code>[user@macbook:~]<span class="comment"># ssh root@myserver</span>
-[root@myserver:~]<span class="comment"># vim /etc/ssh/sshd_config</span></code></pre>
+<pre><code>[user@macbook:~]$ ssh root@myserver
+[root@myserver:~]$ vim /etc/ssh/sshd_config</code></pre>
 <p>Find the line that starts with <code>PasswordAuthentication</code> and replace that line with:</p>
 <pre><code>PasswordAuthentication no</code></pre>
 <p>Save and exit by <code>:wq</code>. And then restart the <strong>ssh</strong> service:</p>
-<pre><code>[root@myserver:~]<span class="comment"># service ssh restart</span>
-[root@myserver:~]<span class="comment"># exit</span></code></pre>
+<pre><code>[root@myserver:~]$ service ssh restart
+[root@myserver:~]$ <span class="keyword">exit</span></code></pre>
 <p>After all these set, the only way to log in to your server for a malicious hacker is to gain an access to your private key. </p>
 <p>This will protect you against <strong>brute force password cracking</strong> attempts. </p>
 <p>However, we are not done yet. Let us fortify our network too:</p>
 <h3>Configuring the Firewall</h3>
 <p>Although there are <strong>GUI</strong> tools like <a href="http://www.fs-security.com/">firestarter</a> to configure your firewall, sooner or later you will find yourself in need to use the command line to set up your firewall. </p>
 <p>And firewall configuration from the command line is easy:</p>
-<pre><code>[user@macbook:~]<span class="comment"># ssh root@myserver</span>
-[root@myserver:~]<span class="comment"># iptables -L</span></code></pre>
+<pre><code>[user@macbook:~]$ ssh root@myserver
+[root@myserver:~]$ iptables -L</code></pre>
 <p>The above command will list the available firewall rules. If you haven&#39;t set up anything yet, you will see something like:</p>
 <pre><code>Chain INPUT (policy ACCEPT)
 target     prot opt source               destination
@@ -185,32 +184,32 @@ enter:</p>
 <p><code>iptables -F</code></p>
 </blockquote>
 <p>The first thing is, we would want to keep connections that are already established:</p>
-<pre><code>[root@myserver:~]<span class="comment"># iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</span></code></pre>
+<pre><code>[root@myserver:~]$ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</code></pre>
 <p>Then we would allow every connection from the local machine (<em>i.e. the loopback interface</em>):</p>
-<pre><code>[root@myserver:~]<span class="comment"># iptables -A INPUT -i lo -j ACCEPT</span>
-[root@myserver:~]<span class="comment"># iptables -A INPUT -d 127.0.0.0/8 -j REJECT</span></code></pre>
+<pre><code>[root@myserver:~]$ iptables -A INPUT -i lo -j ACCEPT
+[root@myserver:~]$ iptables -A INPUT -d 127.0.0.0/8 -j REJECT</code></pre>
 <p>Now, grant access to the ports that you need:</p>
-<pre><code>[root@myserver:~]<span class="comment"># iptables -A INPUT -p tcp --dport 22 -j ACCEPT</span>
-[root@myserver:~]<span class="comment"># iptables -A INPUT -p tcp --dport 80 -j ACCEPT</span>
-[root@myserver:~]<span class="comment"># iptables -A INPUT -p tcp --dport 443 -j ACCEPT</span>
-[root@myserver:~]<span class="comment"># iptables -A INPUT -p tcp --dport 8000 -j ACCEPT</span></code></pre>
+<pre><code>[root@myserver:~]$ iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+[root@myserver:~]$ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+[root@myserver:~]$ iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+[root@myserver:~]$ iptables -A INPUT -p tcp --dport 8000 -j ACCEPT</code></pre>
 <p>(<em>22 is SSL, 80 is HTTP, 443 is HTTPS, and 8000 is my blog publish port</em>)</p>
 <p>You migh want to allow all outbound traffic, too:</p>
-<pre><code>[root@myserver:~]<span class="comment"># iptables -A OUTPUT -j ACCEPT</span></code></pre>
+<pre><code>[root@myserver:~]$ iptables -A OUTPUT -j ACCEPT</code></pre>
 <p>And optionally allow ping:</p>
-<pre><code>[root@myserver:~]<span class="comment"># iptables -A INPUT -p icmp -j ACCEPT</span></code></pre>
+<pre><code>[root@myserver:~]$ iptables -A INPUT -p icmp -j ACCEPT</code></pre>
 <p>And then revoke access from everything else:</p>
-<pre><code>[root@myserver:~]<span class="comment"># iptables -A INPUT -j DROP</span>
-[root@myserver:~]<span class="comment"># iptables -A FORWARD -j DROP</span></code></pre>
+<pre><code>[root@myserver:~]$ iptables -A INPUT -j DROP
+[root@myserver:~]$ iptables -A FORWARD -j DROP</code></pre>
 <h3>Restoring Firewall State At Reboot</h3>
 <p>We&#39;ve setup our firewall, and we are not done yet; because when we reboot our
 server, all of those rules will be erased. To solve this problem, first create
 a backup of the rules:</p>
-<pre><code>[root@myserver:~]<span class="comment"># iptables-save > /root/rules.backup</span></code></pre>
+<pre><code>[root@myserver:~]$ iptables-save &gt; /root/rules.backup</code></pre>
 <p>Then backup your <strong>/etc/rc.local</strong> file:</p>
-<pre><code>[root@myserver:~]<span class="comment"># cp /etc/rc.local /etc/rc.local.backup</span></code></pre>
+<pre><code>[root@myserver:~]$ cp /etc/rc.local /etc/rc.local.backup</code></pre>
 <p>Then edit your <strong>/etc/rc.local</strong>:</p>
-<pre><code>[root@myserver:~]<span class="comment"># vim /etc/rc.local</span></code></pre>
+<pre><code>[root@myserver:~]$ vim /etc/rc.local</code></pre>
 <p>and add this line:</p>
 <pre><code>iptables-restore &lt; /root/rules.backup</code></pre>
 <p>This will apply the rules after the server reboots.</p>

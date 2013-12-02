@@ -5,16 +5,16 @@
 
 body {
   margin: 0px 72px 200px 72px;
-  background: #FDF6E3;/*#FDF6E3;*/
-  color: #657B83;
+  background: #fafafa;
+  color: #333333;
   font-size: 16px;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Bitter, serif;
+  font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: normal;
-  color: #859900;
+  color: #071410;
 }
 
 h1 {
@@ -25,6 +25,10 @@ h1 {
 h2 {
   font-size: 36px;
   line-height: 52px;
+}
+
+h2 a {
+   color: #071410 !important;
 }
 
 h3 {
@@ -48,14 +52,6 @@ p {
   margin: 12px 0;
 }
 
-
-
-
-
-
-
-
-
 hr {
   background: #EEE8D5;
   height: 4px;
@@ -65,40 +61,61 @@ hr {
 }
 
 a {
-  color: #B58900;
+  color: #c80f32;
   text-decoration: none;
+  border-bottom: 1px #c80f32 dashed;
+}
+
+h1 a, h2 a {
+    border-bottom: none;
 }
 
 .posts .title a {
-  color: #859900;
+  color: #c80f32; 
 }
 
-a:hover {
-  color: #d33682;
+.banner {
+   border-top: 2px #ddd solid;
+   margin-top: 0px !important; 
+}
+
+.banner a {
+   border-bottom: none;
+   text-decoration: none;
+}
+
+.banner a:hover {
+  color: #2e93cd;
+  border-bottom:none;
+  text-decoration:underline;
+}
+
+.posts .title a:hover, a:hover {
+  color: #2e93cd;
   text-decoration: none;
+  border-bottom: 1px solid;
 }
 
 pre, blockquote {
   border: none;
   border-radius: 0;
   padding: 14px;
-  border-left: 4px solid #eee8d5;
+  border-left: 4px solid #ccc;
   margin: 28px 0;
   background: none;
 }
 
 pre {
-    border: 1px solid #EEE8D5;
-    background: #FEFCEA;
-    border-radius: 0.6em;
+    border: 1px solid #ccc;
+    background: #e7e7e7;
 }
 
 pre, code {
-  font-family: Menlo, "Courier New", Courier, monospace;
+  font-family: "Lucida Console", Menlo, Monaco, "Courier New", Courier, mono, monospace; 
   font-size: 12px;
   line-height: 1.5em;
-  color: #343a72;
-  background: #FEFCEA;
+  color: #333;
+  background: #e7e7e7;
 }
 
 blockquote {
@@ -176,8 +193,6 @@ input[type=submit] {
 a.btn, button.btn, input.btn {
   display: inline-block;
   padding: 14px;
-  color: #EEE8D5;
-  background: #2aa198;
   font-size: 16px;
   border: none;
   box-shadow: none;
@@ -213,8 +228,7 @@ a.btn-selected, a.btn-selected:hover, button.btn-selected, input.btn-selected {
 }
 
 a.btn-grey, button.btn-grey, input.btn-grey {
-  background: #EEE8D5;
-  color: #657B83;
+  
 }
 
 a.btn-small, button.btn-small, input.btn-small {
@@ -224,21 +238,23 @@ a.btn-small, button.btn-small, input.btn-small {
 }
 
 a.btn-grey:hover, button.btn-grey:hover, input.btn-grey:hover {
-  color: #EEE8D5;
+  color: #fff;
 }
 
 a.btn-disabled, button.btn-disabled, input.btn-disabled {
-  color: #FDF6E3;
+  color: #ccc;
+background:none;
+cursor:default;
 }
 
 a.btn-disabled:hover, button.btn-disabled:hover, input.btn-disabled:hover {
-  background: #EEE8D5;
-  color: #FDF6E3;
+  color: #ccc;
+ background:none;
   cursor: default;
 }
 
 .btn:hover {
-  background: #268bd2;
+  background: #c80f32;
 }
 
 /*
@@ -251,12 +267,14 @@ body {
 }
 
 .meta {
-  background: #EEE8D5;
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  min-height: 30px
+  min-height: 30px;
+  border-bottom:1px #ccc solid;
+  background:#f1f1f1;
+}
+
+.meta span {
+    display:none;
 }
 
 .meta .btn {
@@ -451,7 +469,6 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 
 pre code {
   display: block; padding: 0.5em;
-  background: #FEFCEA; color: #657b83;
 }
 
 pre .comment,

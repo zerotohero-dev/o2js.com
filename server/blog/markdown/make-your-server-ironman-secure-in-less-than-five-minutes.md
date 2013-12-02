@@ -45,18 +45,18 @@ So let's begin by securing our authentication mechanism first:
 Go to your **.ssh** directory under your home folder. If there is no **.ssh**
 directory, just create one.
 
-    [user@macbook:~]# cd ~/.ssh
+    [user@macbook:~]$ cd ~/.ssh
 
 If there are files in the folder back them up, just in case:
 
-    [user@macbook:~]# mkdir backup
-    [user@macbook:~]# cp id_rsa backup/id_rsa
-    [user@macbook:~]# cp id_rsa.pub backup/id_rsa.pub
-    [user@macbook:~]# cp known_hosts backup/known_hosts
+    [user@macbook:~]$ mkdir backup
+    [user@macbook:~]$ cp id_rsa backup/id_rsa
+    [user@macbook:~]$ cp id_rsa.pub backup/id_rsa.pub
+    [user@macbook:~]$ cp known_hosts backup/known_hosts
 
 After having backed up the **.ssh** folder contents, let's create a key pair:
 
-    [user@macbook:~]# ssh_keygen
+    [user@macbook:~]$ ssh_keygen
 
 Answer all the questions prompted. Generally accepting the defaults by
 pressing enter is okay.
@@ -81,7 +81,7 @@ Just another warning before moving further: **make sure to backup your keys in a
 
 Now, let's copy our public key over the wire.
 
-    [user@macbook:~]# scp id_rsa.pub root@myserver:/root/id_rsa.pub
+    [user@macbook:~]$ scp id_rsa.pub root@myserver:/root/id_rsa.pub
 
 > In this example, I' using the root account, which is [bad][root-login].
 >
@@ -101,17 +101,17 @@ it is a **bad practice** to do so.
 
 Back to our server:
 
-    [user@macbook:~]# ssh root@myserver
-    [root@myserver:~]# touch .ssh/authorized_keys
-    [root@myserver:~]# cd /root/
-    [root@myserver:~]# cat id_rsa.pub >> .ssh/authorized_keys
-    [root@myserver:~]# service ssh restart
-    [root@myserver:~]# exit
+    [user@macbook:~]$ ssh root@myserver
+    [root@myserver:~]$ touch .ssh/authorized_keys
+    [root@myserver:~]$ cd /root/
+    [root@myserver:~]$ cat id_rsa.pub >> .ssh/authorized_keys
+    [root@myserver:~]$ service ssh restart
+    [root@myserver:~]$ exit
 
 This will enable us to login with our private key, without using a password.
 So…
 
-    [user@macbook:~]# ssh root@myserver
+    [user@macbook:~]$ ssh root@myserver
 
 will log you in without asking for any password if you've set things up correctly.
 
@@ -130,8 +130,8 @@ The next step is to **disable password authentication**.
 
 Now that our **SSH** is set up; let's make our server even more secure:
 
-    [user@macbook:~]# ssh root@myserver
-    [root@myserver:~]# vim /etc/ssh/sshd_config
+    [user@macbook:~]$ ssh root@myserver
+    [root@myserver:~]$ vim /etc/ssh/sshd_config
 
 Find the line that starts with `PasswordAuthentication` and replace that line with:
 
@@ -139,8 +139,8 @@ Find the line that starts with `PasswordAuthentication` and replace that line wi
 
 Save and exit by `:wq`. And then restart the **ssh** service:
 
-    [root@myserver:~]# service ssh restart
-    [root@myserver:~]# exit
+    [root@myserver:~]$ service ssh restart
+    [root@myserver:~]$ exit
 
 After all these set, the only way to log in to your server for a malicious hacker is to gain an access to your private key. 
 
@@ -161,8 +161,8 @@ Although there are **GUI** tools like [firestarter][firestarter] to configure yo
 
 And firewall configuration from the command line is easy:
 
-    [user@macbook:~]# ssh root@myserver
-    [root@myserver:~]# iptables -L
+    [user@macbook:~]$ ssh root@myserver
+    [root@myserver:~]$ iptables -L
 
 The above command will list the available firewall rules. If you haven't set up anything yet, you will see something like:
 
@@ -191,35 +191,35 @@ This is an empty set of rules.
 
 The first thing is, we would want to keep connections that are already established:
 
-    [root@myserver:~]# iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+    [root@myserver:~]$ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 Then we would allow every connection from the local machine (*i.e. the loopback interface*):
 
-    [root@myserver:~]# iptables -A INPUT -i lo -j ACCEPT
-    [root@myserver:~]# iptables -A INPUT -d 127.0.0.0/8 -j REJECT
+    [root@myserver:~]$ iptables -A INPUT -i lo -j ACCEPT
+    [root@myserver:~]$ iptables -A INPUT -d 127.0.0.0/8 -j REJECT
 
 Now, grant access to the ports that you need:
 
-    [root@myserver:~]# iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-    [root@myserver:~]# iptables -A INPUT -p tcp --dport 80 -j ACCEPT
-    [root@myserver:~]# iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-    [root@myserver:~]# iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
+    [root@myserver:~]$ iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+    [root@myserver:~]$ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+    [root@myserver:~]$ iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+    [root@myserver:~]$ iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
 
 (*22 is SSL, 80 is HTTP, 443 is HTTPS, and 8000 is my blog publish port*)
 
 
 You migh want to allow all outbound traffic, too:
 
-    [root@myserver:~]# iptables -A OUTPUT -j ACCEPT
+    [root@myserver:~]$ iptables -A OUTPUT -j ACCEPT
 
 And optionally allow ping:
 
-    [root@myserver:~]# iptables -A INPUT -p icmp -j ACCEPT
+    [root@myserver:~]$ iptables -A INPUT -p icmp -j ACCEPT
 
 And then revoke access from everything else:
 
-    [root@myserver:~]# iptables -A INPUT -j DROP
-    [root@myserver:~]# iptables -A FORWARD -j DROP
+    [root@myserver:~]$ iptables -A INPUT -j DROP
+    [root@myserver:~]$ iptables -A FORWARD -j DROP
 
 ### Restoring Firewall State At Reboot
 
@@ -227,15 +227,15 @@ We've setup our firewall, and we are not done yet; because when we reboot our
 server, all of those rules will be erased. To solve this problem, first create
 a backup of the rules:
 
-    [root@myserver:~]# iptables-save > /root/rules.backup
+    [root@myserver:~]$ iptables-save > /root/rules.backup
 
 Then backup your **/etc/rc.local** file:
 
-    [root@myserver:~]# cp /etc/rc.local /etc/rc.local.backup
+    [root@myserver:~]$ cp /etc/rc.local /etc/rc.local.backup
 
 Then edit your **/etc/rc.local**:
 
-    [root@myserver:~]# vim /etc/rc.local
+    [root@myserver:~]$ vim /etc/rc.local
 
 and add this line:
 
