@@ -37,6 +37,17 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* [The Setup](http://o2js.com/the-setup)
 	* [Make Your Server Ironman-Secure in Less Than Five Minutes](http://o2js.com/make-your-server-ironman-secure-in-less-than-five-minutes)
 
+* **Practical JavaScript** (*time to bring the theory into practice*)
+	* [Let's Make a **JavaScript** Framework Boilerplate](http://o2js.com/lets-make-a-javascript-framework-boilerplate)
+	* [An All-in-One Guide to Writing Efficient JavaScript](http://o2js.com/an-all-in-one-guide-to-writing-efficient-javascript)
+	* A Library Maker's Guide to JavaScript
+	* How to Document a JavaScript Framework
+	* Creating A Mobile JavaScript Chat
+	* How to Refactor a Mess into an Organized Web Application
+	* JavaScript Widget Development Best Practices
+	* That's Why I'm Loving <strike>JSLint</strike> JSHint!
+	* Unit Testing with JavaScript
+	* How Unit Testing Helped Me Slash a Nasty Bug
 * **Discussion** (*somewhat controversial and opinionated topics*)
 	* Think You Know JavaScript? ... You Don't. 
 	* Resistance is Futile
@@ -79,17 +90,6 @@ I also will be writing new articles too, so it will take a while to copy, transf
 * **JavaScript Patterns** (*patterns of JavaScript software architecture*)
 	* Charlie's Chocolate Factory in JavaScript
 	* A Little Known Encapsulation Technique in JavaScript: Isolated Objects
-
-* **Practical JavaScript** (*time to bring the theory into practice*)
-	* [Let's Make a **JavaScript** Framework Boilerplate](http://o2js.com/lets-make-a-javascript-framework-boilerplate)
-	* A Library Maker's Guide to JavaScript
-	* How to Document a JavaScript Framework
-	* Creating A Mobile JavaScript Chat
-	* How to Refactor a Mess into an Organized Web Application
-	* JavaScript Widget Development Best Practices
-	* That's Why I'm Loving <strike>JSLint</strike> JSHint!
-	* Unit Testing with JavaScript
-	* How Unit Testing Helped Me Slash a Nasty Bug
 
 That's all for now **;)**.
 

@@ -1159,12 +1159,6 @@ Testing jasmine specs via phantom
 Done, without errors.
 ~~~
 
-> **Hint**:
-> 
-> Integrating a [code coverage][coverage] tool like [blanket][blanket], or [Istanbul][istanbul] would also be useful in certain projects.
-
-In our particular example since our modules will be relatively granular, and the functionality will be spread among many modules that do one thing well, a code coverage analysis might not provide too much insight. If, on the other hand, our application was a big monolithic component, that achieves a multitude of tasks, then a code coverage analysis might have come in handy.
-
 [cohesion]:         http://en.wikipedia.org/wiki/Cohesion_(computer_science)
 [unix]:             http://en.wikipedia.org/wiki/Unix_philosophy
 [grunt-complexity]: https://github.com/vigetlabs/grunt-complexity
@@ -1172,6 +1166,17 @@ In our particular example since our modules will be relatively granular, and the
 [istanbul]:         http://gotwarlost.github.io/istanbul/
 [blanket]:          http://blanketjs.org/
 [jscomplexity]:     http://jscomplexity.org/complexity
+
+#### Covering Your A\*\*
+
+> **Hint**:
+> 
+> Integrating a [code coverage][coverage] tool like [blanket][blanket], or [Istanbul][istanbul] would also be useful in certain projects.
+>
+
+In our particular example since our modules will be relatively granular, and the functionality will be spread among many modules that do one thing well. When we have enough modules that interact with one another, a **code coverage tool** might be really handy to maintain **code quality**. 
+
+This will be the topic of a **follow-up blog post**.
 
 #### Generating Dependency Graphs
 
