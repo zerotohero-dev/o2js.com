@@ -205,7 +205,7 @@ $ npm init</code></pre>
         ├── core.js
         └── package.json</code></pre>
 <p>After creating all these execute the following command inside <strong>src/o2/string/</strong> directory:</p>
-<pre><code>npm publish</code></pre>
+<pre><code>$ npm publish</code></pre>
 <p>Calling <code>npm publish</code> will publish our code to the global <strong>npm</strong> registry.</p>
 <h3>Managing Intra-Modular Dependencies</h3>
 <p>Now let&#39;s create another module to make this dummy example a little more fun:</p>
@@ -314,6 +314,97 @@ $ git submodule add git@github.com:jrburke/requirejs.git externals/requirejs</co
 <blockquote>
 <p>For a more in-depth information and other <code>git submodule</code> tips and tricks, <a href="http://chrisjean.com/2009/04/20/git-submodules-adding-using-removing-and-updating/">Chris Jean has an excellent tutorial</a>.</p>
 </blockquote>
+<h3>Wait! <a href="http://bower.io/">Bower</a> Does This in a Much Better Way</h3>
+<blockquote>
+<p><a href="http://bower.io/">Bower</a> is a package manager for the web. It offers a generic, unopinionated solution to the problem of front-end package management, while exposing the package dependency model via an API that can be consumed by a more opinionated build stack.</p>
+</blockquote>
+<p>Informally speaking, <strong>bower</strong> is the <strong>npm</strong> of front-end libraries.</p>
+<p>So let’s <strong>ditch our submodules</strong> and <strong>do things the bower way</strong>.</p>
+<p>First, you’ll need to install <strong>bower</strong> globally.</p>
+<pre><code>npm install -g bower</code></pre>
+<p>Then search for <strong>require.js</strong>:</p>
+<pre><code>$ bower search requirejs
+Search results:
+
+    requirejs git:<span class="comment">//github.com/jrburke/requirejs</span>
+    requirejs-text git:<span class="comment">//github.com/requirejs/text</span>
+    requirejs-plugins git:<span class="comment">//github.com/millermedeiros/requirejs-plugins.git</span>
+    requirejs-domready git:<span class="comment">//github.com/requirejs/domReady.git</span>
+...</code></pre>
+<p>The first match is what we want.</p>
+<p>Now let’s init <strong>bower</strong>:</p>
+<pre><code>$ bower init</code></pre>
+<p>Then answer the questions. At the end of the process you will have a <strong>bower.json</strong> like this:</p>
+<pre><code>{
+  "name": "o2.js",
+  "version": "2.0.1",
+  "homepage": "http://o2js.com/",
+  "authors": [
+    "Volkan Özçelik &lt;volkan@o2js.com>"
+  ],
+  "description": "o2.js JavaScript Framework",
+  "keywords": [
+    "o2.js",
+    "modules",
+    "amd",
+    "node.js",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}</code></pre>
+<p>Now let’s add <strong>require.js</strong> as a production dependency to that file:</p>
+<pre><code>{
+  "name": "o2.js",
+  "version": "2.0.1",
+  "homepage": "http://o2js.com/",
+  "authors": [
+    "Volkan Özçelik &lt;volkan@o2js.com>"
+  ],
+  "description": "o2.js JavaScript Framework",
+  "keywords": [
+    "o2.js",
+    "modules",
+    "amd",
+    "node.js",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "2.1.9"
+  }
+}</code></pre>
+<p>After saving our changes <strong>bower.json</strong>, let us install our dependencies:</p>
+<pre><code>$ bower install</code></pre>
+<p>This will install <strong>require.js</strong> into a <strong>bower_components</strong> folder.</p>
+<p>Now that we have installed <strong>require.js</strong> with bower, let’s remove the submodule bindings:</p>
+<p>To do this we will first delete delete the relevant section from the <strong>.gitmodules</strong> file, by removing these lines:</p>
+<pre><code>[submodule <span class="string">"externals/requirejs"</span>]
+    path = externals/requirejs
+    url = https:<span class="comment">//github.com/jrburke/requirejs.git</span></code></pre>
+<p>Then remove the submodule from <strong>git</strong>:</p>
+<pre><code>$ git rm --cached externals/requirejs/</code></pre>
+<p>Then remove it from <strong>.git/modules</strong>:</p>
+<pre><code>$ rm -rf .git/modules/externals/requirejs/</code></pre>
+<p>Then once you’re done with all these, remove the untracked externals folder:</p>
+<pre><code>$ rm -rf externals</code></pre>
+<p>That is way harder than adding a submodule <strong>:)</strong>. Better think carefully before adding submodules to your project <strong>;)</strong>.</p>
+<blockquote>
+<p>Note that <code>git submodule deinit</code> does a lot of the above heavy-lifting; however it’s always beneficial to know the internals.</p>
+</blockquote>
 <h3>Converting <strong><a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a></strong> Modules to <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong></h3>
 <p>If we want to use our <strong>o2.string</strong> and <strong>o2.ajax</strong> modules in a browser environment, we will need to convert them to something that can run on the browser. Luckily, <strong><a href="http://requirejs.org/docs/optimization.html">r.js</a></strong> can do this for us. Just <code>cd</code> to the project root, and execute the following:</p>
 <pre><code>$ npm install -g <span class="keyword">require</span>.js
@@ -370,7 +461,7 @@ exports.sayHi = <span class="keyword">function</span>() {
 <p><strong><a href="http://gruntjs.com/">Grunt</a></strong> will be our task runner of choice, because… well… <strong>Grunt is awesome</strong>!</p>
 </blockquote>
 <p>To install <strong>grunt</strong>, first you&#39;ll need to <a href="http://nodejs.org/">install <strong>Node.JS</strong></a>, and then execute the following command:</p>
-<pre><code>npm install -g grunt-cli</code></pre>
+<pre><code>$ npm install -g grunt-cli</code></pre>
 <p>Then you should create a <strong>Gruntfile.js</strong> in your <strong>project&#39;s root directory</strong>. </p>
 <p>Here is a basic one to begin with:</p>
 <pre><code>module.exports = <span class="keyword">function</span>(grunt) {
@@ -762,7 +853,7 @@ Testing jasmine specs via phantom
   },
 ...</code></pre>
 <p>And since we are using <strong>grunt</strong> in our test script, we need to let <strong>Travis</strong> know about it:</p>
-<pre><code>npm install grunt-cli --save-dev</code></pre>
+<pre><code>$ npm install grunt-cli --save-dev</code></pre>
 <p>The next thing we will do is to create a <strong>.travis.yml</strong> in the <strong>project root directory</strong> to tell <strong>Travis</strong> which versions of <strong>Node.JS</strong> we would like our framework to be tested in:</p>
 <pre><code>language: node_js
 node_js:
@@ -773,9 +864,16 @@ node_js:
 <pre><code>$ git add .
 $ git commit -m &#39;travis configuration update&#39;
 $ git push origin dev</code></pre>
-<p>We can see our build results on the <a href="https://travis-ci.org"><strong>Travis</strong> website</a></p>
+<p>We can see our build results on the <a href="https://travis-ci.org"><strong>Travis</strong> website</a>.</p>
 <p><a href="http://o2js.com/assets/travis-results-large.png"><img src="http://o2js.com/assets/travis-results.png"  title="Click to see a larger version"></a></p>
 <h3>Gain Control Over Your Code&#39;s Complexity</h3>
+<p>In this section, we will…</p>
+<ul>
+<li>Analyze our code’s <strong>complexity</strong>;</li>
+<li>Streamline this complexity analysis to our <strong><a href="http://en.wikipedia.org/wiki/Continuous_integration">CI</a></strong> pipeline;</li>
+<li>And create <strong>coverage reports</strong> for our code base.</li>
+</ul>
+<p>Let’s start by analyzing code complexity first:</p>
 <h4>Code Complexity Analysis</h4>
 <p>Every code base has its inherent level of complexity; however we can reduce the complexity of our code by limiting the interdependency of components, by letting them do one thing, and letting them <a href="http://en.wikipedia.org/wiki/Unix_philosophy">do that thing well</a>. This is commonly referred to as <strong><a href="http://en.wikipedia.org/wiki/Cohesion_(computer_science)">favoring cohesion over coupling</a></strong>.</p>
 <blockquote>
@@ -783,7 +881,9 @@ $ git push origin dev</code></pre>
 </blockquote>
 <p>There are certain tools, and metrics that we can use to have an idea of how complex our code is. One such tool that we can use is <strong><a href="https://github.com/vigetlabs/grunt-complexity">grunt-complexity</a></strong>.</p>
 <blockquote>
-<p>Code complexity metrics do not set hard and fast <strong>rules</strong>, they just provide <strong>guidelines</strong>. An increase in the codes&#39; complexity index is not necessarily a bad thing. Some of the modules that you create might be complex, simply because of the intricacy of the problem that it&#39;s trying to solve. An increased complexity metric is just something that you, as a library developer, have to keep an eye on.</p>
+<p><strong>Caveat</strong>:</p>
+<p>Code complexity metrics do not set hard and fast <strong>rules</strong>, they just provide <strong>guidelines</strong>; thus, an increase in the codes&#39; complexity index is not necessarily a bad thing. </p>
+<p>Some of the modules that you create might be complex, simply because of the intricacy of the problem that it&#39;s trying to solve. An increased complexity metric is just something that you, as a library developer, have to keep an eye on.</p>
 </blockquote>
 <p>Let&#39;s start by installing it to our project as a development dependency:</p>
 <pre><code>$ npm install grunt-complexity --save-dev</code></pre>
@@ -826,7 +926,7 @@ $ git push origin dev</code></pre>
     ...
 };</code></pre>
 <p>When we run</p>
-<pre><code>grunt complexity</code></pre>
+<pre><code>$ grunt complexity</code></pre>
 <p>we will get a nicely formatted code complexity report:</p>
 <pre><code>$ grunt complexity
 Running &quot;complexity:generic&quot; (complexity) task
@@ -837,7 +937,7 @@ Running &quot;complexity:generic&quot; (complexity) task
 
 Done, without errors.</code></pre>
 <p>You can read <a href="http://jscomplexity.org/complexity">jscomplexity.org&#39;s help file</a> to get an idea of what those numbers refer to.</p>
-<h3>Adding Complexity Analysis to <strong>CI</strong> Pipeline</h3>
+<h4>Adding Complexity Analysis to Our <strong>CI</strong> Pipeline</h4>
 <p>Moreover, since we have added <strong>lint</strong> and <strong>complexity</strong> tasks to our publish task, when we run <code>npm test</code>
 We will get lint and complexity results along with server-side and client-side test results:</p>
 <pre><code>$ npm test
@@ -878,16 +978,221 @@ Testing jasmine specs via phantom
 
 Done, without errors.</code></pre>
 <h4>Covering Your A**</h4>
+<p>When we have enough modules that interact with one another, a <strong>code coverage tool</strong> might be really handy to maintain <strong>code quality</strong>.</p>
+<p>So let us start creating the foundations of it.</p>
+<ul>
+<li>For the <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong> modules, we will be using <strong><a href="http://tntim96.github.io/JSCover/">JSCover</a></strong> as our code coverage tool;</li>
+<li>And for the <strong><a href="http://nodejs.org/">Node.JS</a></strong> modules, <strong><a href="http://vowsjs.org/">vows.js</a></strong> can automatically detect certain kinds of instrumentation.</li>
+</ul>
+<p>Let’s begin with <strong>AMD</strong>:</p>
+<h5>Covering <strong>AMD</strong> Tests</h5>
+<blockquote>
+<p>Running our front-end <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong> tests in an actual browser (<em>instead of a headless <a href="https://code.google.com/p/phantomjs/">phantom.js</a> process</em>), by launching a <strong>spec runner</strong> html file, can be helpful in finding and fixing test failures. </p>
+</blockquote>
+<p>Having a separate <strong>spec runner</strong> html is also necessary for our coverage analysis, as we will be generating <strong><a href="http://en.wikipedia.org/wiki/Instrumentation">instrumentation code</a></strong> off of this <strong>spec runner</strong>.</p>
+<p>To be able to run our <strong><a href="http://pivotal.github.io/jasmine/">Jasmine</a></strong> spec runner html in a browser, we will need to install <strong><a href="http://pivotal.github.io/jasmine/">Jasmine</a></strong> and <strong><a href="http://requirejs.org/">require.js</a></strong> using <strong><a href="http://bower.io/">bower</a></strong>. </p>
+<p>Let’s do that first:</p>
+<h5>Installing Bower Dependencies</h5>
+<p>Let’s update <strong>bower.json</strong></p>
+<pre><code>...
+  &quot;dependencies&quot;: {
+    &quot;requirejs&quot;: “2.1.9”,
+    &quot;jasmine&quot;: &quot;2.0.0&quot;
+  }
+...</code></pre>
+<p>When we run <code>bower install</code> we will see a <strong>jasmine</strong> folder under <strong>bower_components</strong>. We’ll need to go the <strong>dist</strong> folder and extract the recent version. Here’s how it looks like:</p>
+<p><img src="http://o2js.com/assets/jasmine-bower.png" alt=""></p>
+<p>Now we will go to <strong>bower_components/jasmine/dist/</strong> folder and unzip the latest version (<em>we will be using version <strong>2.0.0</strong> for this tutorial</em>).</p>
+<h5>Preparing the Spec Runner</h5>
+<p>The <strong>bower_components/jasmine/dist/Jasmine-standalone-2.0.0/SpecRunner.html</strong> is a sample spec runner that we can use as a basis in our project, and we will do the same to create a spec runner for our modules at <strong>{project root}/specrunner.html</strong>:</p>
+<pre><code>&lt;!doctype html>
+&lt;!-- {project root}/specrunner.html —-> 
+&lt;html>
+&lt;head>
+    &lt;meta charset=<span class="string">"utf-8"</span>>
+    &lt;title>o2.js AMD Spec Runner&lt;/title>
+
+    &lt;!-- Jasmine core. -->
+    &lt;link rel=<span class="string">"shortcut icon"</span> type=<span class="string">"image/png"</span> 
+href=<span class="string">"bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine_favicon.png"</span>>
+    &lt;link rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> 
+href=<span class="string">"bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine.css"</span>>
+    &lt;script type=<span class="string">"text/javascript"</span> 
+src=<span class="string">"bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine.js"</span>>&lt;/script>
+    &lt;script type=<span class="string">"text/javascript"</span> 
+src=<span class="string">"bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine-html.js"</span>>&lt;/script>
+    &lt;script type=<span class="string">"text/javascript"</span> 
+src=<span class="string">"bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/boot.js"</span>>&lt;/script>
+
+    &lt;!-- <span class="keyword">require</span>.js. -->
+    &lt;script src=<span class="string">"bower_components/requirejs/require.js"</span>>&lt;/script>
+
+    &lt;!— Override Jasmine boot loader <span class="keyword">for</span> AMD. -->
+    &lt;script src=<span class="string">"test/override/jasmine/boot.js"</span>>&lt;/script>
+
+    &lt;!-- <span class="keyword">require</span>.js configuration. -->
+    &lt;script src=<span class="string">"test/config/requirejs/config.js"</span>>&lt;/script>
+
+    &lt;!-- Specs to test. -->
+    &lt;script src=<span class="string">"test/config/amd/o2/config.js"</span>>&lt;/script>
+&lt;/head>
+&lt;body>
+&lt;/body>
+&lt;/html></code></pre>
+<p>Where <strong>/test/override/jasmine/boot.js</strong> is just a hack to run <strong><a href="http://pivotal.github.io/jasmine/">Jasmine</a></strong> when all the <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong> modules are ready:</p>
+<pre><code>(<span class="keyword">function</span>(window) {
+    <span class="string">'use strict'</span>;
+
+    <span class="keyword">var</span> oldLoad = window.onload;
+
+    window.initializeJasmine = <span class="keyword">function</span>() {
+
+        <span class="comment">// Jasmine 2.0.0 requires some non-zero timeout to prepare; </span>
+        <span class="comment">// not sure if it's a bug.</span>
+        <span class="comment">// TODO: investigate why this does not work with `setTimeout(fn, 0);`</span>
+        setTimeout(oldLoad, <span class="number">100</span>);
+    };
+
+    window.onload = <span class="keyword">function</span>(){};
+}(<span class="keyword">this</span>));</code></pre>
+<p>And <strong>test/config/requirejs/config.js</strong> has just some very basic <strong>require.js</strong> configuration:</p>
+<pre><code><span class="comment">// test/config/require/config.js</span>
+(<span class="keyword">function</span>(<span class="keyword">require</span>) {
+    <span class="string">'use strict'</span>;
+
+    <span class="keyword">require</span>.onError = <span class="keyword">function</span>(error) {
+        <span class="keyword">var</span> message = error.requireType + <span class="string">': '</span>;
+
+        <span class="keyword">if</span> (error.requireType === <span class="string">'scripterror'</span> || 
+error.requireType === <span class="string">'notloaded'</span> &amp;&amp; error.requireModules) {
+            message += <span class="string">'Illegal path or script error: '</span> + 
+<span class="string">'[\''</span> + error.requireModules.join(<span class="string">"', '"</span>) + <span class="string">'\']'</span>;
+        } <span class="keyword">else</span> {
+            message += error.message;
+        }
+
+        <span class="keyword">throw</span> <span class="keyword">new</span> Error(message);
+    };
+
+    <span class="keyword">require</span>.config({});
+}(<span class="keyword">require</span>));</code></pre>
+<p>Finally, <strong>test/config/amd/o2/config.js</strong> is just another boot loader, which <code>require</code>s all the modules, and then <code>require</code>s all the tests and then runs them:</p>
+<pre><code><span class="comment">// test/config/amd/o2/config.js</span>
+<span class="comment">// TODO: automate generation of this file.</span>
+<span class="keyword">require</span>([
+    <span class="string">'amd/o2/ajax/core'</span> ,
+    <span class="string">'amd/o2/ajax/node_modules/o2.string/core'</span> ,
+    <span class="string">'amd/o2/io/core'</span> ,
+    <span class="string">'amd/o2/string/core'</span>,
+    <span class="string">'amd/o2/timer/core'</span>
+], <span class="keyword">function</span>(){ <span class="keyword">require</span>([
+    <span class="string">'test/web/o2.string.core_test.js'</span>
+], <span class="keyword">function</span>() {
+    window.initializeJasmine();
+});});</code></pre>
+<p>We will need to update this file as we add new modules to our test suites. It would be nice to auto generate this file with <strong><a href="http://gruntjs.com/">grunt</a></strong> too. I’m leaving it as a future <strong>TODO</strong>.</p>
+<blockquote>
+<p>This <strong>specrunner.html</strong> generation process is partially similar to what <a href="ht.tps://github.com/gruntjs/grunt-contrib-jasmine">grunt-contrib-jasmine</a> does behind the scenes. </p>
+</blockquote>
+<p>When you load the <strong>specrunner.html</strong> in a browser, you’ll get something like this:</p>
+<p><img src="http://o2js.com/assets/spec-ran.png" alt=""></p>
+<p>Since our <a href="http://pivotal.github.io/jasmine/">Jasmine</a> specs are running as expected, now it’s time to add some coverage to them:</p>
+<h5>Adding Coverage to the <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong> Modules</h5>
+<p>For <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong> coverage reports, we will be using <strong><a href="http://tntim96.github.io/JSCover/">JSCover</a></strong>.</p>
 <blockquote>
 <p><strong>Hint</strong>:</p>
-<p>Integrating a <a href="http://en.wikipedia.org/wiki/Code_coverage">code coverage</a> tool like <a href="http://blanketjs.org/">blanket</a>, or <a href="http://gotwarlost.github.io/istanbul/">Istanbul</a> would also be useful in certain projects.</p>
+<p>You can also try <a href="http://en.wikipedia.org/wiki/Code_coverage">code coverage</a> tools like <a href="http://blanketjs.org/">blanket</a>, or <a href="http://gotwarlost.github.io/istanbul/">Istanbul</a>. </p>
+<p>I’ve tried them and several other coverage tools. – <strong>JSCover</strong> was the easiest to set up, which worked with <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong> modules “out of the box”, without needing to write a special adapter, or change the test configuration. – <strong>It just worked</strong>!</p>
 </blockquote>
-<p>In our particular example since our modules will be relatively granular, and the functionality will be spread among many modules that do one thing well. When we have enough modules that interact with one another, a <strong>code coverage tool</strong> might be really handy to maintain <strong>code quality</strong>. </p>
-<p>This will be the topic of a <strong>follow-up blog post</strong>.</p>
+<p>So what makes <strong><a href="http://tntim96.github.io/JSCover/">JSCover</a></strong> stand out? </p>
+<p>Here are quite a few reasons why <strong><a href="http://tntim96.github.io/JSCover/">JSCover</a></strong> rocks:</p>
+<ul>
+<li>The advantage of <strong><a href="http://tntim96.github.io/JSCover/">JSCover</a></strong> to other code coverage tools is the fact that it adds <a href="http://en.wikipedia.org/wiki/Instrumentation">instrumentation</a> to <strong>JavaScript</strong> code <strong>before</strong> it is executed in a web browser; </li>
+<li>Since a separate copy of instrumented files are used, <strong>you won’t need to change your unit test configuration</strong>;</li>
+<li>You can lazy-load modules, and request files on the fly. They will be instrumented as soon as they are loaded;</li>
+<li>Covering <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong> modules is a piece of cake (<em>see the next item</em>);</li>
+<li><strong>JSCover</strong> is loader-agnostic. You can use <strong><a href="http://requirejs.org/">require.js</a></strong> or your home-made custom loader, it doesn’t matter: Files will be instrumented, as soon as their scripts are evaluated;</li>
+<li>Yet another advantage of <strong><a href="http://tntim96.github.io/JSCover/">JSCover</a></strong> is that it can generate <strong>custom reports</strong> that can be easily consumed by other systems (like <strong><a href="http://www.sonarqube.org/">Sonar</a></strong>);</li>
+<li>Did I say that it is really easy to set up, configure and use?</li>
+<li>And the last but not the least, it comes with <strong>sample codes</strong>, which run out of the box, that you can copy and use as an initial boilerplatete.</li>
+</ul>
+<p>Convinced? Let’s add <strong><a href="http://tntim96.github.io/JSCover/">JSCover</a></strong> as a submodule to our project:</p>
+<pre><code>$ mkdir externals
+$ git submodule add https:<span class="comment">//github.com/tntim96/JSCover.git externals/jscover</span></code></pre>
+<p>In order to use <strong>JSCover</strong> we need to build it first.</p>
+<blockquote>
+<p>To build <a href="http://tntim96.github.io/JSCover/">JSCover</a> you will need <a href="http://maven.apache.org/">maven</a>, <a href="http://ant.apache.org/">ant</a>, <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">java</a> installed on your system. If you don’t have these, install them before you proceed any further.</p>
+<p>You will also need to install <a href="http://maven.apache.org/ant-tasks/index.html">maven ant tasks</a>. This is as easy as <a href="http://maven.apache.org/ant-tasks/index.html">downloading the jar file</a>, and copying it to your <strong><a href="http://ant.apache.org/">ant</a></strong> lib directory.</p>
+</blockquote>
+<p>I’ll be using <strong><a href="http://www.jetbrains.com/idea/">JetBrains IntelliJ Idea</a></strong>, which is, by far, the best <strong>Java</strong> development IDE, ever! You don’t have to use <strong>IntelliJ</strong>. – You can use the command line to run <strong><a href="http://ant.apache.org/">ant</a></strong> and <strong><a href="http://maven.apache.org/">maven</a></strong> tasks.</p>
+<p>Now go to <strong>externals/jscover</strong> directory…</p>
+<p><img src="http://o2js.com/assets/jscover-files.png" alt=""></p>
+<p>and double click <strong>JSCover.ipr</strong> to launch <strong>IntelliJ</strong>. </p>
+<p>Then go to <strong>Ant Build</strong> tab, and double click <strong>jar</strong> and then <strong>jar-all</strong> tasks to create the <strong>target/dist/js.jar</strong>, <strong>target/dist/JSCover.jar</strong>, and <strong>target/dist/JSCover-all.jar</strong> jar files:</p>
+<p><img src="http://o2js.com/assets/jscover-ant.png" alt=""></p>
+<p>Now that we have the <strong>jar</strong>s, it’s time to create a coverage server:</p>
+<pre><code>$ mkdir test/coverage
+$ mkdir test/coverage/web
+$ mkdir test/coverage/web/server
+$ cd test/coverage/web/server
+$ touch run.bat
+$ touch run.sh</code></pre>
+<p>I’m leaving <strong>run.bat</strong> as a placeholder for Windows systems. Since I don’t have a Windows system, I will only create the <strong>run.sh</strong>:</p>
+<pre><code><span class="comment"># run.sh</span>
+java -jar ../../../../externals/jscover/target/dist/JSCover-all.jar \
+-ws --document-root=../../../.. --report-dir=../../../../reports/jscover \
+--no-instrument=/bower_components --no-instrument=/test</code></pre>
+<p>Now we can run our coverage server:</p>
+<pre><code>$ cd test/coverage/web/server
+$ sh run.sh</code></pre>
+<p>When we navigate to <strong><a href="http://localhost:8080/jscoverage.html">http://localhost:8080/jscoverage.html</a></strong> we get a nice interface to see our coverage reports. </p>
+<p>Here is how it looks like:</p>
+<p><strong>Click on the images to see larger versions</strong>.</p>
+<p><a href="http://o2js.com/assets/coverage-000-large.png"><img src="http://o2js.com/assets/coverage-000.png"></a></p>
+<p><a href="http://o2js.com/assets/coverage-001-large.png"><img src="http://o2js.com/assets/coverage-001.png"></a></p>
+<p><a href="http://o2js.com/assets/coverage-002-large.png"><img src="http://o2js.com/assets/coverage-002.png"></a></p>
+<p><a href="http://o2js.com/assets/coverage-003-large.png"><img src="http://o2js.com/assets/coverage-003.png"></a></p>
+<p><a href="http://o2js.com/assets/coverage-004-large.png"><img src="http://o2js.com/assets/coverage-004.png"></a></p>
+<p>Now that we have created coverage reports for our <strong><a href="http://requirejs.org/docs/whyamd.html">AMD</a></strong> modules, the next step is to create the same for our <strong><a href="http://nodejs.org/">Node.JS</a></strong> tests. </p>
+<blockquote>
+<p>Since we are using <strong>[vows.js]</strong> for our <strong><a href="http://nodejs.org/">Node.JS</a></strong> tests, we will use <strong><a href="https://github.com/visionmedia/node-jscoverage">node-jscoverage</a></strong>. <strong><a href="http://vowsjs.org/">vows.js</a></strong> runs code coverage if it detects <a href="https://github.com/visionmedia/node-jscoverage">node-jscoverage</a> installed on the system.</p>
+</blockquote>
+<h5>Adding Coverage to <strong><a href="http://nodejs.org/">Node.JS</a></strong> Modules</h5>
+<p>Let’s first add a submodule for <a href="https://github.com/visionmedia/node-jscoverage">node-jscoverage</a>:</p>
+<pre><code>$ git submodule add https:<span class="comment">//github.com/visionmedia/node-jscoverage.git \</span>
+externals/node-jscoverage</code></pre>
+<p>Then compile it:   </p>
+<pre><code>$ cd externals/node-jscoverage/
+$ ./configure &amp;&amp; make &amp;&amp; make install</code></pre>
+<p>You will also need to install <strong><a href="http://vowsjs.org/">vows.js</a></strong> globally, if you haven&#39;t already done so:</p>
+<pre><code>$ npm install -g vows</code></pre>
+<p>Then create a <strong>test/bin/node/cover.sh</strong>:</p>
+<pre><code># test/bin/node/cover.sh
+cd ../../..
+rm -rf instrumented/src/o2
+rm -rf instrumented/test/node
+jscoverage test/node instrumented/test/node
+jscoverage src/o2 instrumented/src/o2
+vows instrumented/test/node/*.js --cover-html
+mv coverage.html reports/coverage/node/coverage.html</code></pre>
+<p>So when we run <strong>cover.sh</strong>…</p>
+<pre><code>$ cd test/bin/node
+$ sh cover.sh</code></pre>
+<p>we will get a coverage report similar to these:</p>
+<p><strong>Click on the images for larger versions</strong>.</p>
+<p><a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-001.png" alt=""></a></p>
+<p><a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-002.png" alt=""></a></p>
+<p><a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-003.png" alt=""></a></p>
+<p>Now that all of our coverage reports are set, we can proceed with analyzing our cross-module dependencies:</p>
 <h4>Generating Dependency Graphs</h4>
 <p>Visualizing our framework&#39;s modular dependency graph is a valuable tool; especially when you want to refactor your project.</p>
-<p>For dependency tree generation, we will be using a tool called <a href="https://npmjs.org/package/dependo">dependo</a>.</p>
-<p>Let&#39;s install <strong>dependo</strong> first:</p>
+<p>For dependency tree generation, we will be using a tool called <strong><a href="https://npmjs.org/package/dependo">dependo</a></strong>.</p>
+<p>Let&#39;s install <strong><a href="https://npmjs.org/package/dependo">dependo</a></strong> first:</p>
 <pre><code>$ npm install -g dependo</code></pre>
 <p>And then create a dependency report for our <strong>AMD</strong> modules:</p>
 <pre><code>$ dependo amd &gt; documentation/dependency-report.html</code></pre>
@@ -1022,7 +1327,7 @@ Done, without errors.</code></pre>
 </ul>
 <p>While this may be an overkill for a simple project, as your code base grows in depth and breadth, it will prove itself to be useful.</p>
 <h3>Read the Source Luke</h3>
-<p>The source code of what we have examined so far can be downloaded <a href="https://github.com/v0lkan/o2.js/tree/90f0fe19452903e85b5d6153467f7e8ba96223e0">from this GitHub history snapshot</a> – Enjoy.</p>
+<p>The source code of what we have examined so far can be downloaded <a href="https://github.com/v0lkan/o2.js/tree/5bcdfdf06d0914dda32fd10ba73e9a18d21afba3">from this GitHub history snapshot</a> – Enjoy.</p>
 <h3>Next Up?</h3>
 <p>As we&#39;ve covered the baseline, and highlighted important pieces, the next step would be creating a module that serves an actual purpose. </p>
 <p>I&#39;ll start by porting <a href="https://github.com/v0lkan/o2.js/tree/90f0fe19452903e85b5d6153467f7e8ba96223e0/draft/o2/string">the current o2.js <strong>string</strong> and <strong>ajax</strong> utility methods</a> into their own modules, and share the important parts of this shift in separate blog posts.</p>

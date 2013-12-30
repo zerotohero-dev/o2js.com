@@ -231,7 +231,7 @@ src
 After creating all these execute the following command inside **src/o2/string/** directory:
 
 ~~~
-npm publish
+$ npm publish
 ~~~
 
 Calling `npm publish` will publish our code to the global **npm** registry.
@@ -392,6 +392,144 @@ This will add **require.js** source code to **externals/requirejs** folder.
 [gitclone]:         https://help.github.com/articles/fork-a-repo
 [helpnpm]:          https://scalenpm.org/
 
+### Wait! [Bower][bower] Does This in a Much Better Way
+
+> [Bower][bower] is a package manager for the web. It offers a generic, unopinionated solution to the problem of front-end package management, while exposing the package dependency model via an API that can be consumed by a more opinionated build stack.
+
+Informally speaking, **bower** is the **npm** of front-end libraries.
+
+So let’s **ditch our submodules** and **do things the bower way**.
+
+First, you’ll need to install **bower** globally.
+
+~~~
+npm install -g bower
+~~~
+
+Then search for **require.js**:
+
+~~~
+$ bower search requirejs
+Search results:
+
+    requirejs git://github.com/jrburke/requirejs
+    requirejs-text git://github.com/requirejs/text
+    requirejs-plugins git://github.com/millermedeiros/requirejs-plugins.git
+    requirejs-domready git://github.com/requirejs/domReady.git
+...
+~~~
+
+The first match is what we want.
+
+Now let’s init **bower**:
+
+~~~
+$ bower init
+~~~
+
+Then answer the questions. At the end of the process you will have a **bower.json** like this:
+
+~~~
+{
+  "name": "o2.js",
+  "version": "2.0.1",
+  "homepage": "http://o2js.com/",
+  "authors": [
+    "Volkan Özçelik <volkan@o2js.com>"
+  ],
+  "description": "o2.js JavaScript Framework",
+  "keywords": [
+    "o2.js",
+    "modules",
+    "amd",
+    "node.js",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
+~~~
+
+Now let’s add **require.js** as a production dependency to that file:
+
+~~~
+{
+  "name": "o2.js",
+  "version": "2.0.1",
+  "homepage": "http://o2js.com/",
+  "authors": [
+    "Volkan Özçelik <volkan@o2js.com>"
+  ],
+  "description": "o2.js JavaScript Framework",
+  "keywords": [
+    "o2.js",
+    "modules",
+    "amd",
+    "node.js",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "2.1.9"
+  }
+}
+~~~
+
+After saving our changes **bower.json**, let us install our dependencies:
+
+~~~
+$ bower install
+~~~
+
+This will install **require.js** into a **bower_components** folder.
+
+Now that we have installed **require.js** with bower, let’s remove the submodule bindings:
+
+To do this we will first delete delete the relevant section from the **.gitmodules** file, by removing these lines:
+
+~~~
+[submodule "externals/requirejs"]
+	path = externals/requirejs
+	url = https://github.com/jrburke/requirejs.git
+~~~
+
+Then remove the submodule from **git**:
+
+~~~
+$ git rm --cached externals/requirejs/
+~~~
+
+Then remove it from **.git/modules**:
+
+~~~
+$ rm -rf .git/modules/externals/requirejs/
+~~~
+
+Then once you’re done with all these, remove the untracked externals folder:
+
+~~~
+$ rm -rf externals
+~~~
+
+That is way harder than adding a submodule **:)**. Better think carefully before adding submodules to your project **;)**.
+
+> Note that `git submodule deinit` does a lot of the above heavy-lifting; however it’s always beneficial to know the internals.
+
+[bower]: http://bower.io/
+
 ### Converting **[CommonJS][commonjs]** Modules to **[AMD][amd]**
 
 If we want to use our **o2.string** and **o2.ajax** modules in a browser environment, we will need to convert them to something that can run on the browser. Luckily, **[r.js][rjs]** can do this for us. Just `cd` to the project root, and execute the following:
@@ -470,7 +608,7 @@ Sooner or later you will need to use a task runner to **validate**, **benchmark*
 To install **grunt**, first you'll need to [install **Node.JS**][nodejs], and then execute the following command:
 
 ~~~
-npm install -g grunt-cli
+$ npm install -g grunt-cli
 ~~~
 
 Then you should create a **Gruntfile.js** in your **project's root directory**. 
@@ -1002,7 +1140,7 @@ Here is how it looks like:
 And since we are using **grunt** in our test script, we need to let **Travis** know about it:
 
 ~~~
-npm install grunt-cli --save-dev
+$ npm install grunt-cli --save-dev
 ~~~
 
 The next thing we will do is to create a **.travis.yml** in the **project root directory** to tell **Travis** which versions of **Node.JS** we would like our framework to be tested in:
@@ -1024,7 +1162,7 @@ $ git commit -m 'travis configuration update'
 $ git push origin dev
 ~~~
 
-We can see our build results on the [**Travis** website][travis]
+We can see our build results on the [**Travis** website][travis].
 
 <a href="http://o2js.com/assets/travis-results-large.png"><img src="http://o2js.com/assets/travis-results.png"  title="Click to see a larger version"></a>
 
@@ -1035,6 +1173,14 @@ We can see our build results on the [**Travis** website][travis]
 
 ### Gain Control Over Your Code's Complexity
 
+In this section, we will…
+
+* Analyze our code’s **complexity**;
+* Streamline this complexity analysis to our **[CI][ci]** pipeline;
+* And create **coverage reports** for our code base.
+
+Let’s start by analyzing code complexity first:
+
 #### Code Complexity Analysis
 
 Every code base has its inherent level of complexity; however we can reduce the complexity of our code by limiting the interdependency of components, by letting them do one thing, and letting them [do that thing well][unix]. This is commonly referred to as **[favoring cohesion over coupling][cohesion]**.
@@ -1043,7 +1189,11 @@ Every code base has its inherent level of complexity; however we can reduce the 
 
 There are certain tools, and metrics that we can use to have an idea of how complex our code is. One such tool that we can use is **[grunt-complexity][grunt-complexity]**.
 
-> Code complexity metrics do not set hard and fast **rules**, they just provide **guidelines**. An increase in the codes' complexity index is not necessarily a bad thing. Some of the modules that you create might be complex, simply because of the intricacy of the problem that it's trying to solve. An increased complexity metric is just something that you, as a library developer, have to keep an eye on.
+> **Caveat**:
+> 
+> Code complexity metrics do not set hard and fast **rules**, they just provide **guidelines**; thus, an increase in the codes' complexity index is not necessarily a bad thing. 
+> 
+> Some of the modules that you create might be complex, simply because of the intricacy of the problem that it's trying to solve. An increased complexity metric is just something that you, as a library developer, have to keep an eye on.
 
 Let's start by installing it to our project as a development dependency:
 
@@ -1096,7 +1246,7 @@ module.exports = function(grunt) {
 When we run
 
 ~~~
-grunt complexity
+$ grunt complexity
 ~~~
 
 we will get a nicely formatted code complexity report:
@@ -1114,7 +1264,7 @@ Done, without errors.
 
 You can read [jscomplexity.org's help file][jscomplexity] to get an idea of what those numbers refer to.
 
-### Adding Complexity Analysis to **CI** Pipeline
+#### Adding Complexity Analysis to Our **CI** Pipeline
 
 Moreover, since we have added **lint** and **complexity** tasks to our publish task, when we run `npm test`
 We will get lint and complexity results along with server-side and client-side test results:
@@ -1162,29 +1312,343 @@ Done, without errors.
 [cohesion]:         http://en.wikipedia.org/wiki/Cohesion_(computer_science)
 [unix]:             http://en.wikipedia.org/wiki/Unix_philosophy
 [grunt-complexity]: https://github.com/vigetlabs/grunt-complexity
-[coverage]:         http://en.wikipedia.org/wiki/Code_coverage
-[istanbul]:         http://gotwarlost.github.io/istanbul/
-[blanket]:          http://blanketjs.org/
 [jscomplexity]:     http://jscomplexity.org/complexity
 
 #### Covering Your A\*\*
 
+When we have enough modules that interact with one another, a **code coverage tool** might be really handy to maintain **code quality**.
+
+So let us start creating the foundations of it.
+
+* For the **[AMD][amd]** modules, we will be using **[JSCover][jscover]** as our code coverage tool;
+* And for the **[Node.JS][nodejs]** modules, **[vows.js][vows]** can automatically detect certain kinds of instrumentation.
+
+Let’s begin with **AMD**:
+
+##### Covering **AMD** Tests
+
+> Running our front-end **[AMD][amd]** tests in an actual browser (*instead of a headless [phantom.js][phantom] process*), by launching a **spec runner** html file, can be helpful in finding and fixing test failures. 
+
+Having a separate **spec runner** html is also necessary for our coverage analysis, as we will be generating **[instrumentation code][instrumentation]** off of this **spec runner**.
+
+To be able to run our **[Jasmine][jasmine]** spec runner html in a browser, we will need to install **[Jasmine][jasmine]** and **[require.js][requirejs]** using **[bower][bower]**. 
+
+Let’s do that first:
+
+##### Installing Bower Dependencies
+
+Let’s update **bower.json**
+
+~~~
+...
+  "dependencies": {
+    "requirejs": “2.1.9”,
+    "jasmine": "2.0.0"
+  }
+...
+~~~
+
+When we run `bower install` we will see a **jasmine** folder under **bower_components**. We’ll need to go the **dist** folder and extract the recent version. Here’s how it looks like:
+
+<img src="http://o2js.com/assets/jasmine-bower.png" alt="">
+
+Now we will go to **bower_components/jasmine/dist/** folder and unzip the latest version (*we will be using version **2.0.0** for this tutorial*).
+
+##### Preparing the Spec Runner
+
+The **bower_components/jasmine/dist/Jasmine-standalone-2.0.0/SpecRunner.html** is a sample spec runner that we can use as a basis in our project, and we will do the same to create a spec runner for our modules at **{project root}/specrunner.html**:
+
+~~~
+<!doctype html>
+<!-- {project root}/specrunner.html —-> 
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>o2.js AMD Spec Runner</title>
+
+    <!-- Jasmine core. -->
+    <link rel="shortcut icon" type="image/png" 
+href="bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine_favicon.png">
+    <link rel="stylesheet" type="text/css" 
+href="bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine.css">
+    <script type="text/javascript" 
+src="bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine.js"></script>
+    <script type="text/javascript" 
+src="bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/jasmine-html.js"></script>
+    <script type="text/javascript" 
+src="bower_components/jasmine/dist/
+jasmine-standalone-2.0.0/lib/jasmine-2.0.0/boot.js"></script>
+
+    <!-- require.js. -->
+    <script src="bower_components/requirejs/require.js"></script>
+
+    <!— Override Jasmine boot loader for AMD. -->
+    <script src="test/override/jasmine/boot.js"></script>
+
+    <!-- require.js configuration. -->
+    <script src="test/config/requirejs/config.js"></script>
+
+    <!-- Specs to test. -->
+    <script src="test/config/amd/o2/config.js"></script>
+</head>
+<body>
+</body>
+</html>
+~~~
+
+Where **/test/override/jasmine/boot.js** is just a hack to run **[Jasmine][jasmine]** when all the **[AMD][amd]** modules are ready:
+
+~~~
+(function(window) {
+    'use strict';
+
+    var oldLoad = window.onload;
+
+    window.initializeJasmine = function() {
+
+        // Jasmine 2.0.0 requires some non-zero timeout to prepare; 
+        // not sure if it's a bug.
+        // TODO: investigate why this does not work with `setTimeout(fn, 0);`
+        setTimeout(oldLoad, 100);
+    };
+
+    window.onload = function(){};
+}(this));
+~~~
+
+And **test/config/requirejs/config.js** has just some very basic **require.js** configuration:
+
+~~~
+// test/config/require/config.js
+(function(require) {
+    'use strict';
+
+    require.onError = function(error) {
+        var message = error.requireType + ': ';
+
+        if (error.requireType === 'scripterror' || 
+error.requireType === 'notloaded' && error.requireModules) {
+            message += 'Illegal path or script error: ' + 
+'[\'' + error.requireModules.join("', '") + '\']';
+        } else {
+            message += error.message;
+        }
+
+        throw new Error(message);
+    };
+
+    require.config({});
+}(require));
+~~~
+
+Finally, **test/config/amd/o2/config.js** is just another boot loader, which `require`s all the modules, and then `require`s all the tests and then runs them:
+
+~~~
+// test/config/amd/o2/config.js
+// TODO: automate generation of this file.
+require([
+    'amd/o2/ajax/core' ,
+    'amd/o2/ajax/node_modules/o2.string/core' ,
+    'amd/o2/io/core' ,
+    'amd/o2/string/core',
+    'amd/o2/timer/core'
+], function(){ require([
+    'test/web/o2.string.core_test.js'
+], function() {
+    window.initializeJasmine();
+});});
+~~~
+
+We will need to update this file as we add new modules to our test suites. It would be nice to auto generate this file with **[grunt][grunt]** too. I’m leaving it as a future **TODO**.
+
+> This **specrunner.html** generation process is partially similar to what [grunt-contrib-jasmine][grunt-contrib-jasmine] does behind the scenes. 
+
+When you load the **specrunner.html** in a browser, you’ll get something like this:
+
+<img src="http://o2js.com/assets/spec-ran.png" alt="">
+
+Since our [Jasmine][jasmine] specs are running as expected, now it’s time to add some coverage to them:
+
+##### Adding Coverage to the **[AMD][amd]** Modules
+
+For **[AMD][amd]** coverage reports, we will be using **[JSCover][jscover]**.
+
 > **Hint**:
 > 
-> Integrating a [code coverage][coverage] tool like [blanket][blanket], or [Istanbul][istanbul] would also be useful in certain projects.
->
+> You can also try [code coverage][coverage] tools like [blanket][blanket], or [Istanbul][istanbul]. 
+> 
+> I’ve tried them and several other coverage tools. – **JSCover** was the easiest to set up, which worked with **[AMD][amd]** modules “out of the box”, without needing to write a special adapter, or change the test configuration. – **It just worked**!
 
-In our particular example since our modules will be relatively granular, and the functionality will be spread among many modules that do one thing well. When we have enough modules that interact with one another, a **code coverage tool** might be really handy to maintain **code quality**. 
+So what makes **[JSCover][jscover]** stand out? 
 
-This will be the topic of a **follow-up blog post**.
+Here are quite a few reasons why **[JSCover][jscover]** rocks:
+
+* The advantage of **[JSCover][jscover]** to other code coverage tools is the fact that it adds [instrumentation][instrumentation] to **JavaScript** code **before** it is executed in a web browser; 
+* Since a separate copy of instrumented files are used, **you won’t need to change your unit test configuration**;
+* You can lazy-load modules, and request files on the fly. They will be instrumented as soon as they are loaded;
+* Covering **[AMD][amd]** modules is a piece of cake (*see the next item*);
+* **JSCover** is loader-agnostic. You can use **[require.js][requirejs]** or your home-made custom loader, it doesn’t matter: Files will be instrumented, as soon as their scripts are evaluated;
+* Yet another advantage of **[JSCover][jscover]** is that it can generate **custom reports** that can be easily consumed by other systems (like **[Sonar][sonar]**);
+* Did I say that it is really easy to set up, configure and use?
+* And the last but not the least, it comes with **sample codes**, which run out of the box, that you can copy and use as an initial boilerplatete.
+
+Convinced? Let’s add **[JSCover][jscover]** as a submodule to our project:
+
+~~~
+$ mkdir externals
+$ git submodule add https://github.com/tntim96/JSCover.git externals/jscover
+~~~
+
+In order to use **JSCover** we need to build it first.
+
+
+> To build [JSCover][jscover] you will need [maven][maven], [ant][ant], [java][java] installed on your system. If you don’t have these, install them before you proceed any further.
+> 
+> You will also need to install [maven ant tasks][maven-ant-tasks]. This is as easy as [downloading the jar file][maven-ant-tasks], and copying it to your **[ant][ant]** lib directory.
+
+I’ll be using **[JetBrains IntelliJ Idea][intellij]**, which is, by far, the best **Java** development IDE, ever! You don’t have to use **IntelliJ**. – You can use the command line to run **[ant][ant]** and **[maven][maven]** tasks.
+
+Now go to **externals/jscover** directory…
+
+<img src="http://o2js.com/assets/jscover-files.png" alt="">
+
+and double click **JSCover.ipr** to launch **IntelliJ**. 
+
+Then go to **Ant Build** tab, and double click **jar** and then **jar-all** tasks to create the **target/dist/js.jar**, **target/dist/JSCover.jar**, and **target/dist/JSCover-all.jar** jar files:
+
+<img src="http://o2js.com/assets/jscover-ant.png" alt="">
+
+Now that we have the **jar**s, it’s time to create a coverage server:
+
+~~~
+$ mkdir test/coverage
+$ mkdir test/coverage/web
+$ mkdir test/coverage/web/server
+$ cd test/coverage/web/server
+$ touch run.bat
+$ touch run.sh
+~~~
+
+I’m leaving **run.bat** as a placeholder for Windows systems. Since I don’t have a Windows system, I will only create the **run.sh**:
+
+~~~
+# run.sh
+java -jar ../../../../externals/jscover/target/dist/JSCover-all.jar \
+-ws --document-root=../../../.. --report-dir=../../../../reports/jscover \
+--no-instrument=/bower_components --no-instrument=/test
+~~~
+
+Now we can run our coverage server:
+
+~~~
+$ cd test/coverage/web/server
+$ sh run.sh
+~~~
+
+When we navigate to **http://localhost:8080/jscoverage.html** we get a nice interface to see our coverage reports. 
+
+Here is how it looks like:
+
+**Click on the images to see larger versions**.
+
+<a href="http://o2js.com/assets/coverage-000-large.png"><img src="http://o2js.com/assets/coverage-000.png"></a>
+
+<a href="http://o2js.com/assets/coverage-001-large.png"><img src="http://o2js.com/assets/coverage-001.png"></a>
+
+<a href="http://o2js.com/assets/coverage-002-large.png"><img src="http://o2js.com/assets/coverage-002.png"></a>
+
+<a href="http://o2js.com/assets/coverage-003-large.png"><img src="http://o2js.com/assets/coverage-003.png"></a>
+
+<a href="http://o2js.com/assets/coverage-004-large.png"><img src="http://o2js.com/assets/coverage-004.png"></a>
+
+Now that we have created coverage reports for our **[AMD][amd]** modules, the next step is to create the same for our **[Node.JS][nodejs]** tests. 
+
+> Since we are using **[vows.js]** for our **[Node.JS][nodejs]** tests, we will use **[node-jscoverage][nodejscoverage]**. **[vows.js][vows]** runs code coverage if it detects [node-jscoverage][nodejscoverage] installed on the system.
+
+##### Adding Coverage to **[Node.JS][nodejs]** Modules
+
+Let’s first add a submodule for [node-jscoverage][nodejscoverage]:
+
+~~~
+$ git submodule add https://github.com/visionmedia/node-jscoverage.git \
+externals/node-jscoverage
+~~~
+
+Then compile it:   
+
+~~~
+$ cd externals/node-jscoverage/
+$ ./configure && make && make install
+~~~
+
+You will also need to install **[vows.js][vows]** globally, if you haven't already done so:
+
+~~~
+$ npm install -g vows
+~~~
+
+Then create a **test/bin/node/cover.sh**:
+
+~~~
+# test/bin/node/cover.sh
+cd ../../..
+rm -rf instrumented/src/o2
+rm -rf instrumented/test/node
+jscoverage test/node instrumented/test/node
+jscoverage src/o2 instrumented/src/o2
+vows instrumented/test/node/*.js --cover-html
+mv coverage.html reports/coverage/node/coverage.html
+~~~
+
+So when we run **cover.sh**…
+
+~~~
+$ cd test/bin/node
+$ sh cover.sh
+~~~
+
+we will get a coverage report similar to these:
+
+**Click on the images for larger versions**.
+
+<a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-001.png" alt=""></a>
+
+<a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-002.png" alt=""></a>
+
+<a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-003.png" alt=""></a>
+
+Now that all of our coverage reports are set, we can proceed with analyzing our cross-module dependencies:
+
+[grunt-contrib-jasmine]: ht.tps://github.com/gruntjs/grunt-contrib-jasmine
+[coverage]:              http://en.wikipedia.org/wiki/Code_coverage
+[istanbul]:              http://gotwarlost.github.io/istanbul/
+[blanket]:               http://blanketjs.org/
+[json]:                  http://www.json.org/
+[lcov]:                  http://ltp.sourceforge.net/coverage/lcov.php
+[blanket-reporters]:     https://github.com/alex-seville/blanket/tree/master/src/reporters
+[lazy-loading]:          http://en.wikipedia.org/wiki/Lazy_loading
+[sonar]:                 http://www.sonarqube.org/
+[maven-ant-tasks]:       http://maven.apache.org/ant-tasks/index.html
+[ant]:                   http://ant.apache.org/
+[jscover]:               http://tntim96.github.io/JSCover/
+[maven]:                 http://maven.apache.org/
+[java]:                  http://www.oracle.com/technetwork/java/javase/downloads/index.html
+[intellij]:              http://www.jetbrains.com/idea/
+[instrumentation]:       http://en.wikipedia.org/wiki/Instrumentation
+[nodejscoverage]:        https://github.com/visionmedia/node-jscoverage
+[all-your-base]:         http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us
 
 #### Generating Dependency Graphs
 
 Visualizing our framework's modular dependency graph is a valuable tool; especially when you want to refactor your project.
 
-For dependency tree generation, we will be using a tool called [dependo][dependo].
+For dependency tree generation, we will be using a tool called **[dependo][dependo]**.
 
-Let's install **dependo** first:
+Let's install **[dependo][dependo]** first:
 
 ~~~
 $ npm install -g dependo
@@ -1312,7 +1776,6 @@ module.exports = function(grunt) {
     grunt.registerTask('testAll', ['exec:test', 'test']);
     grunt.registerTask('doc', ['yuidoc']);
 };
-
 ~~~
 
 #### Actually, This is **Not** A Dummy Project
@@ -1346,7 +1809,7 @@ While this may be an overkill for a simple project, as your code base grows in d
 
 The source code of what we have examined so far can be downloaded [from this GitHub history snapshot][gitsnap] – Enjoy.
 
-[gitsnap]: https://github.com/v0lkan/o2.js/tree/90f0fe19452903e85b5d6153467f7e8ba96223e0
+[gitsnap]: https://github.com/v0lkan/o2.js/tree/5bcdfdf06d0914dda32fd10ba73e9a18d21afba3
 
 ### Next Up?
 

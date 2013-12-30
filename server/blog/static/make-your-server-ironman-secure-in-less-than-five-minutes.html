@@ -135,7 +135,7 @@ it is a <strong>bad practice</strong> to do so.</p>
 [root@myserver:~]$ service ssh restart
 [root@myserver:~]$ <span class="keyword">exit</span></code></pre>
 <p>This will enable us to login with our private key, without using a password.
-So…</p>
+So&hellip;</p>
 <pre><code>[user@macbook:~]$ ssh root@myserver</code></pre>
 <p>will log you in without asking for any password if you&#39;ve set things up correctly.</p>
 <p>The next step is to <strong>disable password authentication</strong>.</p>
@@ -149,7 +149,8 @@ before proceeding further; or you will lose access to your server.</p>
 </blockquote>
 <p>Now that our <strong>SSH</strong> is set up; let&#39;s make our server even more secure:</p>
 <pre><code>[user@macbook:~]$ ssh root@myserver
-[root@myserver:~]$ vim /etc/ssh/sshd_config</code></pre>
+[root@myserver:~]$ vim /etc/ssh/sshd_config
+~</code></pre>
 <p>Find the line that starts with <code>PasswordAuthentication</code> and replace that line with:</p>
 <pre><code>PasswordAuthentication no</code></pre>
 <p>Save and exit by <code>:wq</code>. And then restart the <strong>ssh</strong> service:</p>
@@ -188,13 +189,14 @@ enter:</p>
 <p>Then we would allow every connection from the local machine (<em>i.e. the loopback interface</em>):</p>
 <pre><code>[root@myserver:~]$ iptables -A INPUT -i lo -j ACCEPT
 [root@myserver:~]$ iptables -A INPUT -d 127.0.0.0/8 -j REJECT</code></pre>
+<p>The above rule accepts every connection to the localhost (<em>127.0.0.1</em>) and rejects any other loopback (<em>lo</em>) address (<em>127.0.0.0/8</em> means everything between <em>127.0.0.0</em> and <em>127.255.255.255</em>).</p>
 <p>Now, grant access to the ports that you need:</p>
 <pre><code>[root@myserver:~]$ iptables -A INPUT -p tcp --dport 22 -j ACCEPT
 [root@myserver:~]$ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 [root@myserver:~]$ iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 [root@myserver:~]$ iptables -A INPUT -p tcp --dport 8000 -j ACCEPT</code></pre>
 <p>(<em>22 is SSL, 80 is HTTP, 443 is HTTPS, and 8000 is my blog publish port</em>)</p>
-<p>You migh want to allow all outbound traffic, too:</p>
+<p>You might also want to allow all outbound traffic:</p>
 <pre><code>[root@myserver:~]$ iptables -A OUTPUT -j ACCEPT</code></pre>
 <p>And optionally allow ping:</p>
 <pre><code>[root@myserver:~]$ iptables -A INPUT -p icmp -j ACCEPT</code></pre>
@@ -202,9 +204,7 @@ enter:</p>
 <pre><code>[root@myserver:~]$ iptables -A INPUT -j DROP
 [root@myserver:~]$ iptables -A FORWARD -j DROP</code></pre>
 <h3>Restoring Firewall State At Reboot</h3>
-<p>We&#39;ve setup our firewall, and we are not done yet; because when we reboot our
-server, all of those rules will be erased. To solve this problem, first create
-a backup of the rules:</p>
+<p>We&#39;ve setup our firewall, and we are not done yet; because when we reboot our server, all of those rules will be erased. To solve this problem, first create a backup of the rules:</p>
 <pre><code>[root@myserver:~]$ iptables-save &gt; /root/rules.backup</code></pre>
 <p>Then backup your <strong>/etc/rc.local</strong> file:</p>
 <pre><code>[root@myserver:~]$ cp /etc/rc.local /etc/rc.local.backup</code></pre>
