@@ -77,7 +77,7 @@ When you [look at the **dev** branch][o2dev], you will see that there is a major
 
 > I have moved all the existing source code to a **draft** folder to have a fresh start.
 
-![the "draft" folder](http://o2js.com/assets/o2draft.png "the 'draft' folder")
+<img src="http://o2js.com/assets/o2draft.png" alt="folder tree" title="the ‘draft’ folder">
 
 This will also help me to create a project folder structure from scratch. And that's what we'll be doing next.
 
@@ -1621,8 +1621,6 @@ we will get a coverage report similar to these:
 
 <a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-003.png" alt=""></a>
 
-Now that all of our coverage reports are set, we can proceed with analyzing our cross-module dependencies:
-
 [grunt-contrib-jasmine]: ht.tps://github.com/gruntjs/grunt-contrib-jasmine
 [coverage]:              http://en.wikipedia.org/wiki/Code_coverage
 [istanbul]:              http://gotwarlost.github.io/istanbul/
@@ -1641,6 +1639,87 @@ Now that all of our coverage reports are set, we can proceed with analyzing our 
 [instrumentation]:       http://en.wikipedia.org/wiki/Instrumentation
 [nodejscoverage]:        https://github.com/visionmedia/node-jscoverage
 [all-your-base]:         http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us
+
+#### Hey, You Can Use **[Bower][bower]** For **[GitHub][github]** Repositories Too
+
+Actually, we don’t need to create **git submodules** for [JsCover][jscover] and [node-jscoverage][nodejscoverage] either.
+
+Let’s add them to our bower dependencies in out **bower.json** instead:
+
+~~~
+{
+  "name": "o2.js",
+  "version": "2.0.1",
+  "homepage": "http://o2js.com/",
+  "authors": [
+    "Volkan Özçelik <volkan@o2js.com>"
+  ],
+  "description": "o2.js JavaScript Framework",
+  "keywords": [
+    "o2.js",
+    "modules",
+    "amd",
+    "node.js",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "2.1.9",
+    "blanket": "1.1.5",
+    "jasmine": "2.0.0",
+    "node-jscoverage": "https://github.com/visionmedia/node-jscoverage.git",
+    "jscover": "https://github.com/tntim96/JSCover.git"
+  }
+}
+~~~
+
+And when we do a `bower install`, we will have **node-jscoverage** and **jscover** projects inside our **bower_components** folder.
+
+Here is the console output after running `bower install`:
+
+~~~
+$ bower install
+bower node-jscoverage#*     not-cached #*
+bower node-jscoverage#*        resolve #*
+bower jscover#*             not-cached #*
+bower jscover#*                resolve #*
+bower blanket#1.1.5             cached #1.1.5
+bower blanket#1.1.5           validate #1.1.5
+bower node-jscoverage#*       checkout master
+bower jscover#*               checkout v2.0.1
+bower node-jscoverage#*       resolved 
+bower jscover#*               resolved 
+bower blanket#1.1.5            install blanket#1.1.5
+bower node-jscoverage#*        install node-jscoverage#36b3ba5d82
+bower jscover#*                install jscover#2.0.1
+
+blanket#1.1.5 bower_components/blanket
+
+node-jscoverage#36b3ba5d82 bower_components/node-jscoverage
+
+jscover#2.0.1 bower_components/jscover
+~~~
+
+The next step will be removing the **git submodules** since we don’t need them anymore.
+
+~~~
+$ rm .gitmodules
+$ touch .gitmodules
+$ git rm --cached externals/jscover
+$ git rm --cached externals/node-jscoverage
+$ rm -rf externals
+~~~
+
+> And voila! [All our dependencies are][all-your-base] managed by **[bower][bower]**, yay!
+
+Now that all of our coverage reports are set, we can proceed with analyzing our cross-module dependencies:
 
 #### Generating Dependency Graphs
 

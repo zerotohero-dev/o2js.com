@@ -110,7 +110,7 @@
 <blockquote>
 <p>I have moved all the existing source code to a <strong>draft</strong> folder to have a fresh start.</p>
 </blockquote>
-<p><img src="http://o2js.com/assets/o2draft.png" alt="the &quot;draft&quot; folder" title="the &#39;draft&#39; folder"></p>
+<p><img src="http://o2js.com/assets/o2draft.png" alt="folder tree" title="the ‘draft’ folder"></p>
 <p>This will also help me to create a project folder structure from scratch. And that&#39;s what we&#39;ll be doing next.</p>
 <h3>Cloning the Repository</h3>
 <p>I&#39;ll start by cloning <a href="https://github.com/v0lkan/o2.js/tree/dev">the current <strong>dev</strong> branch</a>.</p>
@@ -1188,6 +1188,71 @@ $ sh cover.sh</code></pre>
 <p><a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-001.png" alt=""></a></p>
 <p><a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-002.png" alt=""></a></p>
 <p><a href="http://o2js.com/assets/node-cover-001-large.png"><img src="http://o2js.com/assets/node-cover-003.png" alt=""></a></p>
+<h4>Hey, You Can Use <strong><a href="http://bower.io/">Bower</a></strong> For <strong><a href="https://github.com/">GitHub</a></strong> Repositories Too</h4>
+<p>Actually, we don’t need to create <strong>git submodules</strong> for <a href="http://tntim96.github.io/JSCover/">JsCover</a> and <a href="https://github.com/visionmedia/node-jscoverage">node-jscoverage</a> either.</p>
+<p>Let’s add them to our bower dependencies in out <strong>bower.json</strong> instead:</p>
+<pre><code>{
+  "name": "o2.js",
+  "version": "2.0.1",
+  "homepage": "http://o2js.com/",
+  "authors": [
+    "Volkan Özçelik &lt;volkan@o2js.com>"
+  ],
+  "description": "o2.js JavaScript Framework",
+  "keywords": [
+    "o2.js",
+    "modules",
+    "amd",
+    "node.js",
+    "framework"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "2.1.9",
+    "blanket": "1.1.5",
+    "jasmine": "2.0.0",
+    "node-jscoverage": "https://github.com/visionmedia/node-jscoverage.git",
+    "jscover": "https://github.com/tntim96/JSCover.git"
+  }
+}</code></pre>
+<p>And when we do a <code>bower install</code>, we will have <strong>node-jscoverage</strong> and <strong>jscover</strong> projects inside our <strong>bower_components</strong> folder.</p>
+<p>Here is the console output after running <code>bower install</code>:</p>
+<pre><code>$ bower install
+bower node-jscoverage<span class="comment">#*     not-cached #*</span>
+bower node-jscoverage<span class="comment">#*        resolve #*</span>
+bower jscover<span class="comment">#*             not-cached #*</span>
+bower jscover<span class="comment">#*                resolve #*</span>
+bower blanket<span class="comment">#1.1.5             cached #1.1.5</span>
+bower blanket<span class="comment">#1.1.5           validate #1.1.5</span>
+bower node-jscoverage<span class="comment">#*       checkout master</span>
+bower jscover<span class="comment">#*               checkout v2.0.1</span>
+bower node-jscoverage<span class="comment">#*       resolved </span>
+bower jscover<span class="comment">#*               resolved </span>
+bower blanket<span class="comment">#1.1.5            install blanket#1.1.5</span>
+bower node-jscoverage<span class="comment">#*        install node-jscoverage#36b3ba5d82</span>
+bower jscover<span class="comment">#*                install jscover#2.0.1</span>
+
+blanket<span class="comment">#1.1.5 bower_components/blanket</span>
+
+node-jscoverage<span class="comment">#36b3ba5d82 bower_components/node-jscoverage</span>
+
+jscover<span class="comment">#2.0.1 bower_components/jscover</span></code></pre>
+<p>The next step will be removing the <strong>git submodules</strong> since we don’t need them anymore.</p>
+<pre><code>$ rm .gitmodules
+$ touch .gitmodules
+$ git rm --cached externals/jscover
+$ git rm --cached externals/node-jscoverage
+$ rm -rf externals</code></pre>
+<blockquote>
+<p>And voila! <a href="http://en.wikipedia.org/wiki/All_your_base_are_belong_to_us">All our dependencies are</a> managed by <strong><a href="http://bower.io/">bower</a></strong>, yay!</p>
+</blockquote>
 <p>Now that all of our coverage reports are set, we can proceed with analyzing our cross-module dependencies:</p>
 <h4>Generating Dependency Graphs</h4>
 <p>Visualizing our framework&#39;s modular dependency graph is a valuable tool; especially when you want to refactor your project.</p>
