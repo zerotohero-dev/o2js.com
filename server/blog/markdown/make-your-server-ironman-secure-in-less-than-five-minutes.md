@@ -61,7 +61,7 @@ If there are files in the folder back them up, just in case:
 After having backed up the **.ssh** folder contents, let's create a key pair:
 
 ~~~
-[user@macbook:~]$ ssh_keygen
+[user@macbook:~]$ ssh-keygen
 ~~~
 
 Answer all the questions prompted. Generally accepting the defaults by
@@ -119,7 +119,7 @@ Back to our server:
 ~~~
 
 This will enable us to login with our private key, without using a password.
-So&hellip;
+So…
 
 ~~~
 [user@macbook:~]$ ssh root@myserver
