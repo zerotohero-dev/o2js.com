@@ -88,6 +88,7 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* JSONP with Timeout Using o2.js -- Quick Example
 
 * **JavaScript Patterns** (*patterns of JavaScript software architecture*)
+	* [Show Love to the requestAnimationFrame](http://o2js.com/show-love-to-requestanimationframe)
 	* Charlie's Chocolate Factory in JavaScript
 	* A Little Known Encapsulation Technique in JavaScript: Isolated Objects
 
