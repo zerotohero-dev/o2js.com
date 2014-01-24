@@ -10,7 +10,7 @@ If you have done **JavaScript** web application development for a while, you pro
 
 This excerpt from Nicholas C. Zakas’ [High Performance Javascript][high-perf-js] mentions certain scenarios where yielding with timers might be a good fit:
 
-> *Despite your best efforts, there will be times when a Javascript task cannot be completed in **100 milliseconds or less** because of its complexity. In these cases, it’s ideal to yield control of the UI thread so that UI updates may occur. Yielding control means stopping Javascript execution and giving the UI a chance to update itself before continuing to execute the Javascript.*
+> Despite your best efforts, there will be times when a Javascript task cannot be completed in **100 milliseconds or less** because of its complexity. In these cases, it’s ideal to yield control of the UI thread so that UI updates may occur. Yielding control means stopping Javascript execution and giving the UI a chance to update itself before continuing to execute the **Javascript**.
 
 <div stlye="clear:both;"></div>
 
@@ -18,13 +18,13 @@ This excerpt from Nicholas C. Zakas’ [High Performance Javascript][high-perf-j
 
 ### Introduction
 
-`setTimeout(delegate, 0)` interface can be used to both allow user agent events and display updates to happen before continuing script execution and to avoid long running script dialogs to raise a [“JavaScript execution exceeded timeout”][js-timeout] error in certain user agents.
+`setTimeout(delegate, 0);` can be used to both allow user agent events and display updates to happen before continuing script execution, and to avoid long running script dialogs to raise a [“JavaScript execution exceeded timeout”][js-timeout] error in certain user agents.
 
 By yielding with `setTimeout` what you do is a **cooperation** [on a single thread][timers]; and for an untrained eye, this misleadingly looks like “multitasking” or “multithreading”. What we do, however, is just pumping events to the event pipe of the **main render thread** of the browser. 
 
 > **JavaScript** is only one of the many things that the browser’s **main render thread** is supposed to run. The main render thread is also responsible for creating and **modifying the DOM** tree, **dispatching** user events, **parsing CSS**, doing **layout**; i.e., creating and managing pretty much everything you see on the browser.
 
-If we use timers to defer UI manipulation, this chaotic nature of the browser’s main render thread makes it virtually impossible to fire the timer at a relatively less occupied time frame, where the browser can focus only on the UI manipulation we want to make. 
+If we use timers to **defer** UI manipulation, this chaotic nature of the browser’s main render thread makes it virtually impossible to fire the timer at a relatively less occupied time frame where the browser can focus only on the UI manipulation we want to make. 
 
 This is like… kind of… multi-tasking. The technically correct term for it is  “**cooperation**” (*since we cannot talk about true multitasking, when there is a single thread responsible for executing **JavaScript***). 
 
@@ -36,8 +36,8 @@ In this tutorial, we will…
 
 * Analyze how the browser’s **main render thread** behaves; 
 * Learn how to yield render operations with `setTimeout`;
-* Discuss why this might not be the best solution at certain times;
-* And create a more robust `requestAnimationFrame`-based task delegation alternative.
+* Discuss why this might **not** be the best solution at certain times;
+* And create a more **robust** `requestAnimationFrame`-based task delegation alternative.
 
 Before we continue further, here is a side note about multithreading in **JavaScript**:
 
@@ -45,8 +45,8 @@ Before we continue further, here is a side note about multithreading in **JavaSc
 > 
 > One might argue that [GPU Compositing][gpu-acceleration], or [web workers][web-workers] makes **JavaScript** multi-threaded. This reasoning is flawed; and here’s why: 
 > 
-> * [Web Workers][web-workers] are background threads that operate independently of the browser’s main render thread; web workers only has access to a subset of JavaScript's features (*for instance you cannot access the **DOM***),  so it’s impossible to modify a **DOM** node, or access a global variable or a global function (*because access to the `window` object is disallowed, too*). 
-> * And [GPU Compositing][gpu-acceleration] is a totally different story: At a very elementary level, the **GPU** works on a **copy** of a subset of the **DOM** tree, and synchronized it with the browser occasionally.
+> * [Web Workers][web-workers] are background threads that operate independently of the browser’s main render thread; web workers only have access to a subset of **JavaScript**'s features (*for instance you cannot access the **DOM***),  so it’s impossible to modify a **DOM** node, or access a global variable or a global function (*because access to the `window` object is disallowed, too*) – This is a **behavior by design** to eliminate any possible concurrency problem. – Basically each worker thread's context, and the main **JavaScript** runtime's context are **mutually exclusive**.
+> * And [GPU Compositing][gpu-acceleration] is a totally different story: At a very elementary level, the **GPU** works on a **copy** of a subset of the **DOM** tree, and synchronized it with the browser occasionally. – Therefore it does not impose a concurrency risk either.
 > 
 > Neither of these are against the single-threaded nature of **JavaScript**.
 > 
@@ -58,13 +58,13 @@ Before we continue further, here is a side note about multithreading in **JavaSc
 
 ### JavaScript Blocks Rendering
 
-> A browser has to do a number of things pretty much all at once, and as we’ve seen **only** one of those is executing **JavaScript**. And one of the things **JavaScript** is very often used for is to ask the browser to build or update a display element.
+> A browser has to do a number of things pretty much all at once, and as we’ve seen **only** one of those is “executing **JavaScript**”. And one of the things **JavaScript** is very often used for is to ask the browser to build or update a display element.
 >  
-> The catch is, both updating the display and **JavaScript** execution happen on a single thread: the browser’s main render thread. 
+> The catch is, both updating the display and **JavaScript** execution happen on a single thread: the browser’s **main render thread**. 
 
 Let’s create a simple sample to illustrate why we need yielding with `setTimeout(fn, 0)` in the first place:
 
-We will begin with a very basic test **html** file:
+We will begin with a very basic test **html** file…
 
 ~~~
 <!doctype html>
@@ -146,9 +146,9 @@ define([
 });
 ~~~
 
-Typically, we would expect to page to update with some random data, every time we set `container.innerHTML` in the `render` method. 
+Typically, we would expect the page to update with some random data, every time we set `container.innerHTML` in the `render` method. 
 
-What happens is quite different, though. We will see something similar to the following on the console:
+What happens is quite different, though. We will see something similar to the following on the console…
 
 ~~~
 set innerHTML to: "<h1>1.-0.9955066846723479</h1>"
@@ -181,21 +181,21 @@ Let’s recap once more:
 
 > Browser’s main render thread has the responsibility of **executing JavaScript** and **updating the rendered page** among many other tasks. 
 
-Which means the render thread cannot update the page while it’s doing **JavaScript**; therefore, it will queue all the rendering operations and do them **after** the script execution finishes.
+Which means that the render thread cannot update the page while it’s doing **JavaScript**; therefore, it will queue all the rendering operations and do them **after** the script execution finishes.
 
 When we look at the browser’s timeline, it’s more obvious:
 
 <a href="http://o2js.com/assets/parsing-large.png"><img src="http://o2js.com/assets/parsing.png" alt="parsing chart" title="Click to see a larger version"></a>
 
-At each loop iteration, HTML is parsed, but no rendering is done. Only after the script ends, the main render thread finds time to paint the screen.
+At each loop iteration, HTML is parsed, but no rendering is done. Only after the script ends, the main render thread finds time to paint the viewport.
 
 [amd]: http://requirejs.org/docs/whyamd.html
 
-> Note that this example has intentionally been crafted in a way that it takes an absurdly long amount of time execute **JavaScript**. It’s an exaggeration; yet it’s not uncommon to coincide with similar issues in real life, especially if you are dealing with highly dynamic UI like [infinite scrolls][infinite-scroll].
+> Note that this example has intentionally been crafted in a way that it takes an absurdly long amount of time to execute **JavaScript**. It’s an exaggeration; yet it’s not uncommon to coincide with similar issues in real life, especially if you are dealing with highly dynamic UIs like [infinite scrolls][infinite-scroll].
 > 
 > As a rule of thumb no **JavaScript** execution on a browser should **not** take more than **300 milliseconds**, otherwise it will create a [janky][jankfree] user experience. And nobody likes jank.
  
-As a rule of thumb, if a script takes more than a few hundred milliseconds, it should be split into smaller chunks and yielded with `setTimeout` as follows:
+If a script takes more than a few hundred milliseconds, it should be split into smaller chunks and yielded with `setTimeout` as follows:
 
 [infinite-scroll]: http://ui-patterns.com/patterns/ContinuousScrolling
 [jankfree]: http://jankfree.org/
@@ -229,9 +229,9 @@ To get what we desire (*i.e., updating the user interface whenever we change the
     }
 ~~~
 
-In the code above, we are yielding with `setTimeout(fn, 0)` to give the **CPU** some time to breathe and catch up with stuff live triggering user events, rendering, etc. 
+In the code above, we are yielding with `setTimeout(fn, 0);` to give the **CPU** some time to breathe and catch up with stuff live triggering user events, rendering, etc. 
 
-If you are not new to front-end development, you would agree that this is a common coding pattern that you see all around: When we experience some UI lag in our web application, one solution is to use `setTimeout(fn, 0)` to even things out. 
+If you are not new to front-end development, you would agree that this is a common coding pattern that you see all around: When we experience some UI lag in our web application, one solution is to use `setTimeout(fn, 0);` to even things out. 
 
 Here is how the timeline looks like after yielding thing with a `setTimeout`:
 
@@ -243,9 +243,9 @@ So what’s the problem with that?
 
 For a simple example like this, it does not really matter; however as we yield more and more with `setTimeout`, and alter the **DOM** after each of those yields, we are faced with several problems:
 
-* When the timer fires, we don’t know exactly whether it’s the best time to do the rendering: The paint event (that we just yielded) might happen at a time when the browser is not quite ready to do the paint. This might create a [suboptimal][jankfree] user experience. – Yes, [there is a better way of doing this called “`requestAnimationFrame`”][requestanimationframe]. 
-* In addition, setTimeout **doesn’t** take into account what else is happening in the browser (whereas `requestAnimationFrame` does). – The page could be hidden behind a tab, the window might be minimized. Why waste your precious CPU cycles, and drain your battery when you don’t have to? – Especially, if you are developing for mobile for instance, “battery” is one of your most precious assets.
-* Moreover, liberally using `setTimeouts` here, and there, and everywhere will create a hard-to-manage **performance architecture**. Or to put it better, using too many `setTimeout(fn, 0)`s will gradually make it harder to evaluate the performance of your **JavaScript architecture**: You might bump into occasional headaches that are hard to replicate (*like, for instance, every once in a while, too many timers firing all at once back-to-back making the UI feel sluggish*).
+* When the timer fires, we don’t know exactly whether it’s the best time to do the rendering: The paint event (*that we just yielded*) might happen at a time when the browser is not quite ready to do the paint. This might create a [suboptimal][jankfree] user experience. – And yes, [there is a better way of doing this called “`requestAnimationFrame`”][requestanimationframe]. 
+* In addition, setTimeout **doesn’t** take into account what else is happening in the browser (*whereas `requestAnimationFrame` **does***). – The page could be hidden behind a tab, the window might be minimized. Why waste your precious CPU cycles, and drain your battery when you don’t have to? – Especially, if you are developing mobile applications, “battery” is one of your most precious assets.
+* Moreover, liberally using `setTimeouts` here, and there, and everywhere will create a hard-to-manage **performance architecture**. Or to put it in other words, using too many `setTimeout(fn, 0);`s will gradually make it harder to evaluate the performance of your **JavaScript architecture**: You might bump into occasional headaches that are hard to replicate (*like, for instance, every once in a while, too many timers firing back-to-back all at once will make the UI feel **sluggish***).
 
 [requestanimationframe]: https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame
 [js-timeout]:            https://www.google.com/search?q="JavaScript+execution+exceeded+timeout."
@@ -261,21 +261,21 @@ A better way sending rendering tasks to the future is to…
 * Maybe keep track of how long the task has run (*for diagnostic purposes*, so that we can raise a warning when a task takes too long to execute); 
 * Implement [HTML5 WindowTimers interface][window-timers] so that we can use it as a drop-in replacement for `window.setTimeout`.
 
-When we implement all these, we will have a snappier task delegation mechanism that will make the browser (and our users) happier.
+When we implement all these, we will have a snappier task delegation mechanism that will make the browser (*and our users*) **happier**.
 
 > **Aside**:
 > 
 > I am not the first one to come up with this idea.
 > 
-> [Om Framework][om-framework] for instance triggers render events in a similar fashion:  When something needs to be drawn on the page, **Om** schedules a re-render of data via `requestAnimationFrame`.
+> For example, [Om Framework][om-framework] also triggers render events in a similar fashion:  When something needs to be drawn on the page, **Om** schedules a re-render of data via `requestAnimationFrame`.
 >
-> Here is how [David Nolen][david-nolen] puts it into words:
+> Here is how [David Nolen][david-nolen] puts this into words:
 > 
->> “**Om** feels natural, while *Backbone.js* will feel a bit *janky*. This is probably because Om always re-renders on requestAnimationFrame. A pretty nice optimization to have enabled in your applications.” 
+>> “**Om** feels natural, while *Backbone.js* will feel a bit *janky*. This is probably because Om always re-renders on **requestAnimationFrame**. A pretty nice optimization to have enabled in your applications.” 
 
 > **Aside**:
 > 
-> There is a [**W3C** recommendation for `window.setImmediate` API][setimmediate], which allows the browser to yield an operation to a future time, and run it as soon as it can (*i.e., as soon as it updated the UI, and delegates any waiting user agent events*); however it is not widely implemented by browser vendors. At the time of this writing, only **IE10** supports `window.setImmediate` API. – So [the only cross-browser API that serves our needs right now][caniuse-raf] is `window.requestAnimationFrame`.
+> There is a [**W3C** recommendation for `window.setImmediate` API][setimmediate], which allows the browser to yield an operation to a future time, and run it as soon as it can (*i.e., as soon as it updated the UI, and delegates any waiting user agent events*); however, it is not widely implemented by browser vendors. At the time of this writing, only (*surprisingly*) **IE10** supports `window.setImmediate` API. – So [the only cross-browser API that serves our needs right now][caniuse-raf] remains to be `window.requestAnimationFrame`.
 
 [window-timers]: http://www.whatwg.org/specs/web-apps/current-work/multipage/timers.html#timers
 [om-framework]:  http://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/
@@ -443,13 +443,13 @@ In the above code 200 delegates are queued in the timer’s event loop, and they
 
 > The timer event loop is a [FIFO][fifo] structure. 
 > 
-> Consequentially, if we add more delegates to the queue, than we consume, then the lastly added delegates will never find a chance to get executed, and the timer **event queue**’s size will grow over time. 
+> Consequentially, if we add more delegates to the queue than we consume, then the initially added delegates will have to wait in the queue for a very very long time to find a chance to get executed, and the timer **event queue**’s size will grow over time. 
 > 
 > In that case, the message traffic is so high, and our event pipe is so congested that it fails to handle subsequent tasks in a timely manner.
 
 To solve this problem let us use a similar algorithm to [TCP slow start][slow-start]:
 
-* Every time the delegate is processed, if there is less than **N** waiting delegates in the queue, it is a **HIT** (*i.e.*, the pipe is healthy and the size of the queue is not increasing abruptly.*);
+* Every time the delegate is processed, if there is less than **N** waiting delegates in the queue, it is a **HIT** (*i.e., the pipe is healthy and the size of the queue is not increasing abruptly.*);
 * Every time the delegate is processed, if there are more than **N** waiting delegates in the queue, it is a **MISS** (*i.e., the size of the event queue appears to have been increasing, the pipe might be unhealthy.*);
 * At every miss, the pipe starts executing delegates in batches in geometrically increasing sizes. So, instead of executing them one at a time; it will execute two at a time after the first miss, it will execute four at a time after the second miss… and so on;
 * At every consecutive **K** hits, the batch size is decreased (*i.e., if the pipe was executing 4 delegates at a time, it will start executing 2 delegates after **K** consecutive hits, then if there is **K** more consecutive hits, it will execute one delegate per event loop cycle as usual*).
@@ -705,7 +705,7 @@ exports.clearTimeout = function(id) {
 
 Nice observation! 
 
-This module is impossible to be used in it’s current form in a web project.
+This module is impossible to be used in its current form in a web project.
 
 Luckily, **[o2.js][o2js-git]** has a `grunt publish` task that generates **[AMD][amd]** modules for you:
 
