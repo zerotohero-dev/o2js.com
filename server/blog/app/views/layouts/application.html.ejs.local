@@ -31,10 +31,6 @@
     </script>
 </head>
 <body class="<%= params.controller.toLowerCase() %>">
-    <p class="banner" style="text-align:center;padding:1em;margin:27px 0">
-    Psttt&hellip; Wanna check out my book?
-    <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Will <em>Ever</em> Need, Now! ««</a></p>
-
     <div class="container">
         <p>Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" alt="index" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
 
