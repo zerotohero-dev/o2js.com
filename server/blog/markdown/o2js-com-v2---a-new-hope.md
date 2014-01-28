@@ -92,6 +92,9 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* Charlie's Chocolate Factory in JavaScript
 	* A Little Known Encapsulation Technique in JavaScript: Isolated Objects
 
+* **JavaScript Events** (*hackathons, conferences, seminars…*)
+	* [Hack the World Like You Never Did Before](http://o2js.com/hack-the-world-like-you-never-did-before)
+
 That's all for now **;)**.
 
 Strating with the next month, I will try to write a new blog post **every two weeks**. So it will be like a never-ending [blog sprint][scrum] for me **:)**.

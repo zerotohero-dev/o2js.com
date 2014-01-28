@@ -126,6 +126,10 @@ pre, code {
   background: #fafafa;
 }
 
+code {
+    background: #fafacc;
+}
+
 blockquote {
   font-style: italic;
 }

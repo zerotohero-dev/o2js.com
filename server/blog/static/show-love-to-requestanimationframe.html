@@ -23,28 +23,9 @@
     </script>
 </head>
 <body class="posts">
-    <header class="meta" style="text-align:center">
-        <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="btn btn-grey"><b>Start Here</b></a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="http://o2js.com/" class="btn btn-grey">Home</a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="https://twitter.com/linkibol" class="btn btn-grey">@<strong>twitter</strong></a>
-        <a href="https://linkedin.com/in/volkanozcelik" class="btn btn-grey">@<strong>LinkedIn</strong></a>
-        <a href="https://github.com/v0lkan" class="btn btn-grey">@<strong>GitHub</strong></a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="https://github.com/v0lkan/o2.js/blob/dev/README.md" class="btn btn-grey">about <strong>o2.js</strong></a>
-        <a href="https://github.com/v0lkan/o2.js/releases" class="btn btn-grey"><strong>o2.js</strong> source code</a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="http://o2js.com/interview-questions" class="btn btn-grey">#JSIQ</a>
-    </header>
-
-    <p class="banner" style="text-align:center;padding:1em;margin:27px 0">
-    Psttt&hellip; Wanna check out my book?
-    <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Will <em>Ever</em> Need, Now! ««</a></p>
-
     <div class="container">
+        <p>Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" alt="index" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
+
         
 <h2 class="title span8"><a href="/show-love-to-requestanimationframe">Show Love to requestAnimationFrame</a></h2>
 <div class="span8">
@@ -239,7 +220,7 @@ set innerHTML to: "&lt;h1>20.-0.5435228879607441&lt;/h1>"</code></pre>
 <ul>
 <li>When the timer fires, we don’t know exactly whether it’s the best time to do the rendering: The paint event (<em>that we just yielded</em>) might happen at a time when the browser is not quite ready to do the paint. This might create a <a href="http://jankfree.org/">suboptimal</a> user experience. – And yes, <a href="https://developer.mozilla.org/en-US/docs/Web/API/window.requestAnimationFrame">there is a better way of doing this called “<code>requestAnimationFrame</code>”</a>. </li>
 <li>In addition, setTimeout <strong>doesn’t</strong> take into account what else is happening in the browser (<em>whereas <code>requestAnimationFrame</code> <strong>does</strong></em>). – The page could be hidden behind a tab, the window might be minimized. Why waste your precious CPU cycles, and drain your battery when you don’t have to? – Especially, if you are developing mobile applications, “battery” is one of your most precious assets.</li>
-<li>Moreover, liberally using <code>setTimeouts</code> here, and there, and everywhere will create a hard-to-manage <strong>performance architecture</strong>. Or to put it in other words, using too many <code>setTimeout(fn, 0);</code>s will gradually make it harder to evaluate the performance of your <strong>JavaScript architecture</strong>: You might bump into occasional headaches that are hard to replicate (<em>like, for instance, every once in a while, too many timers firing back-to-back all at once will make the UI feel <strong>sluggish</strong></em>).</li>
+<li>Moreover, liberally using <code>setTimeout(fn, 0);</code>s here, and there, and everywhere will create a hard-to-manage <strong>performance architecture</strong>. Or to put it in other words, using too many <code>setTimeout(fn, 0);</code>s will gradually make it harder to evaluate the performance of your <strong>JavaScript architecture</strong>: You might bump into occasional headaches that are hard to replicate (<em>like, for instance, every once in a while, too many timers firing back-to-back all at once will make the UI feel <strong>sluggish</strong></em>).</li>
 </ul>
 <h3>Yield Cleverly <strong>;)</strong></h3>
 <p><img src="http://o2js.com/assets/marty_and_doc.jpeg" alt="Marty and Doc" title="Back to the Future"></p>
@@ -798,11 +779,42 @@ baseUrl=. paths.requireLib=../../bower_components/requirejs/<span class="keyword
 
 <div class="menu right">
   <a href="/an-all-in-one-guide-to-writing-efficient-javascript" class="btn btn-grey ">&laquo; older post</a>
-  <a href="javascript://" class="btn btn-grey btn-disabled">newer post &raquo;</a>
+  <a href="/hack-the-world-like-you-never-did-before" class="btn btn-grey ">newer post &raquo;</a>
 </div>
 
 
 
     </div>
+    <header class="aboutme">
+        <div class="legend">
+            <h1><a href="http://volkan.io/">Volkan Özçelik</a></h1>
+
+            <p><strong>Chase Me</strong></p>
+            <ul>
+            <li>Mobile Front-End Engineer @ <a href="http://jivesoftware.com/">Jive</a></li>
+            <li><a href="https://twitter.com/linkibol">@linkibol</a></li>
+            <li><a href="https://github.com/v0lkan">github.com/v0lkan</a></li>
+            <li><a href="https://speakerdeck.com/volkan">speakerdeck.com/volkan</a></li>
+            <li><a href="https://linkedin.com/in/volkanozcelik">linkedin.com/in/volkanozcelik</a></li>
+            </ul>
+
+            <p><strong>o2.js</strong></p>
+
+            <ul>
+            <li><a href="https://github.com/v0lkan/o2.js/tree/dev">Read the Source, Luke</a></li>
+            </ul>
+        </div>
+        <p class="interviewz">
+            Psttt&hellip;
+            Wanna ace that job interview?<br>
+            Then you have some reading to do:<br>
+            <a style="text-align:center;display:block;margin-top:1em"
+            href="http://o2js.com/interview-questions"
+            title="JavaScript Interview Questions">»» Get the Only Reference
+            on <strong>JavaScript Engineering Interviews</strong>
+            You Will <em>Ever</em> Need, Now!
+            ««</a>
+        </p>
+    </header>
 </body>
 </html>
