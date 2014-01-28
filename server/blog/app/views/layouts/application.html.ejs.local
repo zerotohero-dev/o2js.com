@@ -31,23 +31,6 @@
     </script>
 </head>
 <body class="<%= params.controller.toLowerCase() %>">
-    <header class="meta" style="text-align:center">
-        <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="btn btn-grey"><b>Start Here</b></a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="http://o2js.com/" class="btn btn-grey">Home</a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="http://volkan.io" class="btn btn-grey">about <strong>Volkan Özçelik</strong></a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="https://twitter.com/<%= geddy.site.twitter %>" class="btn btn-grey">@<strong>twitter</strong></a>
-        <a href="https://linkedin.com/in/volkanozcelik" class="btn btn-grey">@<strong>LinkedIn</strong></a>
-        <a href="https://github.com/v0lkan" class="btn btn-grey">@<strong>GitHub</strong></a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="https://github.com/v0lkan/o2.js/blob/dev/README.md" class="btn btn-grey">about <strong>o2.js</strong></a>
-        <a href="https://github.com/v0lkan/o2.js/releases" class="btn btn-grey"><strong>o2.js</strong> source code</a>
-        <span style="font-size:1em;color:#2e93cd">&nbsp;|</span>
-        <a href="http://o2js.com/interview-questions" class="btn btn-grey">#JSIQ</a>
-    </header>
-
     <p class="banner" style="text-align:center;padding:1em;margin:27px 0">
     Psttt&hellip; Wanna check out my book?
     <a style="display:block;" href="http://o2js.com/interview-questions" title="JavaScript Interview Questions">»» Get the Only Reference on <strong>JavaScript Engineering Interviews</strong> You Will <em>Ever</em> Need, Now! ««</a></p>
