@@ -4,7 +4,6 @@
  */
 
 body {
-  margin: 0px 72px 200px 72px;
   background: #fafafa;
   color: #333333;
   font-size: 16px;
@@ -48,7 +47,7 @@ h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  
+
 }
 
 p {
@@ -76,12 +75,12 @@ h1 a, h2 a {
 }
 
 .posts .title a {
-  color: #c80f32; 
+  color: #c80f32;
 }
 
 .banner {
    border-top: 2px #ddd solid;
-   margin-top: 0px !important; 
+   margin-top: 0px !important;
 }
 
 .banner a {
@@ -104,23 +103,27 @@ h1 a, h2 a {
 pre, blockquote {
   border: none;
   border-radius: 0;
-  padding: 14px;
+  padding: 12px;
   border-left: 4px solid #ccc;
   margin: 28px 0;
   background: none;
 }
 
 pre {
+    padding: 2px;
+}
+
+pre {
     border: 1px solid #ccc;
-    background: #e7e7e7;
+    background: #fafafa;
 }
 
 pre, code {
-  font-family: "Lucida Console", Menlo, Monaco, "Courier New", Courier, mono, monospace; 
+  font-family: "Lucida Console", Menlo, Monaco, "Courier New", Courier, mono, monospace;
   font-size: 12px;
   line-height: 1.5em;
   color: #333;
-  background: #e7e7e7;
+  background: #fafafa;
 }
 
 blockquote {
@@ -233,7 +236,7 @@ a.btn-selected, a.btn-selected:hover, button.btn-selected, input.btn-selected {
 }
 
 a.btn-grey, button.btn-grey, input.btn-grey {
-  
+
 }
 
 a.btn-small, button.btn-small, input.btn-small {
@@ -287,11 +290,6 @@ body {
   padding: 8px 14px;;
 }
 
-.container {
-  width: 620px;
-  margin: 0 auto;
-}
-
 #disqus_thread {
   margin-top: 2em;
 }
@@ -319,10 +317,7 @@ body {
   left: 0;
 }
 
-.menu.right {
-  right: 0;
-  left: inherit;
-}
+
 
 .dashboards .menu {
   width: 100%;
@@ -393,166 +388,160 @@ body {
   border: none;
 }
 
-@media (max-width: 767px) {
-
-  body {
-    margin: 20px;
-    margin-top: 0px;
-  }
-
-  .container {
-    margin: 0;
-    width: 100%;
-  }
-
-  #login input[type=password],
-  #login input[type=email],
-  .install input[type=password],
-  .install input[type=text],
-  .dashboards input[type=text] {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .menu {
-    position: static;
-    margin: 0;
-    padding: 20px 0 0 0;
-    background: transparent;
-  }
-
-  .menu-holder {
-    position: static;
-  }
-
-  .menu-holder .menu {
-    float: none;
-    padding: 28px;
-  }
-
-  .dashboards .menu {
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  .menu .btn {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    margin-top: 4px;
-    text-align: left;
-  }
-
-  pre code, code, pre {
-    word-break: break-word;
-    -ms-word-wrap: break-word;
-  }
-
-  .hidden-desktop {
-    display: inherit !important;
-  }
-
-  .visible-desktop {
-    display: none !important;
-  }
-
-  .visible-phone {
-    display: inherit !important;
-  }
-
-  .hidden-phone {
-    display: none !important;
-  }
-
-}
-
-/*
-
-Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmail.com>
-
-*/
+/*Begin:Code Style*/
 
 pre code {
-  display: block; padding: 0.5em;
+    display: block; padding: 0.5em;
+    background: #fff; color: black;
 }
 
 pre .comment,
 pre .template_comment,
-pre .diff .header,
-pre .doctype,
-pre .pi,
-pre .lisp .string,
-pre .javadoc {
-  color: #93a1a1;
-  font-style: italic;
+pre .javadoc,
+pre .comment * {
+    color: rgb(0,106,0);
 }
 
 pre .keyword,
-pre .winutils,
-pre .method,
-pre .addition,
-pre .css .tag,
-pre .request,
-pre .status,
+pre .literal,
 pre .nginx .title {
-  color: #859900;
+    color: rgb(170,13,145);
+}
+pre .method,
+pre .list .title,
+pre .tag .title,
+pre .setting .value,
+pre .winutils,
+pre .tex .command,
+pre .http .title,
+pre .request,
+pre .status {
+    color: #008;
 }
 
-pre .number,
-pre .command,
-pre .string,
+pre .envvar,
+pre .tex .special {
+    color: #660;
+}
+
+pre .string {
+    color: rgb(196,26,22);
+}
 pre .tag .value,
-pre .phpdoc,
-pre .tex .formula,
-pre .regexp,
-pre .hexcolor {
-  color: #2aa198;
+pre .cdata,
+pre .filter .argument,
+pre .attr_selector,
+pre .apache .cbracket,
+pre .date,
+pre .regexp {
+    color: #080;
 }
 
-pre .title,
-pre .localvars,
-pre .chunk,
+pre .sub .identifier,
+pre .pi,
+pre .tag,
+pre .tag .keyword,
 pre .decorator,
-pre .built_in,
-pre .identifier,
-pre .vhdl .literal,
-pre .id {
-  color: #268bd2;
+pre .ini .title,
+pre .shebang,
+pre .input_number,
+pre .hexcolor,
+pre .rules .value,
+pre .css .value .number,
+pre .symbol,
+pre .symbol .string,
+pre .number,
+pre .css .function,
+pre .clojure .title,
+pre .clojure .built_in {
+    color: rgb(28,0,207);
 }
 
-pre .attribute,
-pre .variable,
-pre .lisp .body,
-pre .smalltalk .number,
-pre .constant,
 pre .class .title,
-pre .parent,
-pre .haskell .type {
-  color: #b58900;
+pre .haskell .type,
+pre .smalltalk .class,
+pre .javadoctag,
+pre .yardoctag,
+pre .phpdoc,
+pre .typename,
+pre .tag .attribute,
+pre .doctype,
+pre .class .id,
+pre .built_in,
+pre .setting,
+pre .params,
+pre .clojure .attribute {
+    color: rgb(92,38,153);
+}
+
+pre .variable {
+    color: rgb(63,110,116);
+}
+pre .css .tag,
+pre .rules .property,
+pre .pseudo,
+pre .subst {
+    color: #000;
+}
+
+pre .css .class, pre .css .id {
+    color: #9B703F;
+}
+
+pre .value .important {
+    color: #ff7700;
+    font-weight: bold;
+}
+
+pre .rules .keyword {
+    color: #C5AF75;
+}
+
+pre .annotation,
+pre .apache .sqbracket,
+pre .nginx .built_in {
+    color: #9B859D;
 }
 
 pre .preprocessor,
-pre .preprocessor .keyword,
-pre .shebang,
-pre .symbol,
-pre .symbol .string,
-pre .diff .change,
-pre .special,
-pre .attr_selector,
-pre .important,
-pre .subst,
-pre .cdata,
-pre .clojure .title {
-  color: #cb4b16;
-}
-
-pre .deletion {
-  color: #dc322f;
+pre .preprocessor * {
+    color: rgb(100,56,32);
 }
 
 pre .tex .formula {
-  background: #eee8d5;
+    background-color: #EEE;
+    font-style: italic;
 }
+
+pre .diff .header,
+pre .chunk {
+    color: #808080;
+    font-weight: bold;
+}
+
+pre .diff .change {
+    background-color: #BCCFF9;
+}
+
+pre .addition {
+    background-color: #BAEEBA;
+}
+
+pre .deletion {
+    background-color: #FFC8BD;
+}
+
+pre .comment .yardoctag {
+    font-weight: bold;
+}
+
+pre .method .id {
+    color: #000;
+}
+
+/*End:Code Style*/
+
+/*Begin:Responsive*/
 
 p.note {
   font-size: 0.8em;
@@ -560,4 +549,164 @@ p.note {
   padding: 1em;
   border: 1px #a8a8a8 solid;
   text-align: center;
+}
+
+.aboutme {
+    float: right;
+    width: 320px;
+    margin-right: 60px;
+}
+
+.container {
+    float: left;
+    width: 620px;
+    margin: 0 0 0 20px;
+}
+
+.byline {
+    margin-bottom: 10em;
+}
+
+body {
+    padding-top: 0;
+    width: 1050px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+.interviewz {
+    font-size: 1em;
+    margin-top:2em;
+    background: #ffffee;
+    padding: 0.5em;
+    border: 1px #eeeeff solid;
+    text-align: center;
+}
+
+.interviewz a {
+    border-bottom: 0;
+    color: #333333;
+    text-decoration: underline;
+}
+
+.interviewz a:hover {
+    border-bottom: 0;
+    color: #2e93cd;
+    text-decoration: underline;
+}
+
+.aboutme h1 {
+    margin-top: 50px;
+    margin-bottom: 0;
+}
+
+.aboutme p {
+    margin-top: 1.3em;
+    margin-bottom: 0.5em;
+}
+
+.aboutme ul {
+    margin-top: 0;
+}
+
+.container h2 {
+    margin-top: 27px
+}
+
+.menu.right {
+    right: 0;
+    left: inherit;
+    width: 124px;
+}
+
+.topics {
+    border-bottom: 0;
+    text-decoration: underline;
+}
+
+@media (max-width:1050px) {
+    body {
+        width: auto;
+    }
+
+    .container {
+        float: none;
+        width: 650px;
+        margin: 0 auto;
+
+    }
+
+    .aboutme {
+        xdisplay:none;
+        float: none;
+        margin-left: 150px;
+        width: 620px;
+
+    }
+
+    .aboutme .legend {
+        width: 330px;
+        float: left;
+    }
+
+    p.interviewz {
+        float: left;
+        width: 252px;
+        margin-left: 20px;
+        margin-top: 150px
+    }
+
+    .byline {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width:950px) {
+    .container {
+        float: none;
+        width: 650px;
+        margin: 0 auto;
+    }
+
+    .menu {
+        padding: 0;
+        padding-top: 2em;
+        position: static
+    }
+
+    .menu.right {
+        width: auto;
+    }
+
+    .menu.right a {
+        display: block;
+    }
+
+    .legend h1 {
+        margin-top: 0.5em;
+    }
+}
+
+@media (max-width:820px) {
+    p.interviewz {
+        float: none;
+        width: auto;
+        margin-top: 0;
+    }
+
+    .container {
+        width: auto;
+        padding: 2em;
+        padding-bottom: 0;
+    }
+
+    .aboutme {
+        width: auto;
+        margin: 2em;
+    }
+
+    .aboutme .legend {
+        width: auto;
+        float: none;
+    }
 }
