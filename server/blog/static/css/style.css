@@ -114,7 +114,7 @@ pre {
 }
 
 pre {
-    border: 1px solid #ccc;
+    border: 1px solid #dadada;
     background: #fafafa;
 }
 
@@ -123,11 +123,11 @@ pre, code {
   font-size: 12px;
   line-height: 1.5em;
   color: #333;
-  background: #fafafa;
+  background: #f7f7f7;
 }
 
 code {
-    background: #fafacc;
+    background: #f7f7f7;
 }
 
 blockquote {
@@ -396,7 +396,7 @@ body {
 
 pre code {
     display: block; padding: 0.5em;
-    background: #fff; color: black;
+    background: #f7f7f7; color: black;
 }
 
 pre .comment,
@@ -692,6 +692,9 @@ body {
 }
 
 @media (max-width:820px) {
+    body {
+    }
+
     p.interviewz {
         float: none;
         width: auto;
@@ -699,9 +702,11 @@ body {
     }
 
     .container {
-        width: auto;
-        padding: 2em;
+        float:none;
+        padding: 1em;
         padding-bottom: 0;
+        width: 95%;
+        margin: 0 auto;
     }
 
     .aboutme {
@@ -712,5 +717,18 @@ body {
     .aboutme .legend {
         width: auto;
         float: none;
+    }
+
+    pre code {
+        overflow: auto;
+    }
+
+    img {
+        float: none !important;
+        overflow: auto;
+    }
+
+    h2 {
+        overflow: auto;
     }
 }
