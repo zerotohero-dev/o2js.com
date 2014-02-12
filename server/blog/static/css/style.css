@@ -22,32 +22,61 @@ h1 {
 }
 
 h2 {
-  font-size: 36px;
+  font-size: 32px;
   line-height: 52px;
 }
 
-h2 a {
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
    color: #071410 !important;
 }
 
+.container h3, .container h4, .container h5, .container h6 {
+    padding-top: 0.5em;
+    text-align: center;
+    border-top: 2px #ddd dashed;
+
+    color: #374440 !important;
+    background: #f9f9f9;
+}
+
+.container h2 {
+    text-align: center;
+}
+
+.container h3 strong, .container h4 strong, .container h5 strong, .container h6 strong {
+     color: #374440 !important;
+ }
+
+.container h3 a, .container h4 a, .container h5 a, .container h6 a {
+    color: #374440 !important;
+    border-bottom: 1px #374440 dashed !important;
+}
+
+.container h3 a:hover, .container h4 a:hover, .container h5 a:hover, .container h6 a:hover {
+    color: #2e93cd !important;
+    border-bottom: 1px #2e93cd dashed !important;
+}
+
 h3 {
-  font-size: 28px;
+  font-size: 24px;
   line-height: 48px;
 }
 
 h4 {
-  font-size: 24px;
+  font-size: 18px;
+  font-style: italic;
   line-height: 36px;
 }
 
 h5, h6 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   line-height: 28px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-
+.posts h3, .posts h4, .posts h5 {
+    color: #071410;
+    font-weight: bold;
 }
 
 p {
@@ -57,7 +86,7 @@ p {
 }
 
 hr {
-  background: #EEE8D5;
+  background: #eeeeee;
   height: 4px;
   margin: 28px auto;
   border: none;
