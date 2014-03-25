@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>o2.js - A Coherent Solution to You JavaScript Dilemma | Poor Man’s Server Backup Solution </title>
+
+    <meta name="description" content="o2js.com; a coherent solution to your JavaScript dilemma.">
+    <meta name="author" content="Volkan Özçelik">
+    <meta name="viewport" content="width=device-width" />
+
+    <link href="css/style.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-56512-12', 'o2js.com');
+        ga('send', 'pageview');
+    </script>
+</head>
+<body class="posts">
+    <div class="container">
+        <p>Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" alt="index" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
+
+        
+<h2 class="title span8"><a href="/poor-mans-server-backup-solution">Poor Man’s Server Backup Solution</a></h2>
+<div class="span8">
+  <p><img src="http://o2js.com/assets/data.jpg" style="float:left;margin:2em;"></p>
+<p>I’ll share a quick tip that helped me to solve my “backup and restore” problem with zero cost and 100% reliability. </p>
+<div style="clear:both"></div>
+
+<p>In this quickie, we will be:</p>
+<ul>
+<li>Writing a basic backup script to <strong><a href="http://rsync.samba.org/">rsync</a></strong> our project files; </li>
+<li><strong>Dump</strong> our databases; </li>
+<li><strong>Save</strong> important configuration files;</li>
+<li><strong>Publish</strong> everything to a <a href="https://github.com/pricing">private GitHub repository</a>;</li>
+<li>And configure a <strong><a href="http://en.wikipedia.org/wiki/Cron">crontab</a></strong> to automate the entire process.</li>
+</ul>
+<h3>The Remote Backup Repository</h3>
+<p>So let’s first start with creating a <a href="https://github.com/pricing">blank private <strong>GitHub</strong> repo</a>; and then clone it on our server:</p>
+<pre><code>$ cd ~/BACKUPS
+$ git <span class="keyword">clone</span> git@github.com:user/server-backup.git</code></pre>
+<blockquote>
+<p>Before going any further here are a few remarks:</p>
+<ol>
+<li><strong>This is an experimental setup</strong>. In an unlikely case that your private repository is compromised, so will your backup data be. So <strong>use it at your own risk</strong>;</li>
+<li>Make sure that you use the <strong><a href="https://help.github.com/articles/which-remote-url-should-i-use">SSH clone url</a></strong> when doing your clone, so that we will be able to push to the repo without requiring a password; this will also help us automate things;</li>
+<li>Also make sure that this is a <strong><a href="https://github.com/pricing">private</a></strong> repository. You would not want to share your server configuration with the rest of the world <strong>;)</strong>.</li>
+</ol>
+<p>Having said that, I’ve been using it for the last couple of months, and it works like a charm.</p>
+</blockquote>
+<h3>The Backup Script</h3>
+<p>Now let’s create a simple shell script to back everything up:</p>
+<pre><code><span class="comment"># ~/BACKUPS/server-backup/backup.sh</span>
+
+cd ~/BACKUPS/server-backup;
+iptables-save > iptables.txt;
+crontab -l > crontab.txt;
+rsync -rtv --exclude <span class="string">".git"</span> ~/webs/ ~/BACKUPS/server-backup/webs
+rsync -rtv /etc/apache2/sites-available ~/BACKUPS/server-backup/sites-available
+cp /etc/apache2/apache2.conf ~/BACKUPS/server-backup/apache2.conf
+cp /etc/nginx/nginx.conf ~/BACKUPS/server-backup/nginx.conf
+mysqldump -uroot -pdasecretpassword db > db.sql
+mongodump
+git add .
+git commit -m <span class="string">'backup.'</span>
+git push origin master
+<span class="keyword">echo</span> <span class="string">"Done!"</span></code></pre>
+<p>Which…</p>
+<ul>
+<li>Backs up firewall configuration;</li>
+<li>Backs up the crontab<br>
+(<em>for the clumsy dev-op who messes up with the crontab, and forgets to back it up before she starts</em>);</li>
+<li>Backs up all of the websites;</li>
+<li>Backs up <a href="http://httpd.apache.org/">apache</a> and <a href="http://wiki.nginx.org/Main">Nginx</a> configurations;</li>
+<li>Dumps <a href="http://www.mysql.com/">MySQL</a> databases;</li>
+<li>And dumps <a href="http://www.mongodb.org/">MongoDB</a>.</li>
+</ul>
+<p>And then adds everything to git, and commits it to the <strong>origin</strong>.</p>
+<blockquote>
+<p><strong>Caveat</strong>: If you have anything that’s more than 100MB, <a href="https://help.github.com/articles/what-is-my-disk-quota">GitHub will not allow you to push it</a>. If you have very large files, you might either want to exclude them from the backup, or split them, or compress them.</p>
+</blockquote>
+<p>We are almost done. </p>
+<p>Finally, let’s automate this process by creating a <a href="http://en.wikipedia.org/wiki/Cron">crontab</a> entry.</p>
+<h3>Setting the <a href="http://en.wikipedia.org/wiki/Cron">crontab</a></h3>
+<p>Editing the <a href="http://en.wikipedia.org/wiki/Cron">crontab</a> is really easy:</p>
+<p>Just run</p>
+<pre><code>crontab -e</code></pre>
+<p>And add the following line to the upcoming document, and save it.</p>
+<pre><code>0 0 * * * /userprofile/BACKUPS/backups/backup.sh > /userprofile/cronout.txt 2>&amp;1</code></pre>
+<blockquote>
+<p><strong>Hint</strong>: Remember to leave an empty line at the end of the file.</p>
+</blockquote>
+<p>This will create a <a href="http://en.wikipedia.org/wiki/Cron">crontab</a> entry and schedule our backup script to run at every midnight. </p>
+<p>And in case anything goes wrong, the output of the last run will be saved to <strong>/userprofile/cronout.txt</strong>.</p>
+<h3>Conclusion</h3>
+<p>We have created a reliable backup solution in less than five minutes!</p>
+<p>It’s really easy to keep versioned backups of your important files at <strong><a href="https://github.com/">GitHub</a></strong>. </p>
+<p>More important than that, <strong><a href="https://github.com/">GitHub</a></strong> allows you to have great web interface where you can do full-text search,  diff your data and your files.</p>
+<p>And best of it; you won’t need to pay for a full-blown backup server.</p>
+<p>Enjoy!<br>
+And please share if you have other backup solutions that you use;<br>
+I’d love to hear about them.</p>
+
+  <blockquote>
+    Do you have something to say? Have I missed anything?<br>
+    Send your comments and suggestions to <a href="mailto:volkan@o2js.com">volkan@o2js.com</a>.
+  </blockquote>
+  <div class="byline">
+    by <a href="http://volkan.io/">Volkan Özçelik</a> on 02.26.14
+  </div>
+</div>
+
+
+
+
+
+<div class="menu right">
+  <a href="/hack-the-world-like-you-never-did-before" class="btn btn-grey ">&laquo; older post</a>
+  <a href="/see-how-easily-you-can-create-a-promise" class="btn btn-grey ">newer post &raquo;</a>
+</div>
+
+
+
+    </div>
+    <header class="aboutme">
+        <div class="legend">
+            <h1><a href="http://volkan.io/">Volkan Özçelik</a></h1>
+
+            <p><strong>Chase Me</strong></p>
+            <ul>
+            <li>Mobile Front-End Engineer @ <a href="http://jivesoftware.com/">Jive</a></li>
+            <li><a href="https://twitter.com/linkibol">@linkibol</a></li>
+            <li><a href="https://github.com/v0lkan">github.com/v0lkan</a></li>
+            <li><a href="https://speakerdeck.com/volkan">speakerdeck.com/volkan</a></li>
+            <li><a href="https://linkedin.com/in/volkanozcelik">linkedin.com/in/volkanozcelik</a></li>
+            </ul>
+
+            <p><strong>o2.js</strong></p>
+
+            <ul>
+            <li><a href="https://github.com/v0lkan/o2.js/tree/dev">Read the Source, Luke</a></li>
+            </ul>
+        </div>
+        <p class="interviewz">
+            Psttt&hellip;
+            Wanna ace that job interview?<br>
+            Then you have some reading to do:<br>
+            <a style="text-align:center;display:block;margin-top:1em"
+            href="http://o2js.com/interview-questions"
+            title="JavaScript Interview Questions">»» Get the Only Reference
+            on <strong>JavaScript Engineering Interviews</strong>
+            You Will <em>Ever</em> Need, Now!
+            ««</a>
+        </p>
+    </header>
+</body>
+</html>

@@ -36,20 +36,21 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* [Hello Node.JS Blogging World](http://o2js.com/hello-node-js-blogging-world)
 	* [The Setup](http://o2js.com/the-setup)
 	* [Make Your Server Ironman-Secure in Less Than Five Minutes](http://o2js.com/make-your-server-ironman-secure-in-less-than-five-minutes)
+	* [Poor Man’s Server Backup Solution](http://o2js.com/poor-mans-server-backup-solution)
 
 * **Practical JavaScript** (*time to bring the theory into practice*)
 	* [Let's Make a **JavaScript** Framework Boilerplate](http://o2js.com/lets-make-a-javascript-framework-boilerplate)
-	* [An All-in-One Guide to Writing Efficient JavaScript](http://o2js.com/an-all-in-one-guide-to-writing-efficient-javascript)
-	* A Library Maker's Guide to JavaScript
-	* How to Document a JavaScript Framework
-	* Creating A Mobile JavaScript Chat
+	* [An All-in-One Guide to Writing Efficient **JavaScript**](http://o2js.com/an-all-in-one-guide-to-writing-efficient-javascript)
+	* A Library Maker's Guide to **JavaScript**
+	* How to Document a **JavaScript** Framework
+	* Creating A Mobile **JavaScript** Chat
 	* How to Refactor a Mess into an Organized Web Application
-	* JavaScript Widget Development Best Practices
+	* **JavaScript** Widget Development Best Practices
 	* That's Why I'm Loving <strike>JSLint</strike> JSHint!
-	* Unit Testing with JavaScript
+	* Unit Testing with **JavaScript**
 	* How Unit Testing Helped Me Slash a Nasty Bug
 * **Discussion** (*somewhat controversial and opinionated topics*)
-	* Think You Know JavaScript? ... You Don't. 
+	* Think You Know **JavaScript**? ... You Don't. 
 	* Resistance is Futile
 	
 * **Productivity** (*on getting stuff done*)
@@ -65,32 +66,38 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* Now you can Ace that Interview Like a Samurai and Land Your Dream Job
 
 * **JavaScript Fundamentals** (*the building blocks*)
-	* The JavaScript Module Pattern
-	* Variables, Scopes, and Hoisting in JavaScript
-	* JavaScript Objects
-	* Functions and Closures in JavaScript
+	* The **JavaScript** Module Pattern
+	* Variables, Scopes, and Hoisting in **JavaScript**
+	* **JavaScript** Objects
+	* Functions and Closures in **JavaScript**
 	* to Equal or not to Equal, That's the Problem!
 	* undefined is null or not an object ;)
-	* JavaScript Method Kung-Fu
+	* **JavaScript** Method Kung-Fu
 	* Listening to the DOM ready event
-	* Cross-Browser Event Handling in JavaScript
-	* Everything You Need To Know About JavaScript Functions (and more)
-	* Those Monads Have Gone Nuts!
+	* Cross-Browser Event Handling in **JavaScript**
+	* Everything You Need To Know About **JavaScript** Functions (and more)
 	* Show Love to the Strict Mode
 
 * **JavaScript Utilities** (*re-inventing the wheel can teach a lot!*)
-	* How to Create a Simple JavaScript Debugger
-	* A Simple JavaScript Validator
-	* Designing a JavaScript String Helper
+	* **JavaScript** Promises
+		* [See How Easily You Can Create a Promise](http://o2js.com/see-how-easily-you-can-create-a-promise)
+		* Promise Patterns and Best Practices
+		* Promise Antipatterns
+	* How to Create a Simple **JavaScript** Debugger
+	* A Simple **JavaScript** Validator
+	* Designing a **JavaScript** String Helper
 	* How to Build a Kick-Ass AJAX Object From Scratch
-	* Implementing a JavaScript AJAX Observer
-	* Cross-Domain AJAX Requests With JavaScript
+	* Implementing a **JavaScript** AJAX Observer
+	* Cross-Domain AJAX Requests With **JavaScript**
 	* JSONP with Timeout Using o2.js -- Quick Example
 
-* **JavaScript Patterns** (*patterns of JavaScript software architecture*)
+* **JavaScript Patterns** (*Patterns of JavaScript Software Architecture*)
 	* [Show Love to the requestAnimationFrame](http://o2js.com/show-love-to-requestanimationframe)
-	* Charlie's Chocolate Factory in JavaScript
-	* A Little Known Encapsulation Technique in JavaScript: Isolated Objects
+	* Charlie's Chocolate Factory in **JavaScript**
+	* A Little Known Encapsulation Technique in **JavaScript**: Isolated Objects
+
+* Borrowed from Haskell
+	* Those Monads Have Gone Nuts!
 
 * **JavaScript Events** (*hackathons, conferences, seminars…*)
 	* [Hack the World Like You Never Did Before](http://o2js.com/hack-the-world-like-you-never-did-before)
