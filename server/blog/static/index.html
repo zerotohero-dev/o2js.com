@@ -66,7 +66,7 @@
 </blockquote>
 <p>So what’s a <strong>Promise</strong>?</p>
 <blockquote>
-<p>A <strong>Promise</strong> is an object that represents the result of a <strong>future computation</strong>. The <code>then</code> method of the <strong>Promise</strong> defines a way to <strong>chain</strong> those computations, or <strong>nest</strong> two <strong>Promises</strong>, so that the ultimate and final fate of the inner <strong>Promise</strong>, once determined, cascades and affects the fate of the outer <strong>Promise</strong>. This allows the programmer to build <strong>pipelines</strong> that process asynchronous operations as if they were a synchronous series of events. The <strong>Promise</strong> is <strong>decorated</strong> with additional <strong>processing rules</strong> provided by the <a href="http://promises-aplus.github.io/promises-spec/">Promises A+ Spec</a>.</p>
+<p>A <strong>Promise</strong> is an object that represents the result of a <strong>future computation</strong>. The <code>then(onFulfilled, onRejected)</code> method of the <strong>Promise</strong> defines a way to <strong>chain</strong> those computations, or <strong>nest</strong> two <strong>Promises</strong>, so that the ultimate and final fate of the inner <strong>Promise</strong>, once determined, cascades and affects the fate of the outer <strong>Promise</strong>. This allows the programmer to build <strong>pipelines</strong> that process asynchronous operations as if they were a synchronous series of events. The <strong>Promise</strong> is <strong>decorated</strong> with additional <strong>processing rules</strong> provided by the <a href="http://promises-aplus.github.io/promises-spec/">Promises A+ Spec</a>.</p>
 </blockquote>
 <p>See the similarity?</p>
 <p>Moreover, the fact that <a href="http://hackage.haskell.org/package/monad-par-0.3/docs/Control-Monad-Par.html">there are Monad constructs that act like a <strong>Promise</strong></a> also supports <a href="https://www.youtube.com/watch?v=dkZFtimgAcM">Douglas Crockford’s discussion</a> that a <strong>Promise</strong> is, in deed, a <strong><a href="http://en.wikipedia.org/wiki/Monad_(functional_programming)">Monad</a></strong>.</p>
@@ -840,5 +840,8 @@ o2js.com: A coherent solution to your JavaScript dilemma!</code></pre>
             ««</a>
         </p>
     </header>
+    
+    <script type="text/javascript" src="//use.typekit.net/mkv3paq.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </body>
 </html>

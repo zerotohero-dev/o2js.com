@@ -50,7 +50,7 @@ Here is the [wikipedia definition of a **Monad**][monad]:
 
 So what’s a **Promise**?
 
-> A **Promise** is an object that represents the result of a **future computation**. The `then` method of the **Promise** defines a way to **chain** those computations, or **nest** two **Promises**, so that the ultimate and final fate of the inner **Promise**, once determined, cascades and affects the fate of the outer **Promise**. This allows the programmer to build **pipelines** that process asynchronous operations as if they were a synchronous series of events. The **Promise** is **decorated** with additional **processing rules** provided by the [Promises A+ Spec][spec].
+> A **Promise** is an object that represents the result of a **future computation**. The `then(onFulfilled, onRejected)` method of the **Promise** defines a way to **chain** those computations, or **nest** two **Promises**, so that the ultimate and final fate of the inner **Promise**, once determined, cascades and affects the fate of the outer **Promise**. This allows the programmer to build **pipelines** that process asynchronous operations as if they were a synchronous series of events. The **Promise** is **decorated** with additional **processing rules** provided by the [Promises A+ Spec][spec].
 
 See the similarity?
 

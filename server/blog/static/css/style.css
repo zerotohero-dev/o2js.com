@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 45px;
   line-height: 72px;
 }
 
@@ -28,6 +28,45 @@ h2 {
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
    color: #071410 !important;
+}
+
+.wf-active body {
+    font-family: adelle, serif;
+}
+
+.wf-active pre code {
+    font-size: 14px;
+    background: #fafafa;
+    font-family: ubuntu-mono, Menlo, Monaco, "Courier New", Courier, Mono;
+}
+
+.wf-active code {
+    background: #ffffcc;
+    font-size: 15px;
+    font-family: ubuntu-mono, Menlo, Monaco, "Courier New", Courier, Mono;
+}
+
+.wf-active h2 {
+    font-size: 30px;
+}
+
+.wf-active h2, .wf-active h3, .wf-active  h4, .wf-active h5, .wf-active h6 {
+    font-family: adelle, serif;
+    font-weight: bold;
+}
+
+.wf-active h3 strong, .wf-active h4 strong, .wf-active h5 strong, .wf-active h6 strong {
+    text-decoration: underline;
+}
+
+.wf-active h3, .wf-active h4, .wf-active h5, .wf-active h6 {
+    padding-top: 0.75em;
+    font-family: adelle, serif;
+    border-bottom: 1px #ccc solid;
+}
+
+.wf-active pre code:hover {
+    background-color: #fff !important;
 }
 
 .container h3, .container h4, .container h5, .container h6 {
@@ -41,11 +80,6 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 .container h2 {
     text-align: center;
-}
-
-.container h3 strong, .container h4 strong, .container h5 strong, .container h6 strong {
-    font-style: normal; 
-    background: #FFc;
 }
 
 .container h3 a, .container h4 a, .container h5 a, .container h6 a {
@@ -171,7 +205,7 @@ blockquote p {
 }
 
 li {
-  font-size: 18px;
+  font-size: 17px;
   line-height: 28px;
 }
 
