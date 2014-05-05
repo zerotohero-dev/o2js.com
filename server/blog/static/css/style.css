@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 45px;
+  font-size: 42px;
   line-height: 72px;
 }
 
@@ -50,7 +50,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     font-size: 30px;
 }
 
-.wf-active h2, .wf-active h3, .wf-active  h4, .wf-active h5, .wf-active h6 {
+.wf-active h1, .wf-active h2, .wf-active h3, .wf-active  h4, .wf-active h5, .wf-active h6 {
     font-family: adelle, serif;
     font-weight: bold;
 }
@@ -59,14 +59,19 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
     text-decoration: underline;
 }
 
-.wf-active h3, .wf-active h4, .wf-active h5, .wf-active h6 {
+.wf-active .container h3, .wf-active .container h4, .wf-active .container h5, .wf-active .container  h6 {
     padding-top: 0.75em;
     font-family: adelle, serif;
     border-bottom: 1px #ccc solid;
+    background: none;
 }
 
 .wf-active pre code:hover {
     background-color: #fff !important;
+}
+
+.wf-active neh1 {
+    font-size: 42px;
 }
 
 .container h3, .container h4, .container h5, .container h6 {

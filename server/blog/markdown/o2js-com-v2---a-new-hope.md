@@ -101,6 +101,7 @@ I also will be writing new articles too, so it will take a while to copy, transf
 
 * **JavaScript Events** (*hackathons, conferences, seminars…*)
 	* [Hack the World Like You Never Did Before](http://o2js.com/hack-the-world-like-you-never-did-before)
+	* [The Secrets of High Performance Mobile **JavaScript** Applications](http://o2js.com/the-secrets-of-high-performance-mobile-javascript-applications)
 
 That's all for now **;)**.
 

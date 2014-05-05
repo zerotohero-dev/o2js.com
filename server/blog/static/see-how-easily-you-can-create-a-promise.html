@@ -22,7 +22,7 @@
         ga('send', 'pageview');
     </script>
 </head>
-<body class="posts">
+<body class="posts" style="background:url(http://bg.o2js.com/)">
     <div class="container">
         <p>Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" alt="index" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
 
@@ -88,7 +88,7 @@
 <p>As per the specification, <a href="http://promises-aplus.github.io/promises-spec/">a <strong>Promise</strong> is nothing but an <strong>Object</strong> with a <strong>then</strong> method</a>. </p>
 <p>At any time a promise can be either <strong>PENDING</strong>, or <strong>FULFILLED</strong>, or <strong>REJECTED</strong>. </p>
 <p>When the promise is constructed, its initial state is <strong>PENDING</strong>.</p>
-<p>The <code>then</code> method of the promise takes two arguments: <strong>onFulfilled</strong>, and <strong>onRejected</strong>. Both of these arguments are <strong>optional</strong>. These arguments are the delegates that will be executed when the promise transitions to a non-<strong>PENDING</strong> state.</p>
+<p>The <strong>then</strong> method of the promise takes two arguments: <strong>onFulfilled</strong>, and <strong>onRejected</strong>. Both of these arguments are <strong>optional</strong>. These arguments are the delegates that will be executed when the promise transitions to a non-<strong>PENDING</strong> state.</p>
 <p>Here is an initial implementation, to begin with:</p>
 <pre><code><span class="comment">// src/o2/then/promise/core.js</span>
 
@@ -156,7 +156,7 @@ module.exports = Promise;</code></pre>
 </blockquote>
 <p>At least it’s good to know that this “moving privates to their own module” approach gives us the <strong>freedom</strong> to test the private parts, <strong>if/when</strong> we need to.</p>
 <h3>The <strong>Deferred</strong></h3>
-<p>For proper <a href="http://en.wikipedia.org/wiki/Separation_of_concerns">separation of concerns</a>, a <strong>Promise</strong> should not be able to fulfill itself (<em>i.e., the user of a promise should not have any control over the promise’s state transition</em>).</p>
+<p>For proper <a href="http://en.wikipedia.org/wiki/Separation_of_concerns">separation of concerns</a>, a <strong>Promise</strong> should not be able to fulfill itself (<em>i.e., the user of a <strong>Promise</strong> should not have any control over the <strong>Promise</strong>’s state transition</em>).</p>
 <p>One way to do this is to create a <strong>Deferred</strong> object that exports a <strong>Promise</strong> interface.</p>
 <blockquote>
 <p>The <strong>Deferred</strong> will export a <strong>promise</strong> interface which is a <strong>Promise</strong>. The <strong>Deferred</strong> will have methods to <strong>resolve</strong> and <strong>reject</strong> the <strong>Promise</strong> that it manages, whereas the <strong>promise</strong> interface it exports won’t publicly have those methods.</p>
@@ -219,15 +219,14 @@ exports.REJECTED = -<span class="number">1</span>;</code></pre>
 <ul>
 <li><strong>state</strong> is the current state of the <strong>Deferred</strong>; </li>
 <li><strong>outcome</strong> is its value when the <strong>Promise</strong> it manages gets fulfilled; </li>
-<li><strong>futures</strong> is basically a <a href="http://en.wikipedia.org/wiki/Queue_(abstract_data_type)">queue</a> that’s populated when <a href="http://promises-aplus.github.io/promises-spec/#point-36"><code>then</code> is called multiple times on the <strong>promise</strong></a>. </li>
+<li><strong>futures</strong> is basically a <a href="http://en.wikipedia.org/wiki/Queue_(abstract_data_type)">queue</a> that’s populated when <a href="http://promises-aplus.github.io/promises-spec/#point-36"><strong>then</strong> is called multiple times on the <strong>promise</strong></a>. </li>
 <li><strong>promise</strong> is the <strong>Promise</strong> interface that the <strong>Deferred</strong> exposes to the world.</li>
 </ul>
 <blockquote>
 <p><strong>Aside</strong>:</p>
 <p>Here, we are injecting the <strong>Deferred</strong> object as a <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency</a> into the <strong>Promise</strong> constructor.</p>
 <p>Should you want looser coupling between the <strong>Promise</strong> and its owner <strong>Deferred</strong>, you could choose a <a href="http://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern">PubSub implementation</a> instead.</p>
-<p>In this article, we will use dependency injection, because it’s easier to follow. </p>
-<p>There’s no need to introduce an additional level of abstraction to an already-convoluted concept.</p>
+<p>In this article, we will continue using the <a href="http://en.wikipedia.org/wiki/Dependency_injection">dependency injection</a> approach because it’s easier to follow. Besides, there’s no need to introduce an additional level of abstraction to an already-convoluted concept.</p>
 </blockquote>
 <h3>“Resolving” and “Rejecting” a <strong>Deferred</strong></h3>
 <p>The resolution of the <strong>Deferred</strong> is done by two methods. Namely, <strong>resolve</strong>, and <strong>reject</strong>:</p>
@@ -594,6 +593,38 @@ exports.getState = <span class="keyword">function</span>(promise) {
 <p>Here’s how these methods look like:</p>
 <pre><code><span class="comment">/**
  *<span class="phpdoc"> @param</span> promise
+ *<span class="phpdoc"> @param</span> onFulfilled
+ *<span class="phpdoc"> @param</span> onRejected
+ */</span>
+exports.enqueue = <span class="keyword">function</span>(promise, onFulfilled, onRejected) {
+    <span class="keyword">var</span> newDeferred = <span class="keyword">new</span> promise.Deferred();
+
+    enqueue(promise, <span class="keyword">new</span> Future(newDeferred, onFulfilled, onRejected));
+
+    <span class="keyword">return</span> newDeferred.promise;
+};
+
+<span class="comment">/**
+ *<span class="phpdoc"> @param</span> promise
+ *<span class="phpdoc"> @param</span> onFulfilled
+ *<span class="phpdoc"> @param</span> onRejected
+ */</span>
+exports.handleNext = <span class="keyword">function</span>(promise, onFulfilled, onRejected) {
+    <span class="keyword">var</span> newDeferred = <span class="keyword">new</span> promise.Deferred();
+
+    handleNext(promise, <span class="keyword">new</span> Future(newDeferred, onFulfilled, onRejected));
+
+    <span class="keyword">return</span> newDeferred.promise;
+};</code></pre>
+<p>Let&#39;s outline what we&#39;ve done above:</p>
+<ul>
+<li><strong>enqueue</strong> and <strong>handleNext</strong> return new <strong>Promise</strong> objects (<em>we will come to that soon</em>);</li>
+<li>At each method we create a new <strong>Future</strong> that manages the fate of the new <strong>Deferred</strong> that is the owner of the <strong>Promise</strong> to be returned (<em>note that we return <code>newDeferred.promise</code></em>).</li>
+<li>And each method delegate the overall processing to private <code>handleNext(promise, future)</code> and <code>enqueue(promise, future)</code> methods.</li>
+</ul>
+<p>And here are <code>handleNext(promise, future)</code> and <code>enqueue(promise, future)</code> methods, for reference:</p>
+<pre><code><span class="comment">/**
+ *<span class="phpdoc"> @param</span> promise
  *<span class="phpdoc"> @param</span> future
  */</span>
 exports.enqueue = <span class="keyword">function</span>(promise, future) {
@@ -803,7 +834,7 @@ o2js.com: A coherent solution to your JavaScript dilemma!</code></pre>
 
 <div class="menu right">
   <a href="/poor-mans-server-backup-solution" class="btn btn-grey ">&laquo; older post</a>
-  <a href="javascript://" class="btn btn-grey btn-disabled">newer post &raquo;</a>
+  <a href="/the-secrets-of-high-performance-mobile-javascript-applications" class="btn btn-grey ">newer post &raquo;</a>
 </div>
 
 

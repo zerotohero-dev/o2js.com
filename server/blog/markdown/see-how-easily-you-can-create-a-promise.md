@@ -91,7 +91,7 @@ At any time a promise can be either **PENDING**, or **FULFILLED**, or **REJECTED
 
 When the promise is constructed, its initial state is **PENDING**.
 
-The `then` method of the promise takes two arguments: **onFulfilled**, and **onRejected**. Both of these arguments are **optional**. These arguments are the delegates that will be executed when the promise transitions to a non-**PENDING** state.
+The **then** method of the promise takes two arguments: **onFulfilled**, and **onRejected**. Both of these arguments are **optional**. These arguments are the delegates that will be executed when the promise transitions to a non-**PENDING** state.
 
 Here is an initial implementation, to begin with:
 
@@ -179,7 +179,7 @@ At least it’s good to know that this “moving privates to their own module”
 
 ### The **Deferred**
 
-For proper [separation of concerns][soc], a **Promise** should not be able to fulfill itself (*i.e., the user of a promise should not have any control over the promise’s state transition*).
+For proper [separation of concerns][soc], a **Promise** should not be able to fulfill itself (*i.e., the user of a **Promise** should not have any control over the **Promise**’s state transition*).
 
 One way to do this is to create a **Deferred** object that exports a **Promise** interface.
 
@@ -257,7 +257,7 @@ Where…
 
 * **state** is the current state of the **Deferred**; 
 * **outcome** is its value when the **Promise** it manages gets fulfilled; 
-* **futures** is basically a [queue][queue] that’s populated when [`then` is called multiple times on the **promise**][spec-36]. 
+* **futures** is basically a [queue][queue] that’s populated when [**then** is called multiple times on the **promise**][spec-36]. 
 * **promise** is the **Promise** interface that the **Deferred** exposes to the world.
 
 > **Aside**:
@@ -266,9 +266,7 @@ Where…
 > 
 > Should you want looser coupling between the **Promise** and its owner **Deferred**, you could choose a [PubSub implementation][pubsub] instead.
 > 
-> In this article, we will use dependency injection, because it’s easier to follow. 
-> 
-> There’s no need to introduce an additional level of abstraction to an already-convoluted concept.
+> In this article, we will continue using the [dependency injection][di] approach because it’s easier to follow. Besides, there’s no need to introduce an additional level of abstraction to an already-convoluted concept.
 
 [queue]: http://en.wikipedia.org/wiki/Queue_(abstract_data_type)
 [soc]: http://en.wikipedia.org/wiki/Separation_of_concerns
@@ -731,6 +729,42 @@ exports.getState = function(promise) {
 **enqueue**, and **handleNext** methods should also return **Promises**, because [the spec states that the **then** method of a **Promise** must always return a *new* **Promise**][spec-39].
 
 Here’s how these methods look like:
+
+~~~
+/**
+ * @param promise
+ * @param onFulfilled
+ * @param onRejected
+ */
+exports.enqueue = function(promise, onFulfilled, onRejected) {
+    var newDeferred = new promise.Deferred();
+
+    enqueue(promise, new Future(newDeferred, onFulfilled, onRejected));
+
+    return newDeferred.promise;
+};
+
+/**
+ * @param promise
+ * @param onFulfilled
+ * @param onRejected
+ */
+exports.handleNext = function(promise, onFulfilled, onRejected) {
+    var newDeferred = new promise.Deferred();
+
+    handleNext(promise, new Future(newDeferred, onFulfilled, onRejected));
+
+    return newDeferred.promise;
+};
+~~~
+
+Let's outline what we've done above:
+
+* **enqueue** and **handleNext** return new **Promise** objects (*we will come to that soon*);
+* At each method we create a new **Future** that manages the fate of the new **Deferred** that is the owner of the **Promise** to be returned (*note that we return `newDeferred.promise`*).
+* And each method delegate the overall processing to private `handleNext(promise, future)` and `enqueue(promise, future)` methods.
+
+And here are `handleNext(promise, future)` and `enqueue(promise, future)` methods, for reference:
 
 ~~~
 /**
