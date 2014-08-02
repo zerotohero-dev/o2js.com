@@ -16,6 +16,35 @@ h1, h2, h3, h4, h5, h6 {
   color: #071410;
 }
 
+table {
+    margin: 1em;
+    background: #dedede;
+}
+
+td, th {
+    border-top: 1px #ccc solid;
+    border-right: 1px #ccc solid;
+}
+
+td {
+    padding: 1em;
+}
+
+td:hover, th:hover {
+    background: #fff;
+}
+
+tr td:last-child, tr th:last-child {
+}
+
+tr td:first-child, tr th:first-child {
+    border-left: 1px #ccc solid;
+}
+
+tr:last-child td {
+    border-bottom: 1px #ccc solid;
+}
+ 
 h1 {
   font-size: 42px;
   line-height: 72px;

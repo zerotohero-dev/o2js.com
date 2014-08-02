@@ -57,7 +57,7 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* [\#JFDI : Getting $\#!% Done, Hacker Style](http://o2js.com/jfdi-a-hackers-way-to-get-stuff-done)
 	* [Procrastiworking](http://o2js.com/procrastiworking)
 
-* **Sublime Text** (*I love it! You should love it too*)
+* **vim** (*I love it! You should love it too*)
 	* An Editor You Will Regret You Haven't Used Before (and Tips on Getting the Most out of it)
 
 * **JavaScript Interview Questions** (*it's not the questions that matter, it's how you approach them*)
@@ -83,6 +83,7 @@ I also will be writing new articles too, so it will take a while to copy, transf
 		* [See How Easily You Can Create a Promise](http://o2js.com/see-how-easily-you-can-create-a-promise)
 		* Promise Patterns and Best Practices
 		* Promise Antipatterns
+	* [A Little-Known Secret of the Console](http://o2js.com:8000/a-little-known-secret-of-the-console)
 	* How to Create a Simple **JavaScript** Debugger
 	* A Simple **JavaScript** Validator
 	* Designing a **JavaScript** String Helper

@@ -1,0 +1,80 @@
+<html>
+<head>
+    <style>
+        body {font-size:3em;}
+    </style>
+</head>
+<body contenteditable>
+<h2>Hello world.</h2>
+<p> <strong>bold</strong> <i>italic</i> <u>underlined</u> <b><i><u>combo</u></i></b></p>
+<p><img src="http://asia.olympus-imaging.com/products/dslr/e420/sample/images/sample_02.jpg" width="30" height="30"> dufus!</p>
+<p>Hello stars.</p>
+<p>Hello universe.</p>
+<ul>
+<li>lorem
+    <ul>
+    <li>ipsum</li>
+    </li>
+<li>sit</li>
+<li>amet</li>
+</ul>
+<p>asdfsa</p>
+<script>
+    function formatDoc(sCmd, sValue) {
+        document.execCommand(sCmd, false, sValue); 
+    }
+
+    document.addEventListener('keyup', function(evt) {
+        //evt.preventDefault();
+        document.getElementsByTagName('h2')[0].innerHTML = evt.keyCode;        
+
+        //return false;
+    });
+
+    document.addEventListener('keydown', function(evt) {
+        //evt.preventDefault();
+   
+        if (evt.keyCode === 32) {
+            evt.preventDefault();
+
+            var sel = window.getSelection();
+
+            var range = sel.getRangeAt(0);
+
+            range.insertNode(document.createTextNode('....'));
+
+            formatDoc('bold');
+
+            return false;
+        }     
+
+        //return false;
+    });
+    
+    document.addEventListener('keypress', function(evt) {
+        //evt.preventDefault();
+        
+        //return false;
+    });
+
+    document.body.addEventListener('keyup', function(evt) {
+        //evt.preventDefault();
+
+        //return false;
+    });
+
+    document.body.addEventListener('keydown', function(evt) {
+        //evt.preventDefault();
+
+        //return false;
+    });
+    
+    document.body.addEventListener('keypress', function(evt) {
+        //evt.preventDefault();
+
+        //return false;
+    });
+
+</script>
+</body>
+</html>
