@@ -114,7 +114,7 @@ console.log(data);
 console.log('wrote %d bytes in %dms', data.length, Date.now() - start);
 ~~~
 
-The output would be something like
+The output would be something like:
 
 ~~~
 ... a lot of "."s ... 
@@ -200,7 +200,7 @@ Total processing time: 2081ms.
 
 Same result, just a little slower.
 
-On a unix-like system, no matter what you do (i.e., `tee` the standard output to a file, run node.js as a Daemon using [forever.js][forever], or using `nohup` etc; the console.log will be [blocking the program flow for a while][blocking].)
+On a unix-like system, no matter what you do (*i.e., `tee` the standard output to a file, run node.js as a Daemon using [forever.js][forever], or using `nohup` etc*); the console.log will be [blocking the program flow for a while][blocking].
 
 For a final stab at it, let’s modify the code a little, and do the same test using [Winston][winston] file logger:
 
@@ -253,7 +253,7 @@ exited
 Total processing time: 3617ms.
 ~~~
 
-It looks like using [Winston][winston], increases the total processing time (i.e., `nohup` approach takes ~1sec, [forever][forever] takes ~2sec, and [Winston][winston] takes ~4sec with the same scenario; however, when we look at the differences in the timestamps, it’s clearly visible that [Winston][winston] does async logging, and that’s a good thing. 
+It looks like using [Winston][winston], increases the total processing time (*i.e., `nohup` approach takes ~1sec, [forever][forever] takes ~2sec, and [Winston][winston] takes ~4sec with the same scenario*); however, when we look at the differences in the timestamps, it’s clearly visible that [Winston][winston] does async logging, and that’s a good thing. 
 
 [nohup]: http://en.wikipedia.org/wiki/Nohup
 [forever]: https://github.com/nodejitsu/forever
@@ -533,11 +533,44 @@ All the code that we’ve discussed so far (*and some more*) can be found [in th
 
 Let’s create a comparison matrix, of all the approaches we’ve used so far:
 
-|                       | console (TTY) | console (nohup) | forever | Winston |  **o2.debug** |
-|-----------------------|---------------|-----------------|---------|---------|---------------|
-| **initial blocking time** | 16,532ms      | 1,107ms         | 2,703ms  | 1,742ms   | 345ms         |
-| **total processing time** | 16,538ms      | 1,109ms         | 2,715ms   | 3,617ms   | 923ms         |
-| **is it async?**                | FALSE         | FALSE           | FALSE   | TRUE    | TRUE          |
+<table>
+<thead>
+<tr>
+<th></th>
+<th>console (TTY)</th>
+<th>console (nohup)</th>
+<th>forever</th>
+<th>Winston</th>
+<th style="background:#fafaaa"><strong>o2.debug</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>initial blocking time</strong></td>
+<td>16,532ms</td>
+<td>1,107ms</td>
+<td>2,703ms</td>
+<td>1,742ms</td>
+<td style="background:#fafaaa">345ms</td>
+</tr>
+<tr>
+<td><strong>total processing time</strong></td>
+<td>16,538ms</td>
+<td>1,109ms</td>
+<td>2,715ms</td>
+<td>3,617ms</td>
+<td style="background:#fafaaa">923ms</td>
+</tr>
+<tr>
+<td><strong>is it async?</strong></td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>FALSE</td>
+<td>TRUE</td>
+<td style="background:#fafaaa">TRUE</td>
+</tr>
+</tbody>
+</table>
 
 > It appears that **o2.debug** is **an order of magnitude** better in terms of **blocking time**. 
 

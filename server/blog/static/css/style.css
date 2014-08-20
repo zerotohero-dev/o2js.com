@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
 
 table {
     margin: 1em;
-    background: #dedede;
+    background: #fafafa;
 }
 
 td, th {
@@ -31,7 +31,7 @@ td {
 }
 
 td:hover, th:hover {
-    background: #fff;
+    background: #fff !important;
 }
 
 tr td:last-child, tr th:last-child {
