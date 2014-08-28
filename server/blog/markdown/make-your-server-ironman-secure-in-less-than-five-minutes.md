@@ -234,7 +234,7 @@ Now, grant access to the ports that you need:
 [root@myserver:~]$ iptables -A INPUT -p tcp --dport 8000 -j ACCEPT
 ~~~
 
-(*22 is SSL, 80 is HTTP, 443 is HTTPS, and 8000 is my blog publish port*)
+(*22 is **SSH**, 80 is **HTTP**, 443 is **HTTPS**, and 8000 is my blog publish port*)
 
 You might also want to allow all outbound traffic:
 

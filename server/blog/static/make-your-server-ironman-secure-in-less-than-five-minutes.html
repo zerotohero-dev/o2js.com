@@ -176,7 +176,7 @@ enter:</p>
 [root@myserver:~]$ iptables -A INPUT -p tcp --dport 80 -j ACCEPT
 [root@myserver:~]$ iptables -A INPUT -p tcp --dport 443 -j ACCEPT
 [root@myserver:~]$ iptables -A INPUT -p tcp --dport 8000 -j ACCEPT</code></pre>
-<p>(<em>22 is SSL, 80 is HTTP, 443 is HTTPS, and 8000 is my blog publish port</em>)</p>
+<p>(<em>22 is <strong>SSH</strong>, 80 is <strong>HTTP</strong>, 443 is <strong>HTTPS</strong>, and 8000 is my blog publish port</em>)</p>
 <p>You might also want to allow all outbound traffic:</p>
 <pre><code>[root@myserver:~]$ iptables -A OUTPUT -j ACCEPT</code></pre>
 <p>And optionally allow ping:</p>
