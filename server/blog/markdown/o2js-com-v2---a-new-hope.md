@@ -41,6 +41,7 @@ I also will be writing new articles too, so it will take a while to copy, transf
 * **Practical JavaScript** (*time to bring the theory into practice*)
 	* [Let's Make a **JavaScript** Framework Boilerplate](http://o2js.com/lets-make-a-javascript-framework-boilerplate)
 	* [An All-in-One Guide to Writing Efficient **JavaScript**](http://o2js.com/an-all-in-one-guide-to-writing-efficient-javascript)
+	* [Here’s a Smart Way to Untangle Your Dependencies](http://o2js.com/heres-a-smart-way-to-untangle-your-dependencies)
 	* A Library Maker's Guide to **JavaScript**
 	* How to Document a **JavaScript** Framework
 	* Creating A Mobile **JavaScript** Chat
@@ -50,7 +51,7 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* Unit Testing with **JavaScript**
 	* How Unit Testing Helped Me Slash a Nasty Bug
 * **Discussion** (*somewhat controversial and opinionated topics*)
-	* Think You Know **JavaScript**? ... You Don't. 
+	* Think You Know **JavaScript**? ... You Don’t. 
 	* Resistance is Futile
 	
 * **Productivity** (*on getting stuff done*)

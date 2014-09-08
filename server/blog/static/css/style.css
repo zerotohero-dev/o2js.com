@@ -7,11 +7,11 @@ body {
   background: #fafafa;
   color: #333333;
   font-size: 16px;
-  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-family: "Georgia Pro", "Book Antiqua", Palatino, serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: "Georgia Pro", Times, serif;
   font-weight: normal;
   color: #071410;
 }
@@ -46,7 +46,7 @@ tr:last-child td {
 }
  
 h1 {
-  font-size: 42px;
+  font-size: 40px;
   line-height: 72px;
 }
 
@@ -60,19 +60,19 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 }
 
 .wf-active body {
-    font-family: adelle, serif;
+    font-family: "Georgia Pro", serif;
 }
 
 .wf-active pre code {
-    font-size: 14px;
+    font-size: 12px;
     background: #fafafa;
-    font-family: ubuntu-mono, Menlo, Monaco, "Courier New", Courier, Mono;
+    font-family: "Input Mono Cond", ubuntu-mono, Menlo, Monaco, "Courier New", Courier, Mono;
 }
 
 .wf-active code {
     background: #ffffcc;
-    font-size: 15px;
-    font-family: ubuntu-mono, Menlo, Monaco, "Courier New", Courier, Mono;
+    font-size: 14px;
+    font-family: "Input Mono Cond", ubuntu-mono, Menlo, Monaco, "Courier New", Courier, Mono;
 }
 
 .wf-active h2 {
@@ -80,7 +80,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 }
 
 .wf-active h1, .wf-active h2, .wf-active h3, .wf-active  h4, .wf-active h5, .wf-active h6 {
-    font-family: adelle, serif;
+    font-family:  "Georgia Pro", serif;
     font-weight: bold;
 }
 
@@ -89,24 +89,71 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 }
 
 .wf-active .container h3, .wf-active .container h4, .wf-active .container h5, .wf-active .container  h6 {
-    padding-top: 0.75em;
-    font-family: adelle, serif;
-    border-bottom: 1px #ccc solid;
+    padding-top: 0.85em;
+    font-family:  "MVB Calliope", "Georgia Pro", serif;
     background: none;
+    font-size: 36px;
 }
 
 .wf-active pre code:hover {
     background-color: #fff !important;
 }
 
-.wf-active neh1 {
-    font-size: 42px;
+pre, .interviewz, .legend ul {
+        webkit-transform: matrix(1, -0.015, 0, 1, 0, 0);
+        -o-transform: matrix(1, -0.085, 0, 1, 0, 0);
+        -moz-transform: matrix(1, -0.015, 0, 1, 0, 0);
+        -ms-transform: matrix(1, -0.015, 0, 1, 0, 0);
+         transform: matrix(1, -0.015, 0, 1, 0, 0);
+
+-webkit-transition: -webkit-transform 0.7s ease-out, opacity 3.4s ease-out,position: 0.4 ease-out,-webkit-box-shadow 0.7s ease-out,background-color 3s ease-out;
+-moz-transition: -moz-transform 0.7s ease-out, opacity 3.4s ease-out,position: 0.4 ease-out,-moz-box-shadow 0.7s ease-out,background-color 3s ease-out;
+-ms-transition: -ms-transform 0.7s ease-out, opacity 3.4s ease-out,position: 0.4 ease-out,-ms-box-shadow 0.7s ease-out,background-color 3s ease-out;
+-o-transition: -o-transform 0.7s ease-out, opacity 3.4s ease-out,position: 0.4 ease-out,-o-box-shadow 0.7s ease-out,background-color 3s ease-out;
+transition: transform 0.3s ease-out,opacity 3.4s ease-out,box-shadow 0.5s ease-out,background-color 3s ease-out;
+
+
+
+-webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.36);
+-moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.36);
+-ms-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.36);
+-o-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.36);
+box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.36);
+
+}
+.legend ul {
+    padding: 2em;
+}
+
+pre:hover, .interviewz:hover, .legend ul:hover {
+        webkit-transform: matrix(1, 0, 0, 1, 0, 0);
+        -o-transform: matrix(1, 0, 0, 1, 0, 0);
+        -ms-transform: matrix(1, 0, 0, 1, 0, 0);
+        -moz-transform: matrix(1, 0, 0, 1, 0, 0);
+         transform: matrix(1, 0, 0, 1, 0, 0);
+
+background-color:#fff;
+
+-webkit-box-shadow: 5px 5px 3px 0px rgba(0,0,0,0.36);
+-moz-box-shadow: 5px 5px 3px 0px rgba(0,0,0,0.36);
+-ms-box-shadow: 5px 5px 3px 0px rgba(0,0,0,0.36);
+-o-box-shadow: 5px 5px 3px 0px rgba(0,0,0,0.36);
+box-shadow: 5px 5px 3px 0px rgba(0,0,0,0.36);
+
+
+border:1px #ccc solid;
+
+}
+
+
+.wf-active h1 {
+    font-family: "MVB Calliope";
+    font-size: 46px;
 }
 
 .container h3, .container h4, .container h5, .container h6 {
     padding-top: 0.5em;
     text-align: center;
-    border-top: 2px #ddd dashed;
 
     color: #071410 !important;
     background: #f9f9f9;
@@ -129,18 +176,21 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 h3 {
   font-size: 24px;
   line-height: 48px;
+  margin-bottom: 0;
 }
 
 h4 {
   font-size: 18px;
   font-style: italic;
   line-height: 36px;
+ margin-bottom:0;
 }
 
 h5, h6 {
   font-size: 16px;
   font-weight: bold;
   line-height: 28px;
+margin-bottom:0;
 }
 
 .posts h3, .posts h4, .posts h5 {
@@ -409,7 +459,7 @@ body {
 }
 
 .install input {
-  margin: 14px 0 42px 0 !important;
+  margin: 14px 0 40px 0 !important;
 }
 
 .menu {
@@ -712,7 +762,9 @@ body {
 }
 
 .container h2 {
-    margin-top: 27px
+    font-family: "MVB Calliope";
+    margin-top: 27px;
+    font-size: 40px;
 }
 
 .menu.right {
