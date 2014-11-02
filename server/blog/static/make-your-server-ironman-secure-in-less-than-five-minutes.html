@@ -2,15 +2,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
     <title>o2.js - A Coherent Solution to You JavaScript Dilemma | Make Your Server Ironman-Secure in Less Than Five Minutes </title>
+
+    <!--
+    		Dear source code reader,
+
+    		Thank you very much for diving in.
+
+    		You are either stealing a CSS transition effect, or a layout feature on this page [1],
+    		or you are someone interested in how I organize my markup [2].
+
+    		For [1]:
+    			Dude, go ahead use the code as if it's yours. I would appreciate if you
+    			send me a "thank you e-mail" (to me@volkan.io), so that we can get in touch with
+    			each other as two web professionals.
+
+    		For [2]:
+                 This is an ongoing "static blog" side project of mine.
+                 It is open source, and you can see it at: <https://github.com/v0lkan/o2js.com>
+                 Currently this blog's content and the generator code is intermingled.
+                 That is, it's not a turn key solution.
+
+                 I plan to make it a product, when I have time;
+                 and until then you'll have to muddle your way through.
+
+                Having said that, feel free to fork the code, and contribute to it if you like.
+
+    		The layout is kind-of responsive; meaning: I did not spend a hell lot of time to
+    		optimize the experience in mobile user agents. However the content is still readable,
+    		and looks adequately decent in mobile browsers.
+
+    		Oh and there's an option [3]: You are a decision-maker, or a rare breed of
+    		recruiter with technical knowledge, and curiosity, wanting to "read the source"
+    		before walking the talk. Well, then I am confident in my knowledge, skills, and
+    		abilities; and my friends consider me a cunning hacker, and a fast learner.
+
+        		I love hacking, and I love paying attention to seemingly invisible things.
+
+    		At any rate, if you are interested enough to read the source, then we definitely
+    		should touch base.
+
+    		Oh... For the standardistas out there:
+
+        		Last time I checked this document was valid HTML5 + ARIA + SVG 1.1 + MathML 2.0.
+
+    		However, since those standards change regularly, and there still is debate between
+    		organizations, and domain experts on things like how to semantically structure the
+    		document, whether we should use H1 tags all around, or show sympathy to screen readers
+    		and use H1..H6 tags as we had used before, etc...
+
+    		I mean, I might not be doing the right thing, and I would love to have your ideas,
+    		opinions, and suggestions about how to make this markup better.
+
+    		I, myself, am a performance freak, so I'd truly appreciate any suggestion about
+    		how to make this web page better, and faster.
+
+    		With respect,
+    		Volkan.
+    -->
 
     <meta name="description" content="o2js.com; a coherent solution to your JavaScript dilemma.">
     <meta name="author" content="Volkan Özçelik">
     <meta name="viewport" content="width=device-width" />
 
-<link href="//cloud.webtype.com/css/d916039f-5766-434b-a474-c8d731cfa12c.css" rel="stylesheet" type="text/css" />
+<link href="//cloud.webtype.com/css/7aac64b3-a02e-43cb-9465-10369d68dd33.css" rel="stylesheet" type="text/css" />
 
     <link href="css/style.css" rel="stylesheet" />
 
@@ -26,7 +83,7 @@
 </head>
 <body class="wf-active posts" style="background:url(http://bg.o2js.com/)">
     <div class="container">
-        <p>Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" alt="index" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
+        <p style="text-align:center">Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
 
         
 <h2 class="title span8"><a href="/make-your-server-ironman-secure-in-less-than-five-minutes">Make Your Server Ironman-Secure in Less Than Five Minutes</a></h2>
@@ -224,8 +281,13 @@ enter:</p>
 
 
 <div class="menu right">
-  <a href="/jfdi-a-hackers-way-to-get-stuff-done" class="btn btn-grey ">&laquo; older post</a>
-  <a href="/procrastiworking" class="btn btn-grey ">newer post &raquo;</a>
+    
+      <a href="jfdi-a-hackers-way-to-get-stuff-done" class="btn btn-grey">&laquo; older post</a>
+    
+
+    
+      <a href="procrastiworking" class="btn btn-grey">newer post &raquo;</a>
+    
 </div>
 
 
@@ -252,7 +314,7 @@ enter:</p>
         </div>
         <p class="interviewz">
             Psttt&hellip;
-            Wanna ace that job interview?<br>
+            Wanna ace that interview?<br>
             Then you have some reading to do:<br>
             <a style="text-align:center;display:block;margin-top:1em"
             href="http://o2js.com/interview-questions"
@@ -262,6 +324,60 @@ enter:</p>
             ««</a>
         </p>
     </header>
-    
+<script>
+    (function(window, document) {
+        'use strict';
+
+        var isScrolled = false,
+            isProcessed = false,
+
+            AD_SHOW_DELAY = 3000,
+            AD_SHOW_INIT_TOP_THRESHOLD = 50,
+            AD_CONTAINER_CLASS = 'interviewz',
+            AD_CONTAINER_HOVER_CLASS = 'interviewz hovered',
+
+            // A modern-ish RAF polyfill.
+            tick = window.requestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            window.oRequestAnimationFrame;
+
+            if (!tick) {return;}
+
+            window.addEventListener('scroll', function() {
+                isScrolled = true;
+            })
+
+            function loop() {
+                if (isProcessed) {return;}
+
+                tick(loop);
+
+                if (!isScrolled) {return;}
+
+                var top = Math.max(
+                    document.body.scrollTop,
+                    document.documentElement.scrollTop
+                );
+
+                if (top < AD_SHOW_INIT_TOP_THRESHOLD) {return;}
+
+                isProcessed = true;
+
+                setTimeout(function(){
+                    var container = document.getElementsByClassName(
+                        AD_CONTAINER_CLASS
+                    )[0];
+
+                    container.className = AD_CONTAINER_HOVER_CLASS;
+                }, AD_SHOW_DELAY);
+
+                window.onscroll = function(){};
+            }
+
+            loop();
+    }(this, this.document));
+</script>
 </body>
 </html>

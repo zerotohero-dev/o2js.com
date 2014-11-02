@@ -22,13 +22,17 @@
 <% if (typeof posts != 'undefined' && posts.length > 1) { %>
 <div class="menu right">
   <a href="/<%= formatSlug(posts[1].slug); %>" class="btn btn-grey">&laquo; older post</a>
-  <a href="javascript://" class="btn btn-grey btn-disabled">newer post &raquo;</a>
 </div>
 <% } %>
 
 <% if (typeof previous != 'undefined' || typeof next != 'undefined') { %>
 <div class="menu right">
-  <a href="<%= previous ? '/' + formatSlug(previous.slug) : 'javascript://'; %>" class="btn btn-grey <%= !previous ? 'btn-disabled' : '' %>">&laquo; older post</a>
-  <a href="<%= next ? '/' + formatSlug(next.slug) : 'javascript://'; %>" class="btn btn-grey <%= !next ? 'btn-disabled' : '' %>">newer post &raquo;</a>
+    <% if(previous) { %>
+      <a href="<%= formatSlug(previous.slug); %>" class="btn btn-grey">&laquo; older post</a>
+    <% } %>
+
+    <% if(next) { %>
+      <a href="<%= formatSlug(next.slug); %>" class="btn btn-grey">newer post &raquo;</a>
+    <% } %>
 </div>
 <% } %>

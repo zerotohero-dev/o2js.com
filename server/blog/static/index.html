@@ -2,15 +2,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
 
     <title>o2.js - A Coherent Solution to You JavaScript Dilemma</title>
+
+    <!--
+    		Dear source code reader,
+
+    		Thank you very much for diving in.
+
+    		You are either stealing a CSS transition effect, or a layout feature on this page [1],
+    		or you are someone interested in how I organize my markup [2].
+
+    		For [1]:
+    			Dude, go ahead use the code as if it's yours. I would appreciate if you
+    			send me a "thank you e-mail" (to me@volkan.io), so that we can get in touch with
+    			each other as two web professionals.
+
+    		For [2]:
+                 This is an ongoing "static blog" side project of mine.
+                 It is open source, and you can see it at: <https://github.com/v0lkan/o2js.com>
+                 Currently this blog's content and the generator code is intermingled.
+                 That is, it's not a turn key solution.
+
+                 I plan to make it a product, when I have time;
+                 and until then you'll have to muddle your way through.
+
+                Having said that, feel free to fork the code, and contribute to it if you like.
+
+    		The layout is kind-of responsive; meaning: I did not spend a hell lot of time to
+    		optimize the experience in mobile user agents. However the content is still readable,
+    		and looks adequately decent in mobile browsers.
+
+    		Oh and there's an option [3]: You are a decision-maker, or a rare breed of
+    		recruiter with technical knowledge, and curiosity, wanting to "read the source"
+    		before walking the talk. Well, then I am confident in my knowledge, skills, and
+    		abilities; and my friends consider me a cunning hacker, and a fast learner.
+
+        		I love hacking, and I love paying attention to seemingly invisible things.
+
+    		At any rate, if you are interested enough to read the source, then we definitely
+    		should touch base.
+
+    		Oh... For the standardistas out there:
+
+        		Last time I checked this document was valid HTML5 + ARIA + SVG 1.1 + MathML 2.0.
+
+    		However, since those standards change regularly, and there still is debate between
+    		organizations, and domain experts on things like how to semantically structure the
+    		document, whether we should use H1 tags all around, or show sympathy to screen readers
+    		and use H1..H6 tags as we had used before, etc...
+
+    		I mean, I might not be doing the right thing, and I would love to have your ideas,
+    		opinions, and suggestions about how to make this markup better.
+
+    		I, myself, am a performance freak, so I'd truly appreciate any suggestion about
+    		how to make this web page better, and faster.
+
+    		With respect,
+    		Volkan.
+    -->
 
     <meta name="description" content="o2js.com; a coherent solution to your JavaScript dilemma.">
     <meta name="author" content="Volkan Özçelik">
     <meta name="viewport" content="width=device-width" />
 
-<link href="//cloud.webtype.com/css/d916039f-5766-434b-a474-c8d731cfa12c.css" rel="stylesheet" type="text/css" />
+<link href="//cloud.webtype.com/css/7aac64b3-a02e-43cb-9465-10369d68dd33.css" rel="stylesheet" type="text/css" />
 
     <link href="css/style.css" rel="stylesheet" />
 
@@ -26,17 +83,18 @@
 </head>
 <body class="wf-active main" style="background:url(http://bg.o2js.com/)">
     <div class="container">
-        <p>Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" alt="index" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
+        <p style="text-align:center">Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
 
         
 <h2 class="title span8"><a href="/heres-a-smart-way-to-untangle-your-dependencies">Here’s a Smart Way to Untangle Your Dependencies</a></h2>
 <div class="span8">
   <p><img src="http://o2js.com/assets/tangled.png" style="float:left;margin:1em;" alt="Tangled" title="Untangle your dependencies"></p>
-<p><strong>Node.JS</strong> is awesome: </p>
-<p>It enables us to create miracles gulping, merging, and piping async flows of streams without needing to think about concurrency, and thread safety.</p>
-<p>Heck… you can even spawn a functional web server in under 10 lines of code.</p>
-<p>All this is <strong>beyond compare</strong>; yet there are places that <strong>Node.JS</strong> causes a real pain in the rear:</p>
+<p><strong>Node.JS</strong> is awesome. – It enables us to create miracles gulping, merging, and piping async flows of streams without needing to think about concurrency and thread safety.</p>
+<p>Heck… you can even spawn a functional web server in under ten lines of code.</p>
+<p>All this is <strong>beyond compare</strong>; yet there are places where <strong>Node.JS</strong> causes a real pain in the rear:</p>
+<blockquote>
 <p>One of the pain points of <strong>Node.JS</strong> is the <strong>bottomup</strong> approach it takes when resolving dependencies.</p>
+</blockquote>
 <p>Let’s see this with an example:</p>
 <div style="clear:both"></div>
 
@@ -56,33 +114,38 @@
 │   └── util
 │       └── log.js
 └───db
-    └── shard.js</code></pre>
-<p>It’s nothing uncommon:</p>
-<p><strong>admin.foobar.com</strong> is a web app that boots a server instance by executing <code>node app.js</code>; and we have a various modules spread around.</p>
-<p>To simulate, a real-life scenario, let’s assume our <strong>admin.foobar.com/route/mixin/api/mixin/content.js</strong> module is this:</p>
+   └── shard.js</code></pre>
+<p>It’s nothing uncommon.</p>
+<p><strong>admin.foobar.com</strong> is a web app that boots a server instance by executing <code>node app.js</code>, and we have a various modules spread around.</p>
+<p>To simulate a real-life scenario, let’s assume our <strong>…/api/mixin/content.js</strong> module is this:</p>
 <pre><code><span class="comment">// File: admin.foobar.com/route/mixin/api/mixin/content.js</span>
 
 <span class="string">'use strict'</span>;
 
 <span class="keyword">var</span> shard = <span class="keyword">require</span>(<span class="string">'../../../../../db/shard'</span>),
-    log = <span class="keyword">require</span>(<span class="string">'../../../../util/log'</span>);
+   log = <span class="keyword">require</span>(<span class="string">'../../../../util/log'</span>);
 
 exports.hello = <span class="keyword">function</span>() {
-    shard.connect();
+   shard.connect();
 
-    log.log(<span class="string">'Bazinga!'</span>);
+   log.log(<span class="string">'Bazinga!'</span>);
 
-    <span class="keyword">return</span> <span class="string">'World'</span>;
+   <span class="keyword">return</span> <span class="string">'World'</span>;
 };</code></pre>
-<p>Can you see how ugly those <strong>require</strong>s look?</p>
+<p>See how ugly those <code>require</code>s look?</p>
+<p>And it’s not just aesthetics, it’s also about maintainability. </p>
+<p>Why?</p>
+<p>To begin with, the chain of paths are too obscure to follow:</p>
+<blockquote>
 <p>By looking at the above source, can you see that <strong>db/shard</strong> is five levels above the current file, whereas <strong>util/log</strong> is four levels above?</p>
-<p>If you don’t have an “OCR-like eye”, you can miss the fact that one path has four “..”s, and the other has five.</p>
+<p>If you don’t have an “OCR-like eye”, you can miss the fact that one path has four “..”s, and the other has five. And that would cause runtime annoyances.</p>
+</blockquote>
 <p>Moreover, if you were to refactor this module, and move it to a different folder, say two levels above,  can you be 100% sure that your <code>require</code>s will work properly? </p>
 <blockquote>
-<p>Yeah there are <strong>IDES</strong>, like <a href="http://www.jetbrains.com/webstorm/">WebStorm</a> that can remap your <code>require</code>s upon a project-wide refactoring; and even <strong>WebStorm</strong> messes things up sometimes.</p>
+<p>Yeah there are <strong>IDE</strong>s, like <a href="http://www.jetbrains.com/webstorm/">WebStorm</a> that can remap your <code>require</code>s upon a project-wide refactoring; and even <strong>WebStorm</strong> messes things up sometimes.</p>
 </blockquote>
 <h3>The “Topdown” Way</h3>
-<p>To address these (<em>and more</em>) issues, we need to find a way to define our includes relative to the project root (<em>i.e., follow a topdown approach</em>).</p>
+<p>To address these (<em>and more</em>) issues, we need to find a way to define our <strong>include</strong>s relative to the project root (<em>i.e., follow a <strong>topdown</strong> approach</em>).</p>
 <p>Let’s define a helper for this:</p>
 <pre><code><span class="comment">// o2.io/core.js</span>
 
@@ -90,24 +153,24 @@ exports.hello = <span class="keyword">function</span>() {
 
 <span class="keyword">var</span> path = <span class="keyword">require</span>(<span class="string">'path'</span>);
 
-exports.<span class="keyword">require</span> = <span class="keyword">function</span>(dirName, baseDir, appDir) {
-    <span class="keyword">return</span> <span class="keyword">function</span>(name) {
-        <span class="keyword">return</span> <span class="keyword">require</span>(path.join(
+exports.<span class="keyword">require</span> = <span class="keyword">function</span>(dirName, baseDir, appDir) \{
+   <span class="keyword">return</span> <span class="keyword">function</span>(name) {
+       <span class="keyword">return</span> <span class="keyword">require</span>(path.join(
             dirName,
             name[<span class="number">0</span>] === <span class="string">'/'</span> ?  baseDir || <span class="string">'.'</span> :  appDir || <span class="string">'.'</span>,
             name
         ));
-    };
+       };
 };</code></pre>
 <blockquote>
 <p><strong>Hint</strong>:</p>
 <p><a href="https://www.npmjs.org/package/o2.io">This package is currently live</a> on <strong><a href="https://www.npmjs.org/">npm</a></strong>.</p>
-<p>You can use <code>npm install o2.io</code> to try it for yourself.</p>
+<p>You can <code>npm install o2.io</code> to try it for yourself.</p>
 </blockquote>
-<p>The <strong>exports.require</strong> function just wraps the global <strong>require</strong> method, so that you can resolve your path dependencies relative to an arbitrary folder.</p>
-<p>Let’s rewrite <strong>admin.foobar.com/route/mixin/api/mixin/content.js</strong> and require items using this helper.</p>
+<p>The <code>exports.require</code> just wraps the global <code>require</code> method, so that you can resolve your path dependencies relative to an arbitrary folder.</p>
+<p>Let’s rewrite the above <strong>…/api/mixin/content.js</strong> and require items using this helper.</p>
 <p>First we’ll have to do some pre-initialization at <strong>app.js</strong>:</p>
-<pre><code><span class="comment">// file admin.foobar.com/app.js</span>
+<pre><code><span class="comment">// file: admin.foobar.com/app.js</span>
 
 <span class="string">'use strict'</span>;
 
@@ -115,59 +178,62 @@ exports.<span class="keyword">require</span> = <span class="keyword">function</s
 <span class="comment">// __dirname is a magic variable that maps to the current folder.</span>
 <span class="comment">// It is not global, it’s local to the current module.</span>
 <span class="comment">//</span>
-<span class="comment">// Here, the “project root” is set up to the parent directory of the current folder;</span>
+<span class="comment">// Here, the “project root” is set up to the </span>
+<span class="comment">// parent directory of the current folder;</span>
 <span class="comment">// And the “app root” is the current folder.</span>
 <span class="comment">//</span>
-<span class="comment">// Defining the `global.include` should be done before you `require` anything else.</span>
+<span class="comment">// Defining the `global.include` should be done </span>
+<span class="comment">// **before** you `require` anything else.</span>
 <span class="comment">//</span>
-<span class="keyword">global</span>.<span class="keyword">include</span> = <span class="keyword">require</span>(<span class="string">'o2.io'</span>).<span class="keyword">require</span>(__dirname, <span class="string">'..'</span>);
+<span class="keyword">global</span>.<span class="keyword">include</span> = <span class="keyword">require</span>(<span class="string">'o2.io'</span>).<span class="keyword">require</span>(\_\_dirname, <span class="string">'..'</span>);
 
-<span class="comment">// After defining `global.include`, `require` your modules as usual.</span>
+<span class="comment">// After defining `global.include`, </span>
+<span class="comment">// `require` your modules as usual.</span>
 <span class="keyword">var</span> content = <span class="keyword">require</span>(<span class="string">'./route/mixin/api/mixin/content'</span>);
 
 content.hello();</code></pre>
-<p>Unlike the default <code>require</code> function, which works bottom up, we can use the <code>include</code> function to resolve dependencies topdown.</p>
-<p>Let’s create a modified version of <strong>admin.foobar.com/route/mixin/api/mixin/content.js</strong> to demonstrate this.</p>
+<p>Unlike the default <code>require</code> function, which works <strong>bottomup</strong>, we can use the <code>include</code> function to resolve dependencies <strong>topdown</strong>.</p>
+<p>Let’s create a modified version of <strong>…/api/mixin/content.js</strong> to demonstrate this.</p>
 <p>For comparison, here are the original <strong>require</strong> statements:</p>
 <pre><code>...
 
 <span class="keyword">var</span> shard = <span class="keyword">require</span>(<span class="string">'../../../../../db/shard'</span>),
-    log = <span class="keyword">require</span>(<span class="string">'../../../../util/log'</span>);
+   log = <span class="keyword">require</span>(<span class="string">'../../../../util/log'</span>);
+
 ...</code></pre>
-<p>Here is the modified file:</p>
+<p>And here goes the modified file:</p>
 <pre><code><span class="comment">// File: admin.foobar.com/route/mixin/api/mixin/content.js</span>
 
 <span class="string">'use strict'</span>;
 
+<span class="comment">// Look Ma! I ain’t see no “..”s around.</span>
 <span class="keyword">var</span> shard = <span class="keyword">include</span>(<span class="string">'/db/shard'</span>),
-    log = <span class="keyword">include</span>(<span class="string">'util/log'</span>);
+   log = <span class="keyword">include</span>(<span class="string">'util/log'</span>);
 
 exports.hello = <span class="keyword">function</span>() {
-    shard.connect();
+   shard.connect();
 
-    log.log(<span class="string">'Bazinga!'</span>);
+   log.log(<span class="string">'Bazinga!'</span>);
 
     <span class="keyword">return</span> <span class="string">'World'</span>;
 };</code></pre>
-<p>~~~</p>
 <p>Much leaner, huh?</p>
 <ul>
-<li>When the path string starts with a “<strong>/</strong>” (as in “<strong>/db/shard</strong>”), resolve the path relative to the “<strong>project root</strong>”.</li>
-<li>When the path does not start with a “<strong>/</strong>” (as in “<strong>util/log</strong>”), resolve the path relative to the “<strong>app root</strong>”.</li>
+<li>When the path string starts with a “<strong>/</strong>” (as in “<strong><span style="background:#ffff00">/</span>db/shard</strong>”), we resolve the path relative to the “<strong>project root</strong>”.</li>
+<li>When the path does not start with a “<strong>/</strong>” (as in “<strong>util/log</strong>”), we resolve the path relative to the “<strong>app root</strong>”.</li>
 </ul>
-<p>It is as simple as that!</p>
+<p>It’s as simple as that!</p>
 <h3>Read the Source, Luke</h3>
 <p>You can get the source code <a href="https://github.com/o2js/o2.io/blob/3f573216d073636273afad71f1bd6b00976b7026/src/core.js">by navigating to this <strong>GitHub</strong> history snapshot</a>.</p>
-<p>Also the astute follower might have realized </p>
-<p>This new <strong>o2.js</strong> module lays outside the <a href="https://github.com/v0lkan/o2.js"><strong>o2.js</strong> main repository</a>, as a standalone helper. </p>
-<p>That’s intentional, and here’s why:</p>
+<p>Also the astute follower might have realized that this new <strong>o2.js</strong> module lays outside the <a href="https://github.com/v0lkan/o2.js"><strong>o2.js</strong> main repository</a>, as a standalone helper. </p>
+<p>That’s <strong>intentional</strong>, and here’s why:</p>
 <blockquote>
-<p>I’m planning to split <strong>o2.js</strong> into <strong>reusable</strong>, and <strong>atomic</strong> components that can live by themselves. – I plan to  manage these components in separate repositories of their own. Not only will it will be much <strong>easier to maintain</strong>, it will also be much <strong>easier to contribute</strong> too, since there will be a much lesser initial learning curve to get involved.</p>
+<p>I’m planning to split <strong>o2.js</strong> into <strong>reusable</strong>, and <strong>atomic</strong> components that can live by themselves. – I plan to  manage these components in separate repositories of their own. Not only will it be much <strong>easier to maintain</strong>, it will also be much <strong>easier to contribute</strong> too, since there will be a much lesser initial learning curve to get involved.</p>
 </blockquote>
 <h3>Conclusion</h3>
-<p>Now our <strong>include</strong>s look much prettier; and there is more than eye candy in that:</p>
+<p>Now our <code>include</code>s look much prettier; and there is more than eye candy in that:</p>
 <p>By quickly looking at the source code we can see where the modules are. Hence, no more counting “<strong>..</strong>”s and squinting your eyes to double check if you have added an extra “<strong>/..</strong>” by mistake.</p>
-<p><strong>Refactoring</strong> is a breeze, too! You can move this script anywhere in the folder hierarchy, and you won’t need to change its <strong>include</strong> paths.</p>
+<p><strong>Refactoring</strong> is a breeze, too! You can move this script anywhere in the folder hierarchy, and you won’t need to change its <code>include</code> paths.</p>
 <p>…</p>
 <p>Hope you liked this little hack that lets your hair stay where it belongs <strong>;)</strong>.</p>
 
@@ -184,7 +250,6 @@ exports.hello = <span class="keyword">function</span>() {
 
 <div class="menu right">
   <a href="/are-you-ready-to-hack" class="btn btn-grey">&laquo; older post</a>
-  <a href="javascript://" class="btn btn-grey btn-disabled">newer post &raquo;</a>
 </div>
 
 
@@ -213,7 +278,7 @@ exports.hello = <span class="keyword">function</span>() {
         </div>
         <p class="interviewz">
             Psttt&hellip;
-            Wanna ace that job interview?<br>
+            Wanna ace that interview?<br>
             Then you have some reading to do:<br>
             <a style="text-align:center;display:block;margin-top:1em"
             href="http://o2js.com/interview-questions"
@@ -223,6 +288,60 @@ exports.hello = <span class="keyword">function</span>() {
             ««</a>
         </p>
     </header>
-    
+<script>
+    (function(window, document) {
+        'use strict';
+
+        var isScrolled = false,
+            isProcessed = false,
+
+            AD_SHOW_DELAY = 3000,
+            AD_SHOW_INIT_TOP_THRESHOLD = 50,
+            AD_CONTAINER_CLASS = 'interviewz',
+            AD_CONTAINER_HOVER_CLASS = 'interviewz hovered',
+
+            // A modern-ish RAF polyfill.
+            tick = window.requestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.msRequestAnimationFrame ||
+            window.oRequestAnimationFrame;
+
+            if (!tick) {return;}
+
+            window.addEventListener('scroll', function() {
+                isScrolled = true;
+            })
+
+            function loop() {
+                if (isProcessed) {return;}
+
+                tick(loop);
+
+                if (!isScrolled) {return;}
+
+                var top = Math.max(
+                    document.body.scrollTop,
+                    document.documentElement.scrollTop
+                );
+
+                if (top < AD_SHOW_INIT_TOP_THRESHOLD) {return;}
+
+                isProcessed = true;
+
+                setTimeout(function(){
+                    var container = document.getElementsByClassName(
+                        AD_CONTAINER_CLASS
+                    )[0];
+
+                    container.className = AD_CONTAINER_HOVER_CLASS;
+                }, AD_SHOW_DELAY);
+
+                window.onscroll = function(){};
+            }
+
+            loop();
+    }(this, this.document));
+</script>
 </body>
 </html>
