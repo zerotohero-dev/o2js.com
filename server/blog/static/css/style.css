@@ -21,6 +21,20 @@ div.span8 {
     border-right: 2px #ccc solid;
 }
 
+
+a {
+    border-bottom: 2px solid #FFE026;
+    text-decoration: none;
+    color: #000;
+}
+
+a:hover {
+    border-bottom: 2px #FFE026 solid;
+    background: #FFE026;
+    color: #000;
+}
+
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "Georgia Pro", "Book Antiqua", Georgia, "Times New Roman", times, sans-serif;
     font-weight: normal;
@@ -42,7 +56,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 }
 
 h1 strong, h2 strong, h3 strong, h4 strong, h5 strong, h6 strong {
-    color: #c80f32 !important;
+    color: #222 !important;
 }
 
 
@@ -57,7 +71,7 @@ h3 {
 }
 
 h4 {
-    font-size: 18px;
+    font-size: 24px;
     font-style: italic;
     line-height: 36px;
     margin-bottom:0;
@@ -84,10 +98,9 @@ hr {
     width: 60%;
 }
 
-a {
-    color: #c80f32;
+xa {
+    color: #2455C3; /*#003DF5*/
     text-decoration: none;
-    border-bottom: 1px #c80f32 dashed;
 }
 
 table {
@@ -125,6 +138,7 @@ pre {
     -ms-border-radius: 2px;
     -o-border-radius: 2px;
     -webkit-border-radius: 2px;
+    overflow: auto;
 }
 
 /*code-styling*/
@@ -197,7 +211,7 @@ pre {
         pre .vhdl .attribute { color: #00B0E8; }
 /*\-code-styling*/        
 
-pre, .interviewz, .legend ul {
+.interviewz, .legend ul {
     webkit-transform: matrix(1, -0.015, 0, 1, 0, 0) translate3d(0,0,1px);
     -o-transform: matrix(1, -0.085, 0, 1, 0, 0) translate3d(0,0,1px);
     -moz-transform: matrix(1, -0.015, 0, 1, 0, 0) translate3d(0,0,1px);
@@ -211,7 +225,22 @@ pre, .interviewz, .legend ul {
     transition: transform 0.3s ease-out,opacity 3.4s ease-out,box-shadow 0.5s ease-out,background-color 3s ease-out;
 }
 
-pre:hover, .interviewz:hover, .interviewz.hovered  {
+ pre {
+    background-color:#fff;
+       
+    -webkit-box-shadow: 0px 10px 15px -10px rgba(0,0,0,0.36);
+    -moz-box-shadow: 0px 10px 15px -10px rgba(0,0,0,0.36);
+    -ms-box-shadow: 0px 10px 15px -10px rgba(0,0,0,0.36);
+    -o-box-shadow: 0px 10px 15px -10px rgba(0,0,0,0.36);
+    box-shadow: 0px 10px 15px -10px rgba(0,0,0,0.36);
+    
+    border:1px #ccc solid;
+}
+
+ 
+
+
+.interviewz:hover, .interviewz.hovered  {
     background-color:#fff;
     
     webkit-transform: matrix(1, 0, 0, 1, 0, 0) translate3d(0,0,1px);
@@ -252,8 +281,15 @@ pre:hover, .interviewz:hover, .interviewz.hovered  {
     padding: 0 2em;
 }
 
+.legend ul a {
+}
+
+.legend ul a:hover {
+    border-bottom: 1px #FFE026 solid;
+}
+
 .container h3, .container h4, .container h5, .container h6 {
-    color: #222 !important;
+    color: #BA3925 !important;
 
     padding-top: 0.5em;
     xtext-align: center;
@@ -266,22 +302,18 @@ pre:hover, .interviewz:hover, .interviewz.hovered  {
 
 .container h3 a, .container h4 a, .container h5 a, .container h6 a {
     color: #071410 !important;
-    border-bottom: 1px #374440 dashed !important;
+    border-bottom: 2px #FFE026 solid !important;
 }
 
 .container h3 a:hover, .container h4 a:hover, .container h5 a:hover, .container h6 a:hover {
-    color: #2e93cd !important;
-    border-bottom: 1px #2e93cd dashed !important;
+    color: #000 !important;
 }
 
 .posts .title a {
-  color: #c80f32;
+  color: #c80f32;/
 }
 
-.posts .title a:hover, a:hover {
-  color: #2e93cd;
-  text-decoration: none;
-  border-bottom: 1px solid;
+.posts .title a:hover {
 }
 
 pre, blockquote {
@@ -304,14 +336,14 @@ pre {
 
 pre, code {
   font-family: "Input Mono Cond", "Lucida Console", Menlo, Monaco, "Courier New", Courier, mono, monospace;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.5em;
   color: #333;
   background: #f7f7f7;
 }
 
 code {
-    background: #f7f7f7;
+    background: #eee;
 }
 
 blockquote {
@@ -382,9 +414,6 @@ a.btn {
 }
 
 .interviewz a:hover {
-    border-bottom: 0;
-    color: #2e93cd;
-    text-decoration: underline;
 }
 
 .aboutme h1 {
@@ -436,6 +465,12 @@ a.btn {
     border-right: 2px #ccc solid;
 }
 
+.container h2 a:hover {
+}
+
+.legend h1 a:hover {
+}
+
 .menu {
     position:  fixed;
     bottom:  0;
@@ -472,8 +507,8 @@ a.btn {
 }
 
 .topics {
-    border-bottom: 0;
-    text-decoration: underline;
+    xborder-bottom: 0;
+    text-decoration: none;
 }
 
 @media (max-width:1050px) {

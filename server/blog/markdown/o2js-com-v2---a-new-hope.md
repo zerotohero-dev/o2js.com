@@ -106,6 +106,9 @@ I also will be writing new articles too, so it will take a while to copy, transf
 	* [The Secrets of High Performance Mobile **JavaScript** Applications](http://o2js.com/the-secrets-of-high-performance-mobile-javascript-applications)
 	* [Who Else Is Ready to Hack?](http://o2js.com/are-you-ready-to-hack)
 
+* **News and Update**
+	* [Upcoming News](http://o2js.com/upcoming-news)
+
 That's all for now **;)**.
 
 Strating with the next month, I will try to write a new blog post **every two weeks**. So it will be like a never-ending [blog sprint][scrum] for me **:)**.

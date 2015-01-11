@@ -86,170 +86,77 @@
         <p style="text-align:center">Feeling Lost? <a href="http://o2js.com/o2js-com-v2---a-new-hope?#topic-list" class="topics" title="the big index of articles written so far&hellip;"><strong>Start Here &raquo;&raquo;</strong></a></p>
 
         
-<h2 class="title span8"><a href="/heres-a-smart-way-to-untangle-your-dependencies">Here’s a Smart Way to Untangle Your Dependencies</a></h2>
+<h2 class="title span8"><a href="/upcoming-news">Upcoming News</a></h2>
 <div class="span8">
-  <p><img src="http://o2js.com/assets/tangled.png" style="float:left;margin:1em;" alt="Tangled" title="Untangle your dependencies"></p>
-<p><strong>Node.JS</strong> is awesome. – It enables us to create miracles gulping, merging, and piping async flows of streams without needing to think about concurrency and thread safety.</p>
-<p>Heck… you can even spawn a functional web server in under ten lines of code.</p>
-<p>All this is <strong>beyond compare</strong>; yet there are places where <strong>Node.JS</strong> causes a real pain in the rear:</p>
+  <p><a href="http://o2js.com/assets/mind_like_water_large.png"><img src="http://o2js.com/assets/mind_like_water.png" style="float:left;margin:2em;" alt="" title="Be like water; when you receive a pepple, give a 'pebble response'; when you receive a boulder, give a 'boulder response'; steadily evolve, while accepting and internalizing every experience you have on the road. — Because it’s the road that matters." /></a></p>
+<p>Although I have not written recently, there’s a lot going on behind the scenes.</p>
+<p>Everything is gradually morphing into a better state. </p>
+<p>Since most of these are not (<em>yet</em>) publicly visible, I wanted to share the overall progress, along with my excitement, and passion.</p>
+<div style="clear:both;"></div>
+
+<p>Here are a few things on the way.</p>
+<h3>I&#39;m Turning <strong>o2js.com</strong> Into an Evergreen <strong>Ebook</strong></h3>
+<p>This is one of my biggest works in progress. I’ve organized the content into sections and subsections as follows:</p>
+<p><img src="http://o2js.com/assets/sections.png" alt="" title="Sections"></p>
+<p>I will be adding more to this. </p>
+<p>Basically, it will be a never-ending work, constantly updating itself.</p>
 <blockquote>
-<p>One of the pain points of <strong>Node.JS</strong> is the <strong>bottomup</strong> approach it takes when resolving dependencies.</p>
+<p>Since creating an <strong>ebook</strong> will be a serious effort, it “<strong>might</strong>” not be free — I am still thinking about the details.</p>
+<p>I will also add <strong>special</strong> sections to the ebook that will not be on the web version, to justify its price tag.</p>
+<p>By the way, the web version will <strong>always</strong> be free <strong>forever</strong>.</p>
 </blockquote>
-<p>Let’s see this with an example:</p>
-<div style="clear:both"></div>
-
-<h3>“Bottoms Up” Makes You Drunk</h3>
-<p>Assume you have the following project folder structure:</p>
-<pre><code>PROJECT_ROOT
-|
-├── admin.foobar.com
-|   |
-│   ├── app.js
-|   |
-│   ├── route
-│   │   └── mixin
-│   │       └── api
-│   │           └── mixin
-│   │               └── content.js
-│   └── util
-│       └── log.js
-└───db
-   └── shard.js</code></pre>
-<p>It’s nothing uncommon.</p>
-<p><strong>admin.foobar.com</strong> is a web app that boots a server instance by executing <code>node app.js</code>, and we have a various modules spread around.</p>
-<p>To simulate a real-life scenario, let’s assume our <strong>…/api/mixin/content.js</strong> module is this:</p>
-<pre><code><span class="comment">// File: admin.foobar.com/route/mixin/api/mixin/content.js</span>
-
-<span class="string">'use strict'</span>;
-
-<span class="keyword">var</span> shard = <span class="keyword">require</span>(<span class="string">'../../../../../db/shard'</span>),
-   log = <span class="keyword">require</span>(<span class="string">'../../../../util/log'</span>);
-
-exports.hello = <span class="keyword">function</span>() {
-   shard.connect();
-
-   log.log(<span class="string">'Bazinga!'</span>);
-
-   <span class="keyword">return</span> <span class="string">'World'</span>;
-};</code></pre>
-<p>See how ugly those <code>require</code>s look?</p>
-<p>And it’s not just aesthetics, it’s also about maintainability. </p>
-<p>Why?</p>
-<p>To begin with, the chain of paths are too obscure to follow:</p>
+<h3>Moving <strong>o2.js</strong> Into Small And Reusable Modules</h3>
 <blockquote>
-<p>By looking at the above source, can you see that <strong>db/shard</strong> is five levels above the current file, whereas <strong>util/log</strong> is four levels above?</p>
-<p>If you don’t have an “OCR-like eye”, you can miss the fact that one path has four “..”s, and the other has five. And that would cause runtime annoyances.</p>
+<p>The current trend is being small, modular, independent, pluggable, and reusable. </p>
+<p><a href="https://news.ycombinator.com/item?id=8243523" title="Discuss &quot;Yahoo! Stopping All Developent on YUI&quot; on hackernews.">Even <strong>Yahoo!</strong> ceased all new development on its monolithic <strong>YUI</strong> framework</a>.</p>
 </blockquote>
-<p>Moreover, if you were to refactor this module, and move it to a different folder, say two levels above,  can you be 100% sure that your <code>require</code>s will work properly? </p>
-<blockquote>
-<p>Yeah there are <strong>IDE</strong>s, like <a href="http://www.jetbrains.com/webstorm/">WebStorm</a> that can remap your <code>require</code>s upon a project-wide refactoring; and even <strong>WebStorm</strong> messes things up sometimes.</p>
-</blockquote>
-<h3>The “Topdown” Way</h3>
-<p>To address these (<em>and more</em>) issues, we need to find a way to define our <strong>include</strong>s relative to the project root (<em>i.e., follow a <strong>topdown</strong> approach</em>).</p>
-<p>Let’s define a helper for this:</p>
-<pre><code><span class="comment">// o2.io/core.js</span>
-
-<span class="string">'use strict'</span>;
-
-<span class="keyword">var</span> path = <span class="keyword">require</span>(<span class="string">'path'</span>);
-
-exports.<span class="keyword">require</span> = <span class="keyword">function</span>(dirName, baseDir, appDir) \{
-   <span class="keyword">return</span> <span class="keyword">function</span>(name) {
-       <span class="keyword">return</span> <span class="keyword">require</span>(path.join(
-            dirName,
-            name[<span class="number">0</span>] === <span class="string">'/'</span> ?  baseDir || <span class="string">'.'</span> :  appDir || <span class="string">'.'</span>,
-            name
-        ));
-       };
-};</code></pre>
-<blockquote>
-<p><strong>Hint</strong>:</p>
-<p><a href="https://www.npmjs.org/package/o2.io">This package is currently live</a> on <strong><a href="https://www.npmjs.org/">npm</a></strong>.</p>
-<p>You can <code>npm install o2.io</code> to try it for yourself.</p>
-</blockquote>
-<p>The <code>exports.require</code> just wraps the global <code>require</code> method, so that you can resolve your path dependencies relative to an arbitrary folder.</p>
-<p>Let’s rewrite the above <strong>…/api/mixin/content.js</strong> and require items using this helper.</p>
-<p>First we’ll have to do some pre-initialization at <strong>app.js</strong>:</p>
-<pre><code><span class="comment">// file: admin.foobar.com/app.js</span>
-
-<span class="string">'use strict'</span>;
-
-<span class="comment">//</span>
-<span class="comment">// __dirname is a magic variable that maps to the current folder.</span>
-<span class="comment">// It is not global, it’s local to the current module.</span>
-<span class="comment">//</span>
-<span class="comment">// Here, the “project root” is set up to the </span>
-<span class="comment">// parent directory of the current folder;</span>
-<span class="comment">// And the “app root” is the current folder.</span>
-<span class="comment">//</span>
-<span class="comment">// Defining the `global.include` should be done </span>
-<span class="comment">// **before** you `require` anything else.</span>
-<span class="comment">//</span>
-<span class="keyword">global</span>.<span class="keyword">include</span> = <span class="keyword">require</span>(<span class="string">'o2.io'</span>).<span class="keyword">require</span>(\_\_dirname, <span class="string">'..'</span>);
-
-<span class="comment">// After defining `global.include`, </span>
-<span class="comment">// `require` your modules as usual.</span>
-<span class="keyword">var</span> content = <span class="keyword">require</span>(<span class="string">'./route/mixin/api/mixin/content'</span>);
-
-content.hello();</code></pre>
-<p>Unlike the default <code>require</code> function, which works <strong>bottomup</strong>, we can use the <code>include</code> function to resolve dependencies <strong>topdown</strong>.</p>
-<p>Let’s create a modified version of <strong>…/api/mixin/content.js</strong> to demonstrate this.</p>
-<p>For comparison, here are the original <strong>require</strong> statements:</p>
-<pre><code>...
-
-<span class="keyword">var</span> shard = <span class="keyword">require</span>(<span class="string">'../../../../../db/shard'</span>),
-   log = <span class="keyword">require</span>(<span class="string">'../../../../util/log'</span>);
-
-...</code></pre>
-<p>And here goes the modified file:</p>
-<pre><code><span class="comment">// File: admin.foobar.com/route/mixin/api/mixin/content.js</span>
-
-<span class="string">'use strict'</span>;
-
-<span class="comment">// Look Ma! I ain’t see no “..”s around.</span>
-<span class="keyword">var</span> shard = <span class="keyword">include</span>(<span class="string">'/db/shard'</span>),
-   log = <span class="keyword">include</span>(<span class="string">'util/log'</span>);
-
-exports.hello = <span class="keyword">function</span>() {
-   shard.connect();
-
-   log.log(<span class="string">'Bazinga!'</span>);
-
-    <span class="keyword">return</span> <span class="string">'World'</span>;
-};</code></pre>
-<p>Much leaner, huh?</p>
+<p>Via the same reasoning, I’ve logically split <strong>o2.js</strong> into <strong><a href="https://github.com/o2js" title="Visit o2.js on github.">24 smaller sub-modules</a></strong>, each of them will be independent of each other, and will be maintained in a separate repository.</p>
+<h3>Some Wheel Reinvention Is Due</h3>
+<p>We, human beings, learn by <strong>imitation</strong>.</p>
+<p>Learning programming <strong>patterns</strong> and <strong>paradigms</strong> is no different:</p>
 <ul>
-<li>When the path string starts with a “<strong>/</strong>” (as in “<strong><span style="background:#ffff00">/</span>db/shard</strong>”), we resolve the path relative to the “<strong>project root</strong>”.</li>
-<li>When the path does not start with a “<strong>/</strong>” (as in “<strong>util/log</strong>”), we resolve the path relative to the “<strong>app root</strong>”.</li>
+<li>First you <strong>copy</strong> others’ code; </li>
+<li>Then you think about how you can <strong>extend </strong>that code, and what you can do differently;</li>
+<li>And eventually you come up with your own <strong>approach</strong>, and <strong>style</strong>.</li>
 </ul>
-<p>It’s as simple as that!</p>
-<h3>Read the Source, Luke</h3>
-<p>You can get the source code <a href="https://github.com/o2js/o2.io/blob/3f573216d073636273afad71f1bd6b00976b7026/src/core.js">by navigating to this <strong>GitHub</strong> history snapshot</a>.</p>
-<p>Also the astute follower might have realized that this new <strong>o2.js</strong> module lays outside the <a href="https://github.com/v0lkan/o2.js"><strong>o2.js</strong> main repository</a>, as a standalone helper. </p>
-<p>That’s <strong>intentional</strong>, and here’s why:</p>
+<p>Of course, there are battle-tested solutions to almost any technical problem that you can imagine; however, creating things from scratch gives you a <strong>deeper understanding</strong> behind the magic about <strong>why</strong> things work the way they work. </p>
+<h4>Curiosity Kills the Cat</h4>
 <blockquote>
-<p>I’m planning to split <strong>o2.js</strong> into <strong>reusable</strong>, and <strong>atomic</strong> components that can live by themselves. – I plan to  manage these components in separate repositories of their own. Not only will it be much <strong>easier to maintain</strong>, it will also be much <strong>easier to contribute</strong> too, since there will be a much lesser initial learning curve to get involved.</p>
+<p>The insight you gain from the process is invaluable. I highly suggest you to regularly re-invent the wheel to expand your horizon.</p>
 </blockquote>
-<h3>Conclusion</h3>
-<p>Now our <code>include</code>s look much prettier; and there is more than eye candy in that:</p>
-<p>By quickly looking at the source code we can see where the modules are. Hence, no more counting “<strong>..</strong>”s and squinting your eyes to double check if you have added an extra “<strong>/..</strong>” by mistake.</p>
-<p><strong>Refactoring</strong> is a breeze, too! You can move this script anywhere in the folder hierarchy, and you won’t need to change its <code>include</code> paths.</p>
-<p>…</p>
-<p>Hope you liked this little hack that lets your hair stay where it belongs <strong>;)</strong>.</p>
+<p>Don’t get me wrong: If you are working on a real-life application, that will be used by a real audience, then <strong>re-use</strong> existing frameworks, libraries, and solutions as much as you can. </p>
+<blockquote>
+<p>If you are learning new things, don’t fear to re-invent, fail, retry, break, and experiment.</p>
+</blockquote>
+<p>Besides, sometime you do need something minimalistic, just to solve a domain-specific problem, where creating a tiny module from scratch might be a feasible solution.</p>
+<h4>New <strong>o2.js</strong> Modules</h4>
+<p>Having said that, I’ll be working on quite a few re-usable modules:</p>
+<ul>
+<li>A basic <strong>string utilities</strong> module;</li>
+<li>A browser-based <strong>dependency-resolution</strong> module (<em>like <strong><a href="http://requirejs.org/" title="require.js">require.js</a></strong>, yet much lightweight and simple</em>);</li>
+<li>A <strong>converter</strong> that converts the server-side <strong><a href="http://nodejs.org/" title="Node.JS">CommonJS</a></strong> modules, into a format that the above module uses (<em>similar to what <strong><a href="http://browserify.org/" title="Browserify">browserify</a></strong> does, with less voodoo magic</em>);</li>
+<li>A really simple <strong>unit testing</strong> library that integrates with <strong><a href="https://travis-ci.org/" title="Travis CI">Travis</a></strong>;</li>
+<li>Make that unit testing solution test the modules that are supposed to run on the browser too, by mocking certain <strong>DOM</strong> interactions;</li>
+<li>Create <strong>code coverage reports</strong> out of these unit tests.</li>
+</ul>
+<p>All of these will also be the ingredients of quite a few articles, which I will be writing along the way.</p>
+<h3>Stay Tuned <strong>;)</strong></h3>
+<p>People who know me know that I’m <strong>always</strong> extremely busy with “things”. Which means that all of these aforementioned “reinvention”s will happen gradually, steadily, yet slowly.</p>
+<p>Hope it will be a useful journey both for me, as well as for anyone who is passionate about creating, making, breaking, and <strong><a href="http://o2js.com/are-you-ready-to-hack" title="Who Else Is Ready to Hack?">hacking</a></strong> things.</p>
 
   <blockquote>
     Do you have something to say? Have I missed anything?<br>
     Send your comments and suggestions to <a href="mailto:volkan@o2js.com">volkan@o2js.com</a>.
   </blockquote>
   <div class="byline">
-    by <a href="http://volkan.io/">Volkan Özçelik</a> on 09.08.14
+    by <a href="http://volkan.io/">Volkan Özçelik</a> on 11.06.14
   </div>
 </div>
 
 
 
 <div class="menu right">
-  <a href="/are-you-ready-to-hack" class="btn btn-grey">&laquo; older post</a>
+  <a href="/heres-a-smart-way-to-untangle-your-dependencies" class="btn btn-grey">&laquo; older post</a>
 </div>
 
 
@@ -263,7 +170,7 @@ exports.hello = <span class="keyword">function</span>() {
 
             <p><strong>Chase Me</strong></p>
             <ul>
-            <li>Mobile Engineer @ <a href="http://jivesoftware.com/">Jive</a></li>
+            <li>Technical Lead @ <a href="http://cisco.com/">Cisco</a></li>
             <li><a href="https://twitter.com/linkibol">@linkibol</a></li>
             <li><a href="https://github.com/v0lkan">github.com/v0lkan</a></li>
             <li><a href="https://speakerdeck.com/volkan">speakerdeck.com/volkan</a></li>
@@ -273,7 +180,7 @@ exports.hello = <span class="keyword">function</span>() {
             <p><strong>o2.js</strong></p>
 
             <ul>
-            <li><a href="https://github.com/v0lkan/o2.js/tree/dev">Read the Source, Luke</a></li>
+            <li><a href="https://github.com/o2js">Read the Source, Luke</a></li>
             </ul>
         </div>
         <p class="interviewz">
